@@ -12,16 +12,13 @@
         $dotenv = Dotenv::createImmutable(__DIR__);
         $dotenv->load();
         require_once __DIR__ . "/conexion.php";
-        $mysqli = ($Conexion = (new conexion)->conexiondb());
-        #$Conexion = new conexion();
-        #$mysqli = $Conexion.conexiondb();
-        if($mysqli->connect_errno){
-           echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+        $mysqli = ($Conexion = (new ConexionDataBase)->conexion());
+        if(!($mysqli->connect_errno)){
+           echo "Conexion Correcta";
         }
         else{
-            echo "Conexion Correcta";
+            echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
         }
-        #require_once __DIR__ . "/conexion.php";
     ?>
 </body>
 </html>
