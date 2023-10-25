@@ -1,26 +1,19 @@
 <?php
+    require_once __DIR__."./vendor/autoload.php";
+    use Dotenv\Dotenv;
+    $dotenv = Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
     class ConexionDataBase{
-        public $SERVER;
-        public $PORT;
-        public $USER;
-        public $PASS;
-        public $DATABASE;
-        public $MYSQLI;
-        public static function conexion(){
+        public function conexion(){
             try{
-                $SERVER = $_ENV['SERVER'];
-                $USER = $_ENV['USER'];
-                $PASS = $_ENV['PASS'];
-                $DATABASE = $_ENV['DATABASE'];
-                $PORT = $_ENV['PORT'];
-                $mysqli = new mysqli($_ENV['SERVER'],$_ENV['USER'],$_ENV['PASS'],$_ENV['DATABASE'],$_ENV['PORT']);
-                return $mysqli;
+                $Conexion = new mysqli($_ENV["SERVER"],$_ENV["USER"],$_ENV["PASS"],$_ENV["DATABASE"],$_ENV["PORT"]);
+                return $Conexion;
             }
             catch(exeption $e){
                 return $e;
             }
         }
     }
-
+    ## execute(), prepare(), bindParam()
 
 ?>
