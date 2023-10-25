@@ -1,0 +1,220 @@
+@import url(https://db.onlinewebfonts.com/c/fd6fa80f1e3345834599de891cca3f4c?family=OCR+A+Extended);
+*{
+    font-family: "OCR A Extended";
+    box-sizing: border-box;
+    color: white;
+}
+body{
+    margin: 0;
+    font-size: 2vh;
+    position: relative;
+}
+/* body::before{
+    content: "";
+    background-image: url(../img/Diseños_pagina/login-diseño.png);
+    background-repeat: no-repeat;
+    height: 99vh;
+    width: 99vw;
+    background-size: 99vw 99vh;
+    position: absolute;
+    z-index: -1;
+    opacity: .5;
+} */
+.main{
+    display: grid;
+    grid-template-columns: 39% 61%;
+    grid-template-rows: 99vh;
+}
+/*___________________________ section__Login ___________________________*/
+.login__container{
+    height: 80vh;
+    display: grid;
+    place-content: center;
+}
+.login__container-register{
+    height: 90vh;
+}
+.login__logo{
+   width: 10em;
+   margin: auto; 
+}
+.login__title{
+    text-align: center;
+    /* margin: 3em 0; */
+    font-size: 2.5em;
+    font-weight: 100;
+}
+.login__logo img{
+    width: 100%;
+}
+.login__input{
+    position: relative;
+}
+.login__input input{
+    padding: .25em .51em;
+    width: 27em;
+    height: 2.7em;
+    border-radius: .5em;
+    border: 0;
+    text-align: end;
+    font-size: 1em;
+    color: black;
+    outline: 0 solid;
+    transition: .3s ease-in-out;
+    transition-property: outline;
+}
+.login__input input:focus{
+    outline: .3em solid #32a1ce;
+    transition: .3s ease-in-out;
+    transition-property: outline;
+}
+.login__input-img img{
+    width: 1.8em;
+    position: absolute;
+    top: 0;
+    left: .75em;
+    bottom: 0;
+    margin: auto;
+}
+.login__form{
+    display: grid;
+    justify-content: center;
+    gap: 1.5em;
+}
+.login__button{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    gap: 1em;
+}
+.login__button input{
+    height: 3em;
+    border-radius: .6em;
+    border: 0;
+    text-align: center;
+    font-size: 1.25em;
+    width: 50%;
+    cursor: pointer;
+}
+.login__button-primario{
+    background: linear-gradient(to top left, rgb(51, 33, 51), #5c415d);
+    transition: all .4s ease-in-out;
+}
+.login__button-secundario{
+    color: #5c415d;
+    background-color: rgba(0, 0, 0, 0);
+    transition: .4s ease-in-out;
+    transition-property: background-color;
+}
+.login__button-primario:hover{
+    background: linear-gradient(to bottom right, rgb(51, 33, 51), #5c415d);
+    transition: all .4s ease-in-out;
+}
+.login__button-secundario:hover{
+    color: #5c415d;
+    background-color: rgba(0, 0, 0, 1);
+    transition: .4s ease-in-out;
+    transition-property: background-color;
+}
+/*___________________________ section__Login ___________________________*/
+.img__filter-100 img{
+    filter:invert(100)
+}
+.img__filter-0 img{
+    filter: contrast(0);
+}
+.section__Login{
+    background-color: #262626;
+    filter: drop-shadow(.75em -0.1em .5em rgba(255, 255, 255, .1));
+}
+.section__info{
+    background: linear-gradient(rgb(51, 33, 51), #5c415d);
+    padding-top: 3.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 7%;
+    position: relative;
+}
+.info__slider-button-rotate-180 img{
+    transform: rotate(180deg);
+}
+/*___________________________ section__info ___________________________*/
+
+
+.info__header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 1.5em;
+}
+.info__icon img{
+    width: 1.75em;
+}
+.info__title{
+    font-size: 1.75em;
+    font-weight: 100;
+}
+.slider__header-img{
+    width: 100%;
+    display: flex;
+}
+.slider__header-img img{
+    margin: auto;
+    width: 1.5em;
+}
+.info__slider{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    margin: 0 auto;
+    gap: 2.5em;
+}
+.slider__content{
+    text-align: center;
+    font-size: 1.25em;
+}
+.slider__button {
+    margin-top: 12%;
+}
+.slider__button img{
+    width: 1.1em;
+    filter: drop-shadow(0 0 4em rgba(0, 0, 0, 1));
+}
+.slider__button-rotate-180 img{
+    transform: rotateY(180deg);
+}
+.slider__img{
+    position: absolute;
+    bottom: 0;
+    height: 40%;
+    width: 100%;
+    text-align: center;
+}
+.slider__img img{
+    height: 100%;
+}
+
+.alertForm{
+    width: 100%;
+    text-align: center;
+    background-color: rgba(233, 79, 57, .5);
+    padding: .5em;
+    border-radius: .5em;
+    margin-bottom: .5em;
+    font-size: 1em;
+}
+/*___________________________ section__info ___________________________*/
+@media screen and (max-width: 950px) {
+    .main{
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 100vh 100vh;
+    }
+    .section__Login{
+        background: linear-gradient(#262626,rgb(51, 33, 51));
+        background-color: #262626;
+        filter: drop-shadow(.75em -0.1em 1em rgba(255, 255, 255, .1));
+    }
+}
