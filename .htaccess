@@ -1,2 +1,19 @@
+Options All -Indexes
 ErrorDocument 404 /404.php
 ErrorDocument 403 /403.php
+##  session.gc_maxlifetime 1800 ## si deseas establecer un tiempo máximo de vida de 30 minutos para las sesiones
+
+<IfModule mod_rewrite.c>
+
+        RewriteBase /
+        RewriteEngine on
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteCond %{REQUEST_FILENAME}.php -f
+        RewriteRule ^(.*)$ $1.php
+        
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteCond %{REQUEST_FILENAME}.html -f
+        RewriteRule ^(.*)$ $1.html
+        
+
+</IfModule>
