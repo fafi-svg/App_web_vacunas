@@ -1,5 +1,5 @@
 <?php
-    class user{
+    class tipoMascota{
         public $id;
         public $nombre;
         public $EdadEquivalenteJoven;

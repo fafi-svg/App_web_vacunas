@@ -1,5 +1,5 @@
 <?php
-    class user{
+    class vacuna{
         public $id;
         public $nombre;
     }
