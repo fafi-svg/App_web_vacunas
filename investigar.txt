@@ -1,0 +1,52 @@
+admin asdf2513#~|@=?
+user om·"#kjcvu23
+
+1- Registro [Si registrado/ingresar -> homepage sino ]
+	- pantalla
+	- Controladores [insert]
+	- section() [inicial y matener la sesion del usuario]
+
+2- url amigables
+	- Ocultar la extencion del archivo.
+		**<IfModule mod_rewrite.c> ## Este código de htaccess utiliza la directiva "mod_rewrite" para reescribir las URL de un sitio web.
+
+			**RewriteEngine on 
+			##[
+				La directiva RewriteEngine
+				se utiliza para habilitar la funcionalidad 
+				de reescritura de URL en Apache.
+			]
+
+			**RewriteCond %{REQUEST_FILENAME} !-d
+			**RewriteCond %{REQUEST_FILENAME}.php -f
+			**RewriteCond %{REQUEST_FILENAME}.html -f
+			##[
+				 La directiva RewriteCond se utiliza para establecer una o más condiciones que 
+				 deben cumplirse para que se aplique la regla de reescritura. En este caso, 
+				 las condiciones son:
+				 	-  %{REQUEST_FILENAME} !-d: 
+						[La URL solicitada no debe corresponder a un directorio existente.]	
+					-  %{REQUEST_FILENAME}.php -f: 
+						[La URL solicitada debe corresponder a un archivo PHP existente.]
+			]
+			**RewriteRule ^(.*)$ $1.html {?El $1 de $1.html y $1.php?}
+			**RewriteRule ^(.*)$ $1.php
+			[
+				La directiva RewriteRule se utiliza para establecer 
+				la regla de reescritura en sí. En este caso, la regla es:
+					-  ^(.*)$ $1.php: Cualquier URL que coincida con el patrón ^(.*)$ se reescribirá como $1.php.
+					-  ^(.*)$ $1.html: Cualquier URL que coincida con el patrón ^(.*)$ y corresponda a un archivo
+						 HTML existente se reescribirá como $1.html.
+			]
+
+		</IfModule>
+3- Denegar acceso a las carpeta: 
+		**"Options All -Indexes"
+		##[
+			La directiva "Options" se utiliza para establecer varias opciones de configuración para un directorio
+			en particular. En este caso, la directiva "All" se utiliza para habilitar todas las opciones disponibles 
+			para el directorio en cuestión. La opción "-Indexes" se utiliza para deshabilitar la capacidad de ver el 
+			contenido del directorio a través de un navegador web.
+		]
+
+4- Error log:
