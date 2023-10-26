@@ -3,14 +3,14 @@
     require_once(__DIR__."/../models/user.model.php");
     class controllerUser extends ConexionDataBase{
         public function create(){
-            $getModelUser = (new modelUser);
+            $setModelUser = (new modelUser);
             $mysqli = (new ConexionDataBase)->conexion();
-            $nombre = $getModelUser -> nombre  = ($mysqli -> real_escape_string($_POST['userName']));
-            $userName = $getModelUser -> userName = $mysqli -> real_escape_string($_POST['userNameAccount']); 
-            $email = $getModelUser -> email = $mysqli -> real_escape_string($_POST['userEmail']); 
-            $password = $getModelUser -> password = $mysqli -> real_escape_string(password_hash($_POST['userPass'], PASSWORD_DEFAULT));
-            $role_id = $getModelUser -> role_id =  "1";
-            $foto = $getModelUser -> foto = 'null';
+            $nombre = $setModelUser -> nombre  = ($mysqli -> real_escape_string($_POST['userName']));
+            $userName = $setModelUser -> userName = $mysqli -> real_escape_string($_POST['userNameAccount']); 
+            $email = $setModelUser -> email = $mysqli -> real_escape_string($_POST['userEmail']); 
+            $password = $setModelUser -> password = $mysqli -> real_escape_string(password_hash($_POST['userPass'], PASSWORD_DEFAULT));
+            $role_id = $setModelUser -> role_id =  "1";
+            $foto = $setModelUser -> foto = 'null';
             $sqlCreatedUser= $mysqli -> query("insert into user (nombre, username, email, password, Role_id, foto) values('$nombre', '$userName', '$email', '$password', '$role_id' , '$    foto')");
             $mysqli -> close();
         }
