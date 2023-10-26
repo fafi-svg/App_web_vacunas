@@ -2,9 +2,9 @@
 <?php 
     require_once(__DIR__."/../conexion.php");
     require_once(__DIR__."/../models/user.model.php");
-    require_once(__DIR__."/../processes/messageLogin.php");
+    require_once(__DIR__."/messageLogin.php");
 
- class controllerAccessLogin extends ConexionDataBase{
+ class controlAccessLogin extends ConexionDataBase{
         public function checkInputLogin(){
             if(isset($_POST['btnLogin'])){
                     if($_POST['userNameAccount'] === ""  or $_POST['userPass'] === ""){
@@ -15,7 +15,7 @@
                         $userPass= $mysqli -> real_escape_string($_POST['userPass']) ;
                         $sql=$mysqli->query("select * from User as u where username = '$userNameAccount'");
                             if( mysqli_num_rows($sql) > 0){
-                                $nr = mysqli_num_rows($sql);
+                                // $nr = mysqli_num_rows($sql);
                                 $resultQuery = mysqli_fetch_array($sql);
                                 $hasd = $resultQuery["password"];        
                                 // mysqli_free_result( $sql );

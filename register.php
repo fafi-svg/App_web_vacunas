@@ -17,8 +17,8 @@
                 <div class="login__content">
                     <h2 class="login__title">INGRESAR</h2>
                     <?php                       
-                        include_once(__DIR__.'/controller/controllerRegister.php');
-                        (new controllerAccessRegister) -> checkInputRegister();
+                        include_once(__DIR__.'/processes/controlRegister.php');
+                        (new controlAccessRegister) -> checkInputRegister();
                     ?> 
                     <form id="login__form" class="login__form" method="post">
                         <div class="login__input">

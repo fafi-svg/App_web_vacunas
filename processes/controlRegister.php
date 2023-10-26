@@ -1,9 +1,9 @@
 <?php 
     require_once(__DIR__."/../conexion.php");
     require_once(__DIR__."/../models/user.model.php");
-    require_once(__DIR__."/user.Controller.php");
-    require_once(__DIR__."/../processes/messageRegister.php");
- class controllerAccessRegister extends ConexionDataBase{
+    require_once(__DIR__."/../controller/user.Controller.php");
+    require_once(__DIR__."/messageRegister.php");
+ class controlAccessRegister extends ConexionDataBase{
         public function checkInputRegister(){
             if(isset($_POST['btnCheckIn'])){
                     if($_POST['userName'] === ""  or $_POST['userPass'] === "" or $_POST['userNameAccount'] === ""  or $_POST['userEmail'] === ""){
