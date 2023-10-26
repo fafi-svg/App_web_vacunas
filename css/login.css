@@ -1,4 +1,5 @@
 @import url(https://db.onlinewebfonts.com/c/fd6fa80f1e3345834599de891cca3f4c?family=OCR+A+Extended);
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;400;600&display=swap');
 *{
     font-family: "OCR A Extended";
     box-sizing: border-box;
@@ -108,7 +109,7 @@ body{
 }
 .login__button-primario:hover{
     background: linear-gradient(to bottom right, rgb(51, 33, 51), #5c415d);
-    transition: all .4s ease-in-out;
+    transition: background .4s ease-in-out;
 }
 .login__button-secundario:hover{
     color: #5c415d;

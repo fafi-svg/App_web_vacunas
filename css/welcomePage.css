@@ -1,0 +1,184 @@
+@import url(https://db.onlinewebfonts.com/c/fd6fa80f1e3345834599de891cca3f4c?family=OCR+A+Extended);
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;400;600&display=swap');
+.screen__welcome{
+    font-family: 'Gothic A1', sans-serif;
+}
+body{
+    margin: 0;
+    font-size: 2vh;
+}
+.main{
+    background-color: #393e41;
+    height: 100vh;
+}
+
+.welcome__header{
+    font-family: "OCR A Extended";
+    color: white;
+}
+/* .screen__welcome::before{
+    content: "";
+    background-image: url(../img/Diseños_pagina/diseño-welcome.png);
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 97vw;
+    background-size: 100% auto;
+    position: absolute;
+    z-index: 5;
+    opacity: .5;
+    left: 0;
+    right: 0;
+    margin: auto;
+} */
+
+.screen__welcome{
+    position: absolute;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    text-align: center;
+    display: grid;
+    gap: 2em;
+    background-color: #262626;
+    background: linear-gradient(#262626,rgb(51, 33, 51));
+    height: 100vh;
+    overflow: hidden;
+}
+.welcome__header-text{
+    font-weight: 100;
+    margin-top: 2%;
+}
+.welcome__header-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+.welcome__header-linea{
+    width: 10em;
+    border: .1em solid transparent;
+    opacity: .2;
+}
+.welcome__header-linea:nth-child(-3n + 3){
+    border-image: linear-gradient(to right, white 0%, #262626 100%)1;
+}
+.welcome__header-linea:nth-child(-1n + 1){
+    border-image: linear-gradient(to left, white 0%, #262626 100%)1;
+}
+.welcome__logo{
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.screen__welcome{
+    display: grid;
+    place-content: center;
+}
+.welcome__logo-ramo{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 15em;
+}
+.welcome__logo-ramo img{
+    width: inherit;
+    filter: invert(1);
+    /* animation: rotate 2s forwards ;
+    animation-delay: 2s; */
+}
+.welcome__logo-logo img{
+    width: 10em;
+    filter: invert(1);
+    margin-bottom: 10%;
+}
+.welcome__content{
+    width: 40%;
+    margin: auto;
+    color: white;
+}
+.welcome__content-text{
+    font-size: 1.5em;
+}
+.welcome__footer-img img{
+    width: 5em;
+}
+.elemtAnimation{
+    animation: backgroundColor 1s ease-in forwards, displayNone 1s ease-in forwards 7s;
+}
+.elemtAnimation-1{
+    transform: scale(0);
+    animation: scala100 1s forwards;
+    animation-delay: 1100ms;
+}
+.elemtAnimation-2{
+    transform: scale(0);
+    animation: scala100 1s forwards;
+    animation-delay: 1200ms;
+}
+.elemtAnimation-3{
+    transform: scale(0);
+    animation: scala100 1s forwards;
+    animation-delay: 1300ms;
+}
+.elemtAnimation-4{
+    transform: scale(0);
+    animation: scala100 1s forwards;
+    animation-delay: 1400ms;
+}
+.elemtAnimation-5{
+    transform: scale(0);
+    animation: scala100 1s forwards;
+    animation-delay: 1500ms;
+}
+.elemtAnimation-6{
+    transform: scale(0);
+    animation: scala100 1s forwards;
+    animation-delay: 1600ms;
+}
+.elemtAnimation-7{
+    animation: rotate 1s forwards;
+    animation-delay: 2.5s;
+}
+
+@keyframes rotate {
+    form{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@keyframes scala100 {
+    0%{
+        transform: scale(0)
+    }
+    70%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes backgroundColor {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes displayNone {
+    0%{
+        top: 0%;
+    }
+    100%{
+        top: -200vh;
+        display: none;
+    }
+}
