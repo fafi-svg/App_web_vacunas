@@ -1,5 +1,5 @@
 <?php
-    class raza{
+    class  modelRaza{
         public $id;
         public $nombre;
         public $username;

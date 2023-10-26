@@ -1,5 +1,5 @@
 <?php
-    class rol{
+    class  modelRol{
         public $id;
         public $nombre;
     }
