@@ -11,22 +11,24 @@
             $password = $setModelUser -> password = $mysqli -> real_escape_string(password_hash($_POST['userPass'], PASSWORD_DEFAULT));
             $role_id = $setModelUser -> role_id =  "1";
             $foto = $setModelUser -> foto = 'null';
-            $sqlCreatedUser= $mysqli -> query("insert into user (nombre, username, email, password, Role_id, foto) values('$nombre', '$userName', '$email', '$password', '$role_id' , '$    foto')");
+            $sql ="insert into user (nombre, username, email, password, Role_id) values('$nombre', '$userName', '$email', '$password', '$role_id')";
+            $sqlCreatedUser= $mysqli -> query($sql);
             $mysqli -> close();
         }
         public function read(){
             $mysqli = $this->conexion();
-            $sql = "SELECT id, nombre, Role_id FROM User";
+            //u.id as ID, u.nombre as 'Nombre', u.username as 'Nombre Usuario' , u.email as 'Correo Electronico', u.Role_id as Rol, u.foto as Foto 
+            $sql = "SELECT * FROM User as u";
             $result = $mysqli->query($sql);
             $users = [];
             if ($result->num_rows > 0) {
                 while ($row = mysqli_fetch_array($result)) {
                     $users[] = $row;
-                    echo "id: " . $row[0]. " - nombre: " . $row["Role_id"]. "<br>";
                 }
             }
             $mysqli->close();
-            return $users;
+            return $result;
+           
         }
         public function deleted($id){
             $mysqli = $this->conexion();

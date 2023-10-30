@@ -6,7 +6,7 @@ user om·"#kjcvu23
 	- Controladores [insert]
 	- section() [inicial y matener la sesion del usuario]
 
-2- url amigables
+2- url amigables ("Los '**' son para indicar que es codigo")
 	- Ocultar la extencion del archivo.
 		**<IfModule mod_rewrite.c> ## Este código de htaccess utiliza la directiva "mod_rewrite" para reescribir las URL de un sitio web.
 
