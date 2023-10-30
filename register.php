@@ -4,37 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/import.css">
     <title>Document</title>
 </head>
 <body>
-    <main class="main">
+    <main class="main_login-register">
         <section class="section__Login">
             <div class="login__container login__container-register">
                 <div class="login__logo img__filter-100">
                     <img src="img/logo-pets-black-aro.png" alt="">
                 </div>
                 <div class="login__content">
-                    <h2 class="login__title">INGRESAR</h2>
+                    <h2 class="login__title">REGISTRARSE</h2>
                     <?php                       
                         include_once(__DIR__.'/processes/controlRegister.php');
                         (new controlAccessRegister) -> checkInputRegister();
                     ?> 
                     <form id="login__form" class="login__form" method="post">
                         <div class="login__input">
-                            <input type="text" name="userName" placeholder="Nombre">
+                            <input type="text" name="userName" placeholder="Nombre" value="<?php echo $_POST['userName'] ?? "" ?>">
                             <div class="login__input-img img__filter-0">
                                 <img class="" src="img/icon-name.png" alt="icon-user.png">
                             </div>
                         </div>
                         <div class="login__input">
-                            <input type="text" name="userNameAccount" placeholder="Nombre Usuario">
+                            <input type="text" name="userNameAccount" placeholder="Nombre Usuario" value="<?php echo $_POST['userNameAccount'] ?? "" ?>">
                             <div class="login__input-img img__filter-0">
                                 <img class="" src="img/icon-user.png" alt="icon-user.png">
                             </div>
                         </div>
                         <div class="login__input">
-                            <input type="text" name="userEmail" placeholder="Correo Electronico">
+                            <input type="text" name="userEmail" placeholder="Correo Electronico" value="<?php echo $_POST['userEmail'] ?? "" ?>">
                             <div class="login__input-img img__filter-0">
                                 <img class="" src="img/icon-correo.png" alt="icon-user.png">
                             </div>

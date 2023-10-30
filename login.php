@@ -1,14 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/welcomePage.css">
     <link rel="stylesheet" href="css/import.css">
     <title>Document</title>
 </head>
 <body>
-    <main class="main">
+    <main class="main_login-register">
         <section class="section__Login">
             <div class="login__container">
                 <div class="login__logo img__filter-100">
@@ -22,9 +24,9 @@
                     ?>
                     <form id="login__form" class="login__form" method="post">
                         <div class="login__input">
-                            <input class="input" id="userNameAccount" type="text" name="userNameAccount" placeholder="Nombre Usuario">
+                            <input class="input" id="userNameAccount" type="text" name="userNameAccount" placeholder="Nombre Usuario" value="<?php echo $_POST['userName'] ?? "" ?>">
                             <div class="login__input-img img__filter-0">
-                                <img class="" src="img/icon-user.png" alt="icon-user.png">
+                                <img src="img/icon-user.png" alt="icon-candado.png">
                             </div>
                         </div>
                         <div class="login__input">
@@ -85,6 +87,43 @@
                 <img src="img/imagenes-Register_Login/perros.png" alt="">
             </div>
         </section>
+        <?php
+            if(isset($_POST['btnLogin'])){
+                if(isset($_SESSION['usuario'])){
+        ?>      
+                    <div class="screen__welcome elemtAnimation">
+                            <div class="welcome__header">
+                                    <h2 class="welcome__header-text elemtAnimation-1">WELCOME TO</h2>
+                                    <div class="welcome__header-title">
+                                        <span class="welcome__header-linea linea_l elemtAnimation-3"></span>
+                                        <h1 class="welcome__header-text elemtAnimation-1">LEGIONS OF PETS</h1>
+                                        <span class="welcome__header-linea linea_r elemtAnimation-3"></span>
+                                    </div>
+                            </div>
+                            <div class="welcome__logo elemtAnimation-4">
+                                <div class="welcome__logo-ramo elemtAnimation-7">
+                                    <img src="img/icon-ramo_doble_circular.png" alt="">
+                                </div>
+                                <div class="welcome__logo-logo">
+                                    <img src="img/logo-pets-black-aro.png" alt="">
+                                </div>
+                            </div> 
+                            <div class="welcome__content">
+                                <p class="welcome__content-text elemtAnimation-5">
+                                    ¡Bienvenido a bordo! En LEGION OF PETS, nos dedicamos a proteger
+                                    a nuestras mascotas a través de la vacunación. ¡Únete a nosotros en esta noble causa!
+                                </p>
+                            </div> 
+                            <form action="" method="post">
+                                <div class="login__button elemtAnimation-6">
+                                        <input  id="btnEnterPage" name="btnEnterPage" class="login__button-primario" type="submit" value="INGRESAR">
+                                </div> 
+                            </form>
+                    </div>
+        <?php         
+                }
+            }
+        ?>
     </main>
     <script src="js/main.js">
 

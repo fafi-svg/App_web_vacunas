@@ -21,10 +21,11 @@ body{
     z-index: -1;
     opacity: .5;
 } */
-.main{
+.main_login-register{
     display: grid;
     grid-template-columns: 39% 61%;
     grid-template-rows: 99vh;
+    position: relative;
 }
 /*___________________________ section__Login ___________________________*/
 .login__container{
@@ -99,7 +100,7 @@ body{
 }
 .login__button-primario{
     background: linear-gradient(to top left, rgb(51, 33, 51), #5c415d);
-    transition: all .4s ease-in-out;
+    transition:  'background' .4s ease-in-out;
 }
 .login__button-secundario{
     color: #5c415d;
@@ -109,7 +110,7 @@ body{
 }
 .login__button-primario:hover{
     background: linear-gradient(to bottom right, rgb(51, 33, 51), #5c415d);
-    transition: background .4s ease-in-out;
+    transition:  'background' .4s ease-in-out;
 }
 .login__button-secundario:hover{
     color: #5c415d;
@@ -118,12 +119,12 @@ body{
     transition-property: background-color;
 }
 /*___________________________ section__Login ___________________________*/
-.img__filter-100 img{
+/* .img__filter-100 img{
     filter:invert(100)
-}
+}*/
 .img__filter-0 img{
     filter: contrast(0);
-}
+} 
 .section__Login{
     background-color: #262626;
     filter: drop-shadow(.75em -0.1em .5em rgba(255, 255, 255, .1));
@@ -208,7 +209,7 @@ body{
 }
 /*___________________________ section__info ___________________________*/
 @media screen and (max-width: 950px) {
-    .main{
+    .main_login-register{
         display: grid;
         grid-template-columns: 100%;
         grid-template-rows: 100vh 100vh;

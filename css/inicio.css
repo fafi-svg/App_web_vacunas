@@ -1,0 +1,10 @@
+.tabla__content-elem{
+    display: flex;
+    gap: 3vh;
+    background-color:brown;
+}
+.tabla__header{
+    display: flex;
+    gap: 3vh;
+    background-color: aqua;
+}

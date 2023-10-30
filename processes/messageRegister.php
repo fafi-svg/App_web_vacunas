@@ -3,7 +3,7 @@
     class setMessageRegister{
         public $messageLogin;
         public function  messageNameInUse(){
-            $this -> messageLogin = '<div class="alertForm"> Cantraseña valida </div>';
+            $this -> messageLogin = '<div class="alertForm"> ¡Nombre De Usuario En Uso! </div>';
             return   $this ->messageLogin;
         }
         public function messageEmailInUse(){
@@ -18,5 +18,6 @@
             $this -> messageLogin = "<div style='background-color: rgba(0, 255, 221, 0.5);' class='alertForm'> ¡Cuenta creada!</div>";
             return   $this ->messageLogin ;
         }
+
     }
 ?>

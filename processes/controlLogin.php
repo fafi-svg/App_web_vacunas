@@ -3,7 +3,7 @@
     require_once(__DIR__."/../conexion.php");
     require_once(__DIR__."/../models/user.model.php");
     require_once(__DIR__."/messageLogin.php");
-
+    require_once(__DIR__."/../login.php");
  class controlAccessLogin extends ConexionDataBase{
         public function checkInputLogin(){
             if(isset($_POST['btnLogin'])){
@@ -11,19 +11,21 @@
                         echo (new setMessageLogin) -> messageInputEmpty();
                     }else{
                         $mysqli = ConexionDataBase::conexion();
-                        $userNameAccount =  $mysqli ->  real_escape_string($_POST['userNameAccount']) ;
+                        $userNameAccount = "%".$_POST['userNameAccount']."%";
+                        $userNameAccount = $mysqli -> real_escape_string($userNameAccount);
                         $userPass= $mysqli -> real_escape_string($_POST['userPass']) ;
-                        $sql=$mysqli->query("select * from User as u where username = '$userNameAccount'");
+                        $sql=$mysqli->query("select * from User as u where username like binary  '$userNameAccount'");
                             if( mysqli_num_rows($sql) > 0){
-                                // $nr = mysqli_num_rows($sql);
                                 $resultQuery = mysqli_fetch_array($sql);
                                 $hasd = $resultQuery["password"];        
-                                // mysqli_free_result( $sql );
                                 if (password_verify($userPass,  $hasd)) {
-                                    echo (new setMessageLogin) -> messageValidatedPassword();
-                                    mysqli_free_result( $sql );
-                                    $mysqli -> close();
-                                    header('location: homepage');
+                                    echo (new setMessageLogin) -> messageStartSession();                                                                     
+                                    session_start();
+                                    $_SESSION['usuario'] = $_POST['userNameAccount'];
+                                    $_SESSION['rol'] = $resultQuery["Role_id"];                             
+                                    mysqli_free_result( $sql );   
+                                    $mysqli -> close();                        
+
                                 }else{
                                     mysqli_free_result( $sql );
                                     $mysqli -> close();
@@ -36,8 +38,14 @@
             }
             if(isset($_POST['btnCheckIn'])){
                 header("location: register");
+            }        
+            if(isset($_POST['btnEnterPage'])){
+                    session_start();
+                    header("location: homepage");
             }
+
         }
+
     }
     
 ?>
