@@ -1,0 +1,179 @@
+@import url(https://db.onlinewebfonts.com/c/fd6fa80f1e3345834599de891cca3f4c?family=OCR+A+Extended);
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;400;600&display=swap');
+body{
+    font-size: 2vh;
+    font-family: "OCR A Extended";
+    margin: 0;
+    color: white;
+}
+*{
+    box-sizing: border-box;
+}
+.screen__gestion-vacuna{
+    display: grid;
+    grid-template-rows: max-content auto;
+}
+.header__gestion-vacuna{
+    background-color: #262626;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5em 3em;
+}
+.header__logo{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+.header__icon-img img{
+    width: 2.5em;
+}
+.header__logo-img img{
+    width: 5em;
+}
+.header__logo-name{
+    font-size: 1.5em;
+}
+/* .screen__gestion-vacuna::before{
+    content: "";
+    background-image: url(../img/Diseños_pagina/diseño-gestion_vacuna.png);
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 88vw;
+    background-size: 100% auto;
+    position: absolute;
+    z-index: 5;
+    opacity: .5;
+    left: 0;
+    right: 0;
+    top: -1%;
+    margin: auto;
+} */
+.button__exit:focus-within ~ .menu__exit{
+    height: 5.5em;
+    transition: height .5s ease-in-out;
+}
+.menu__exit-content{
+    margin: .5em;
+}
+.menu__exit{
+    border-radius: .5em;
+    right: 1%;
+    margin-top: 2%;
+    text-align: center;
+    font-size: 1.5em;
+    transition: height .5s ease-in-out;
+    position: absolute;
+    height: 0em;
+    transition: height .5s ease-in-out;
+    overflow: hidden;
+    background-color: #393e41;
+}
+.section__content{
+    background-color: #555555;
+    height: 88.2vh;
+}
+.table{
+    width: 85vw;
+    margin: auto;
+}
+.table__title-text{
+    font-size: 2.5em;
+    margin: .5em 0; 
+}
+.table__content{
+    background-color: #555555;
+}
+.table__container{
+    height: 70vh;
+    width: inherit;
+    position: relative;
+    display: grid;
+    grid-template-rows: max-content auto max-content;
+}
+.table__header, .table__footer{
+    background-color: #262626;
+    min-height: 8vh;
+    position: relative;
+    padding: .4em 2em;
+}
+.table__header{
+    border-top-right-radius: .5em;
+    border-top-left-radius: .5em;
+    width: inherit;
+    top: 0;
+    display: flex;
+    justify-content: start;
+    gap: 5em;
+}
+.table__footer{
+    background-color: #262626;
+    min-height: 5vh;
+    border-bottom-right-radius: .5em;
+    border-bottom-left-radius: .5em;
+    width: inherit;
+    bottom: 0;
+}
+.table__content{
+    min-height: 5vh;
+    overflow: auto;
+}
+.table__rows{
+    min-height: 5.5vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.table__rows:nth-child(even){
+    background-color: #808585;
+}
+.table__footer-icon img, .table__header-icon img{
+    width: 3em;
+}
+.table__header-icon{
+    position: absolute;
+    right: 3%;
+}
+.table__rows-icon{
+    display: flex;
+    gap: 3em;
+    align-items: center;
+    position: absolute;
+    right: 3em;
+}
+.table__rows-img{
+    user-select: none;
+    cursor: pointer;
+}
+.table__rows-img img{
+    width: 1.5em;
+}
+/* .table__rows-icon:nth-child(even) {
+    border: .1em solid;
+} */
+
+.table__content::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.table__content::-webkit-scrollbar:vertical {
+    width:1.5em;
+}
+
+.table__content::-webkit-scrollbar-button:increment,.table__content::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.table__content::-webkit-scrollbar:horizontal {
+    height: 1em;
+}
+
+.table__content::-webkit-scrollbar-thumb {
+    background-color: #5c415d;
+    border-radius: 1em;
+    border: .3em solid #262626;
+}
+
+.table__content::-webkit-scrollbar-track {
+   background-color: #262626;
+}
