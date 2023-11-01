@@ -24,13 +24,13 @@
                     ?>
                     <form id="login__form" class="login__form" method="post">
                         <div class="login__input">
-                            <input class="input" id="userNameAccount" type="text" name="userNameAccount" placeholder="Nombre Usuario" value="<?php echo $_POST['userName'] ?? "" ?>">
+                            <input class="input" id="userNameAccount" type="text" name="userNameAccount" placeholder="Nombre Usuario" require value="<?php echo $_POST['userName'] ?? "" ?>" >
                             <div class="login__input-img img__filter-0">
                                 <img src="img/icon-user.png" alt="icon-candado.png">
                             </div>
                         </div>
                         <div class="login__input">
-                            <input class="input" id="userPass" type="password" name="userPass" placeholder="Contraseña">
+                            <input class="input" id="userPass" type="password" name="userPass" require placeholder="Contraseña">
                             <div class="login__input-img img__filter-0">
                                 <img src="img/icon-candado.png" alt="icon-candado.png">
                             </div>

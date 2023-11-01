@@ -21,25 +21,25 @@
                     ?> 
                     <form id="login__form" class="login__form" method="post">
                         <div class="login__input">
-                            <input type="text" name="userName" placeholder="Nombre" value="<?php echo $_POST['userName'] ?? "" ?>">
+                            <input type="text" name="userName" placeholder="Nombre" require value="<?php echo $_POST['userName'] ?? "" ?>">
                             <div class="login__input-img img__filter-0">
                                 <img class="" src="img/icon-name.png" alt="icon-user.png">
                             </div>
                         </div>
                         <div class="login__input">
-                            <input type="text" name="userNameAccount" placeholder="Nombre Usuario" value="<?php echo $_POST['userNameAccount'] ?? "" ?>">
+                            <input type="text" name="userNameAccount" placeholder="Nombre Usuario" require value="<?php echo $_POST['userNameAccount'] ?? "" ?>">
                             <div class="login__input-img img__filter-0">
                                 <img class="" src="img/icon-user.png" alt="icon-user.png">
                             </div>
                         </div>
                         <div class="login__input">
-                            <input type="text" name="userEmail" placeholder="Correo Electronico" value="<?php echo $_POST['userEmail'] ?? "" ?>">
+                            <input type="text" name="userEmail" placeholder="Correo Electronico" require value="<?php echo $_POST['userEmail'] ?? "" ?>">
                             <div class="login__input-img img__filter-0">
                                 <img class="" src="img/icon-correo.png" alt="icon-user.png">
                             </div>
                         </div>
                         <div class="login__input">
-                            <input type="password" name="userPass" placeholder="Contraseña">
+                            <input type="password" name="userPass" require placeholder="Contraseña">
                             <div class="login__input-img img__filter-0">
                                 <img src="img/icon-candado.png" alt="icon-candado.png">
                             </div>
