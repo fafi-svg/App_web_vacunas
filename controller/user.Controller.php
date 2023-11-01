@@ -32,7 +32,7 @@
         }
         public function deleted($id){
             $mysqli = $this->conexion();
-            $sql = "DELETE FROM gender WHERE id = $id";
+            $sql = "DELETE FROM user WHERE id = $id";
             if ($mysqli->query($sql)) {
                 echo "Registro eliminado con éxito.";
             } else {

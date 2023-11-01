@@ -10,23 +10,130 @@
     <?php
     require_once(__DIR__."/controller/user.Controller.php");
     $users = (new controllerUser) -> read();
+    var_dump($users);
     $contador = 0;
     $result =[];
     ?>
     <div>
         <?php 
             foreach ($users as $variable) {
-                $long = sizeof($variable);
-                for ($i=0; $i <$long; $i++) {
-                    echo (array_keys($variable)[$i])."<=="."</br>"; 
-                    $column = (array_keys($variable)[$i]);
-                    foreach ($users as $variable) {
-                        echo $variable[$column]."</br>";
-                        $contador++;
-                    }
-                    $contador = 0;
+                $long = sizeof($variable)-1;
+                ?>
+                <div style="background-color:gray; padding:.4vh;border:0.1vh solid; display: flex;text-align: center;     justify-content: space-around;">
+                <?php
+                for ($i= 0; $i<=$long; $i++) {
+                ?>
+                    <div style="background-color:gray; padding:.4vh;border:0.1vh solid; display: flex;text-align: center;">                           
+                            <?php  
+                                echo (array_keys($variable)[$i]).""; 
+                            ?>
+                        </div>
+                <?php
                 }
+                ?> 
+                </div>
+                <?php
+                echo "</br>";
+                foreach ($users as $array) {
+                    ?>
+                    <div style="background-color:green; padding:.4vh;border:0.4vh solid blue; display: flex;justify-content: space-around;">
+                    <?php
+                    foreach ($array as $key) {
+                        ?>
+                        <p style="background-color:green; padding:.4vh; text-align: center; ">                           
+                            <?php 
+                        
+                            ?> 
+                            <?php 
+                                echo $key;
+                            ?>
+                                
+                            <?php 
+                            ?>
+                        </p>
+   
+                        <?php
+                    }
+                    ?>
+                    </div> 
+                    <?php
+                    echo "</br>";
+                }
+                break;
             }
+            echo "---------------------------------------------------"."</br>";
+            ?>
+            <?php
+            echo "---------------------------------------------------"."</br>";
+            foreach ($users as $variable) {
+                ?>
+                <div class="Tabla" style="background-color:white; padding:.4vh;border:0.4vh solid blue; display: flex;  width: max-content; margin: auto;">
+                    <?php
+                    for ($i=0; $i<=$long; $i++) {
+                        ?>
+                        <div class="columna" style="background-color:red;">
+                            <div class="columna__header" style="background-color:red; padding:.4vh;border:0.4vh solid blue; text-align: center; ">    
+                                <?php
+                                    echo (array_keys($variable)[$i]);
+                                ?>
+                            </div>
+                            <?php
+                            $column = (array_keys($variable)[$i]); 
+                            ?>
+                            <div class="columna__content" style="background-color:red;border:0.4vh solid ; ">
+                                <?php
+                                foreach ($users as $array) {
+                                    ?>
+                                    <p class="columna__text" style=" width:100%; text-align:center; height: 100%; border: 0.4vh solid white;">
+                                        <?php
+                                        echo $array[$column]."</br>";
+                                        ?>
+                                    </p>
+                                    <?php
+                                    $contador++;
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                        $contador = 0;
+                    }
+                    ?>
+                    </div>
+                </div>
+                    <?php
+                }
+            ?>
+            <?php
+            // echo "---------------------------------------------------"."</br>";
+            // foreach ($users as $variable) {
+            //     for ($i=0; $i<=$long; $i++) {
+            //         echo (array_keys($variable)[$i])."<=="."</br>";
+            //         $column = (array_keys($variable)[$i]); 
+            //         foreach ($users as $array) {
+            //             echo $array[$column]."</br>";
+            //             $contador++;
+            //         }
+            //         $contador = 0;
+            //     }
+            // }
+                // var_dump($variable);
+                // if($contador<=$long){
+                //     $contador ++;
+                // }else{
+                //     $contador=0;
+
+                // }
+                // for ($i=0; $i<=$long; $i++) {
+                //     echo (array_keys($variable)[$i])."<=="."</br>";
+                //     $column = (array_keys($variable)[$i]); 
+                //     foreach ($users as $variable) {
+                //         echo $variable[$column]."</br>";
+                //         $contador++;
+                //     }
+                //     $contador = 0;
+                // }
+           
             ?>
             <?php
             // echo 'id'."</br>";
