@@ -89,7 +89,7 @@
         </section>
         <?php
             if(isset($_POST['btnLogin'])){
-                if(isset($_SESSION['usuario'])){
+                if(isset($_SESSION['usuario']) and $_SESSION['usuario'] != ""){
         ?>      
                     <div class="screen__welcome elemtAnimation">
                             <div class="welcome__header">
@@ -128,5 +128,6 @@
     <script src="js/main.js">
 
     </script>
+
 </body>
 </html>
