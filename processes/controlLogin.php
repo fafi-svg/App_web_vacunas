@@ -14,7 +14,7 @@
                         $userNameAccount = "%".$_POST['userNameAccount']."%";
                         $userNameAccount = $mysqli -> real_escape_string($userNameAccount);
                         $userPass= $mysqli -> real_escape_string($_POST['userPass']) ;
-                        $sql=$mysqli->query("select * from User as u where username like binary  '$userNameAccount'");
+                        $sql=$mysqli->query("select * from User as u where username like binary '$userNameAccount'");
                             if( mysqli_num_rows($sql) > 0){
                                 $resultQuery = mysqli_fetch_array($sql);
                                 $hasd = $resultQuery["password"];        

@@ -48,10 +48,10 @@
                             <div class="table__container">
                                 <div class="table__header">
                                         <?php
-                                        foreach ($vacunas as $variable) {
-                                            $long = sizeof($variable)-1;
-                                            break;
-                                        }
+                                            foreach ($vacunas as $variable) {
+                                                $long = sizeof($variable)-1;
+                                                break;
+                                            }
                                         ?>
                                         <div class="table__header-container">
                                             <?php 
@@ -67,12 +67,12 @@
                                                 ?> 
                                         </div>
                                     </div>
-                                <?php 
-                                    if($_SESSION['rol']=="2"){
-                                ?>
-                                    <div class="table__header-icon">
-                                        <img src="img/icon-agregar-white.png" alt="">
-                                    </div>
+                                    <?php 
+                                        if($_SESSION['rol']=="2"){
+                                    ?>
+                                        <div class="table__header-icon">
+                                            <img src="img/icon-agregar-white.png" alt="">
+                                        </div>
                                 <?php 
                                     } else {    
                                 ?>
@@ -117,7 +117,7 @@
                                                     } else {    
                                                 ?>      
                                                     <div class="table__rows-icon-row">
-                                                        <input class="table__rows-img" type="check" required name="row" >
+                                                        <input class="table__rows-img" type="checkbox" required name='<?php echo $variable["ID"]?>' >
                                                     </div>
                                                 <?php 
                                                     }

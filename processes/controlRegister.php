@@ -14,15 +14,14 @@
                         $userEmail= $mysqli -> real_escape_string($_POST['userEmail']);
                         $sqlNameUser=$mysqli->query("select * from User where username = '$userNameAccount'");
                         $sqlEmailUser=$mysqli->query("select * from User where email = '$userEmail'");
-                        if ($dato=$sqlNameUser->fetch_object() or $dato=$sqlEmailUser->fetch_object()) { 
-                            if(!$dato=$sqlNameUser->fetch_object()){
-                                $mysqli -> close();
+                        if (mysqli_num_rows($sqlNameUser) > 0 || mysqli_num_rows($sqlEmailUser) > 0) { 
+                            if(mysqli_num_rows($sqlNameUser) > 0){
                                 echo (new setMessageRegister) -> messageNameInUse();
                             }
-                            if ($dato=$sqlEmailUser->fetch_object()) {
-                                $mysqli -> close();
-                                echo  (new setMessageRegister) -> messageEmailInUse();
+                            if (mysqli_num_rows($sqlEmailUser) > 0) {
+                                echo  (new setMessageRegister) -> messageEmailInUse(); 
                             }
+                            $mysqli -> close();
                         }else{
                             echo (new setMessageRegister) -> messageUserCreate();
                             $mysqli -> close();

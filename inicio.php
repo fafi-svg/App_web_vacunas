@@ -106,17 +106,29 @@
             ?>
             <?php
             // echo "---------------------------------------------------"."</br>";
-            // foreach ($users as $variable) {
-            //     for ($i=0; $i<=$long; $i++) {
-            //         echo (array_keys($variable)[$i])."<=="."</br>";
-            //         $column = (array_keys($variable)[$i]); 
-            //         foreach ($users as $array) {
-            //             echo $array[$column]."</br>";
-            //             $contador++;
-            //         }
-            //         $contador = 0;
-            //     }
-            // }
+            foreach ($users as $variable) {
+                for ($i=0; $i<=$long; $i++) {
+                    ?>
+                    <div>
+                        <?php
+                        echo (array_keys($variable)[$i])."<=="."</br>";
+                        $column = (array_keys($variable)[$i]); 
+                        foreach ($users as $array) {
+                            ?>
+                            <p>
+                                <?php
+                                echo $array[$column]."</br>";
+                                ?>
+                            </p>
+                            <?php
+                            $contador++;
+                        }
+                        ?>
+                    </div>
+                        <?php
+                    $contador = 0;
+                }
+            }
                 // var_dump($variable);
                 // if($contador<=$long){
                 //     $contador ++;

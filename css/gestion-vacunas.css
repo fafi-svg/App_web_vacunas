@@ -135,7 +135,7 @@ body{
     align-items: center;
     position: relative;
 }
-.table__rows:nth-child(even){
+.table__rows-content:nth-child(even){
     background-color: #808585;
 }
 .table__footer-icon img, .table__header-icon img{
