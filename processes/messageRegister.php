@@ -3,7 +3,7 @@
     class setMessageRegister{
         public $messageLogin;
         public function  messageNameInUse(){
-            $this -> messageLogin = '<div class="alertForm"> ¡Nombre De Usuario En Uso! </div>';
+            $this -> messageLogin = "<div class='alertForm'> ¡Nombre De Usuario En Uso! $_POST[userEmail] </div>";
             return   $this ->messageLogin;
         }
         public function messageEmailInUse(){
@@ -11,7 +11,7 @@
             return   $this ->messageLogin ;
         }
         public function messageInputEmpty(){
-            $this -> messageLogin = '<div class="alertForm"> ¡Campos Vacios! </div>';
+            $this -> messageLogin = "<div class='alertForm'> ¡Campos Vacios! </div>";
             return   $this ->messageLogin ;
         }
         public function messageUserCreate(){
