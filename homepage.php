@@ -83,7 +83,7 @@
                 </div>
             </div>
         <?php
-        } else{header("location: error-not-session");}
+            } else{header("location: error-not-session.php");}
         ?>
         <a href="inicio.php">inicio</a>
     </main>

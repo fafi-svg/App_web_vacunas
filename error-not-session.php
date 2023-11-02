@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="scrennNotStartSession">                        
-        <?php if(isset($_POST['btnSendLogin'])){header("location: login");}?>
+        <?php if(isset($_POST['btnSendLogin'])){header("location: login.php");}?>
         <div class="notSession">
             <div class="info__header">
                 <div class="info__icon img__filter-100">

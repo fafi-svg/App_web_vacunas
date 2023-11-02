@@ -12,7 +12,7 @@
         if(!($Conexion->connect_errno)){
             // echo "Conexion Correcta";
             // echo $_ENV['SERVER']; 
-            header("location: login");
+            header("location: login.php");
             die();
          }
          else{

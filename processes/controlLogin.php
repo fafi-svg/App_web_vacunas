@@ -37,11 +37,11 @@
                     }
             }
             if(isset($_POST['btnCheckIn'])){
-                header("location: register");
+                header("location: register.php");
             }        
             if(isset($_POST['btnEnterPage'])){
                     session_start();
-                    header("location: homepage");
+                    header("location: homepage.php");
             }
 
         }

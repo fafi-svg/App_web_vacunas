@@ -27,13 +27,13 @@
                             echo (new setMessageRegister) -> messageUserCreate();
                             $mysqli -> close();
                             (new controllerUser) -> create();
-                            header("location: login");
+                            header("location: login.php");
                             die();
                         }
                     }
             }
             if(isset($_POST['btnLogin'])){
-                header("location: login");
+                header("location: login.php");
                 die();
             }
         }
