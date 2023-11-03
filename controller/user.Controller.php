@@ -41,8 +41,8 @@
 
             $mysqli->close();
         }
-        public function update($id, $columnModify){
-
+        public function update($id, $columnModify, $valor){
+            
         }
     }
 ?>

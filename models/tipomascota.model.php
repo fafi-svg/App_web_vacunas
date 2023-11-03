@@ -2,8 +2,9 @@
     class  modelTipoMascota{
         public $id;
         public $nombre;
+        public $EdadEquivalenteInfante;
         public $EdadEquivalenteJoven;
-        public $EdadEquivalenteAdulto;
+        public $EdadEquivalenteAdolecente;
         public $EdadAdulto;
     }
 ?>

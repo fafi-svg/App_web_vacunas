@@ -3,8 +3,11 @@
     if(isset($_POST['exitSession'])){
         (new SignOff)->exitSession();
     } else{session_start();} 
-    require_once(__DIR__."/controller/user.Controller.php");
-    $vacunas = (new controllerUser)->read();
+    require_once(__DIR__."/controller/user.controller.php");
+    require_once(__DIR__."/controller/vacuna.controller.php");
+    require_once(__DIR__."/consultas/gestionVacunas.php");
+    $vacunas = (new GestionVacunasConsultas)->readVacunas();
+    $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,32 +60,33 @@
                                             <?php 
                                             for ($i= 0; $i<=$long; $i++) {
                                                 ?>
-                                                    <div class="table__header-rows" style="text-align: center;">                           
+                                                    <p class="table__header-rows">                    
                                                             <?php  
                                                                 echo (array_keys($variable)[$i]); 
                                                             ?>
-                                                        </div>
+                                                    </p>
                                                 <?php
                                                 }
                                                 ?> 
                                         </div>
+                                        <?php 
+                                            if($_SESSION['rol']=="2"){
+                                        ?>
+                                                <div class="table__header-icon">
+                                                    <img src="img/icon-agregar-white.png" alt="">
+                                                </div>
+                                        <?php 
+                                            } else {    
+                                        ?>
+                                                <div class="table__header-icon">
+                                                    <img src="img/icon-pet-perro-pequeño.png" alt="">
+                                                    <img src="img/icon-agregar-white.png" alt="">
+                                                </div>
+                                        <?php 
+                                            }    
+                                        ?>
                                     </div>
-                                    <?php 
-                                        if($_SESSION['rol']=="2"){
-                                    ?>
-                                        <div class="table__header-icon">
-                                            <img src="img/icon-agregar-white.png" alt="">
-                                        </div>
-                                <?php 
-                                    } else {    
-                                ?>
-                                    <div class="table__header-icon">
-                                        <img src="img/icon-pet-perro-pequeño.png" alt="">
-                                        <img src="img/icon-agregar-white.png" alt="">
-                                    </div>
-                                <?php 
-                                    }    
-                                ?>
+                                    
                                 <div class="table__content">
                                     <div class="table__rows">
                                         <?php
@@ -132,10 +136,17 @@
                             <div class="table__footer">
                                     <div class="table__footer-icon">
                                         <img src="img/icon-geringa-white_rellena.png" alt="">
-                                        <?php
-                                            
-                                        ?>
+                                        
                                     </div>
+                                    <?php
+                                          if($_SESSION['rol']=="2"){
+                                    ?>
+                                        <div class="table__footer-filter table__footer-icon">
+                                            <img src="img/icon-filtro.png" alt="">
+                                        </div>
+                                    <?php
+                                        }
+                                    ?>
                             </div>
                         </div>
                     </div>

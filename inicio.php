@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-    require_once(__DIR__."/controller/user.Controller.php");
+    require_once(__DIR__."/controller/user.controller.php");
     $users = (new controllerUser) -> read();
     var_dump($users);
     $contador = 0;
@@ -38,7 +38,7 @@
                     ?>
                     <div style="background-color:green; padding:.4vh;border:0.4vh solid blue; display: flex;justify-content: space-around;">
                     <?php
-                    foreach ($array as $key) {
+                        foreach ($array as $key) {
                         ?>
                         <p style="background-color:green; padding:.4vh; text-align: center; ">                           
                             <?php 
@@ -100,7 +100,7 @@
                     }
                     ?>
                     </div>
-                </div>
+    </div>
                     <?php
                 }
             ?>
@@ -193,7 +193,8 @@
                 
             // }
             ?>
-    </div>      
+            <table class="default">
+   
 
 </body>
 </html>

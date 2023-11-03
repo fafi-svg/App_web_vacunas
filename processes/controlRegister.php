@@ -1,7 +1,7 @@
 <?php 
     require_once(__DIR__."/../conexion.php");
     require_once(__DIR__."/../models/user.model.php");
-    require_once(__DIR__."/../controller/user.Controller.php");
+    require_once(__DIR__."/../controller/user.controller.php");
     require_once(__DIR__."/messageRegister.php");
  class controlAccessRegister extends ConexionDataBase{
         public function checkInputRegister(){
