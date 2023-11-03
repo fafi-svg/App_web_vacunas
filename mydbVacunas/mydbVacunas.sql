@@ -129,14 +129,14 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `mydbvacunas`.`vacuna`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydbvacunas`.`vacuna` (
+CREATE TABLE IF NOT EXISTS `mydbvacunas`.`vacunas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(150) NOT NULL,
-  `Aplicacion` VARCHAR(45) NULL,
+  `aplicacion` VARCHAR(45) NULL,
   `tipomascota_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_vacuna_tipomascota1_idx` (`tipomascota_id` ASC) VISIBLE,
-  CONSTRAINT `fk_vacuna_tipomascota1`
+  INDEX `fk_vacunas_tipomascota1_idx` (`tipomascota_id` ASC) VISIBLE,
+  CONSTRAINT `fk_vacunas_tipomascota1`
     FOREIGN KEY (`tipomascota_id`)
     REFERENCES `mydbvacunas`.`tipomascota` (`id`)
     ON DELETE NO ACTION
@@ -149,7 +149,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 -- Table `mydbvacunas`.`controlvacuna`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydbvacunas`.`controlvacuna` (
+CREATE TABLE IF NOT EXISTS `mydbvacunas`.`controlvacunas` (
   `Mascota_id` INT NOT NULL,
   `Vacuna_id` INT NOT NULL,
   `fecha` DATETIME NULL DEFAULT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `mydbvacunas`.`controlvacuna` (
     REFERENCES `mydbvacunas`.`mascota` (`id`),
   CONSTRAINT `fk_Mascota_has_Vacuna_Vacuna1`
     FOREIGN KEY (`Vacuna_id`)
-    REFERENCES `mydbvacunas`.`vacuna` (`id`))
+    REFERENCES `mydbvacunas`.`vacunas` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -178,8 +178,13 @@ insert into raza (nombre, TipoMascota_id, TamanoMascota_id) values('Papillón','
 insert into raza (nombre, TipoMascota_id, TamanoMascota_id) values('Chihuahua','2','2'),('Jack Russel Terrier','2','2'),('Fox Terrier','2','2'),('Pomerania','2','2'),('Bichón maltés','2','2'),('Beagle','2','2'),('Caniche','2','2'), ('Bulldog Francés','2','2'),('Corgi','2','2'),('Schnauzer','2','2'),('Shih tzu','2','2'), ('Jack Russell Terrier','2','2');
 insert into raza (nombre, TipoMascota_id, TamanoMascota_id) values('Border Collie','2','3'),('Boxer','2','3'),('Cocker Spaniel Inglés','2','3'),('Setter Irlandés','2','3'),('Shiba Inu','2','3'),('Labradoodle','2','3'),('Shar pei','2','3'),('Podenco andaluz','2','3'), ('Bull Terrier','2','3'),('Podenco','2','3'), ('Spaniel bretón','2','3');
 insert into raza (nombre, TipoMascota_id, TamanoMascota_id) values('Braco de Weimar','2','4'),('Pastor alemán','2','4'),('Setter inglés','2','4'),('Bullmastiff','2','4'),('San Bernardo','2','4'),('Gran Danés','2','4'),('Mastín Inglés','2','4'),('Bobtail','2','4'),('Dálmata','2','4'),('Mastín italiano','2','4'),('Dogo argentino','2','4'),('Pitbull','2','4'),('Rottweiler','2','4'),('Akita Inu','2','4') ,('Mastín del Pirineo','2','4'),('Boyero de Berna','2','4'),('Samoyedo','2','4'),('Mastín español','2','4') ,('Malamute de Alaska','2','4'),('Boyero de Berna','2','4'),('Galgo','2','4'),('Labrador','2','4') ,('Bloodhound','2','4'),('Boyero de Berna','2','4');
-insert into Vacuna (nombre, tipomascota_id, Aplicacion) value('Parvovirosis','2','45'),('Pentavalente ','2','60'),('Pentavalente + coronavirus','2','75'),('Pentavalente + coronavirus','2','90 '),('Rabia ','2','120'),('Tos de perreras','2','0'),('Polivalente ','2','180'),('Triple felina','1','90'),('Triple felina','1','195'),('Rabia','1','135 '),('Leucemia ','1','150'),('Triple felina','1','365'),('Leucemia ','1','0'),('Rabia ','1','365');
-select * from TipoMascota ;
+insert into Vacunas (id,nombre, tipomascota_id, Aplicacion) value('1','Parvovirosis','2','45'),('2','Pentavalente ','2','60'),('3','Pentavalente + coronavirus','2','75'),('4','Pentavalente + coronavirus','2','90 '),('5','Rabia ','2','120'),('6','Tos de perreras','2','0'),('7','Polivalente ','2','180'),('8','Triple felina','1','90'),('9','Triple felina','1','195'),('10','Rabia','1','135 '),('11','Leucemia ','1','150'),('12','Triple felina','1','365'),('13','Leucemia ','1','0'),('14','Rabia ','1','365');
+select * from Vacunas ;
+-- select count(id) from Vacunas ;
+SELECT v.id as ID, v.nombre as 'Nombre Vacuna', v.aplicacion as 'Dias Aplicacion', v.tipomascota_id as 'Tipo Mascota', count(c.vacuna_id) as count FROM vacunas as v 
+left join controlvacunas as c
+on c.vacuna_id = v.id
+group by  v.id , v.nombre,  v.aplicacion , v.tipomascota_id;
 -- select * from User where username = 'user3';
 -- DELETE FROM User WHERE id = 2;
 -- insert into User values('3','fafi','UseR-2','examle4@correo.com','$2y$10$ekpW/Y2KnXXMwaVUXveU3.HyV1m.VhT/KD6mDgYzKX2Pw1OAEZ4MG','1','null');
