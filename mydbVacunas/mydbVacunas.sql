@@ -181,10 +181,7 @@ insert into raza (nombre, TipoMascota_id, TamanoMascota_id) values('Braco de Wei
 insert into Vacunas (id,nombre, tipomascota_id, Aplicacion) value('1','Parvovirosis','2','45'),('2','Pentavalente ','2','60'),('3','Pentavalente + coronavirus','2','75'),('4','Pentavalente + coronavirus','2','90 '),('5','Rabia ','2','120'),('6','Tos de perreras','2','0'),('7','Polivalente ','2','180'),('8','Triple felina','1','90'),('9','Triple felina','1','195'),('10','Rabia','1','135 '),('11','Leucemia ','1','150'),('12','Triple felina','1','365'),('13','Leucemia ','1','0'),('14','Rabia ','1','365');
 select * from Vacunas ;
 -- select count(id) from Vacunas ;
-SELECT v.id as ID, v.nombre as 'Nombre Vacuna', v.aplicacion as 'Dias Aplicacion', v.tipomascota_id as 'Tipo Mascota', count(c.vacuna_id) as count FROM vacunas as v 
-left join controlvacunas as c
-on c.vacuna_id = v.id
-group by  v.id , v.nombre,  v.aplicacion , v.tipomascota_id;
+-- SELECT v.id as ID, v.nombre as 'Nombre Vacuna', v.aplicacion as 'Dias Aplicacion', v.tipomascota_id as 'Tipo Mascota', count(c.vacuna_id) as count FROM vacunas as v left join controlvacunas as c on c.vacuna_id = v.id group by  v.id , v.nombre,  v.aplicacion , v.tipomascota_id;
 -- select * from User where username = 'user3';
 -- DELETE FROM User WHERE id = 2;
 -- insert into User values('3','fafi','UseR-2','examle4@correo.com','$2y$10$ekpW/Y2KnXXMwaVUXveU3.HyV1m.VhT/KD6mDgYzKX2Pw1OAEZ4MG','1','null');
