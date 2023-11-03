@@ -111,9 +111,7 @@ body{
     height: 5.5em;
     transition: height .5s ease-in-out;
 }
-.menu__exit-content{
-    margin: .5em;
-}
+
 .menu__exit{
     border-radius: .5em;
     right: 1%;

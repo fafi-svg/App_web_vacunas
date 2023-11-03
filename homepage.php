@@ -49,14 +49,14 @@
                             <p class="box__text-rol"><?php if($_SESSION['rol']=="1"){echo 'Usuario';}else{echo 'administrador';}?></p>
                         </div>
                     </div>
-                    <div <?php if($_SESSION['rol']=="1"){echo "style='height:30vh;'";} ?> class="box__container"> 
+                    <a href="gestion-vacunas.php" <?php if($_SESSION['rol']=="1"){echo "style='height:30vh;'";} ?> class="box__container"> 
                         <div class="box__img">
                             <img src="img/icon-geringa-white_rellena.png" alt="">
                         </div>
                         <div class="box__text">
                             <p class="box__text-name"><?php if($_SESSION['rol']=="1"){echo 'Gestionar Vacunas';}else{echo 'Registro De Vacunas';}?></p>
                         </div>
-                    </div>
+                    </a>
                     <div <?php if($_SESSION['rol']=="1"){echo "style='height:30vh;'";} ?> class="box__container"> 
                         <div class="box__img">
                             <img src="img/icon-animals.png" alt="">

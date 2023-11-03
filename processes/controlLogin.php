@@ -25,7 +25,6 @@
                                     $_SESSION['rol'] = $resultQuery["Role_id"];                             
                                     mysqli_free_result( $sql );   
                                     $mysqli -> close();                        
-
                                 }else{
                                     mysqli_free_result( $sql );
                                     $mysqli -> close();

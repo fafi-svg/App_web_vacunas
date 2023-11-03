@@ -32,12 +32,33 @@
                         </p>
                     </div>
                     <div class="header__icon-img cursor_pointer user_select_none">
-                        <img tabindex="0" class="button__exit" src="img/icon-menu-white.png" alt="">
+                        <img tabindex="0" class="button__menu" src="img/icon-menu-white.png" alt="">
                         <div class="menu__exit">
                             <div class="menu__exit-content">
-                                <p>¿Cerrar Session?</p>
+                                <a class="menu__option">
+                                    <div class="menu__option-img">
+                                        <img src="img/icon-animals.png" alt="">
+                                    </div>
+                                    <p class="menu__option-text">Gestionar Razas</p>
+                                </a>
+                                <a class="menu__option">
+                                    <div class="menu__option-img">
+                                        <img src="img/icon-pet-gato.png" alt="">
+                                    </div>
+                                    <p class="menu__option-text">Gestionar Mascota</p>
+                                </a>
+                                <a class="menu__option">
+                                    <div class="menu__option-img">
+                                        <img src="img/icon-geringa-white_rellena.png" alt="">
+                                    </div>
+                                    <p class="menu__option-text">Gestionar Vacunas</p>
+                                </a>
                                 <form class="menu__exit-form" method="post">
-                                    <input class="login__button-primario" name="exitSession" type="submit" value="Salir">
+                                    <input id="button__exit" class="login__button-primario" name="exitSession" type="submit" value="Salir">
+                                    <label for="button__exit">
+                                        <img tabindex="0" class="" src="img/icono-salida_mini.png" alt="button__exit">
+                                    </label>
+                                    
                                 </form>
                             </div>
                         </div>
@@ -133,10 +154,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="table__footer">
+                            <div class="table__footer" style="align-items: center;">
                                     <div class="table__footer-icon">
-                                        <img src="img/icon-geringa-white_rellena.png" alt="">
-                                        
+                                        <img src="img/icon-geringa-white_rellena.png" alt=""><?php $countVacunas = mysqli_fetch_array($numeroVacunas); echo $countVacunas['cound'];?>
                                     </div>
                                     <?php
                                           if($_SESSION['rol']=="2"){

@@ -49,25 +49,68 @@ body{
     top: -1%;
     margin: auto;
 } */
-.button__exit:focus-within ~ .menu__exit{
-    height: 5.5em;
+.button__menu:focus-within ~ .menu__exit{
+    height: 25em;
     transition: height .5s ease-in-out;
 }
+/* .menu__exit-form{
+
+} */
+.menu__exit-form{
+    width: max-content;
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+}
+.menu__option{
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    background-color: #555555;
+    padding: 0 1.5em;
+    border-radius: .5em;
+    cursor: pointer;
+    user-select: none;
+    transition: .2s ease-in;
+    transition-property: background-color;
+}
+.menu__option:hover{
+    background-color: #5c415d;
+    transition: .2s ease-in;
+    transition-property: background-color;
+}
+#button__exit{
+    position: relative;
+    z-index: -1;
+    height: 0;
+    width: 0;
+    opacity: 0;
+}
+.menu__option-img img{
+    width: 2em;
+}
+.menu__option-text{
+    font-size: 1.5em;
+}
 .menu__exit-content{
-    margin: .5em;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;   
+    height: 20em; 
 }
 .menu__exit{
-    border-radius: .5em;
-    right: 1%;
-    margin-top: 2%;
+    border-bottom-left-radius: 1.5em;
+    right: 0%;
+    top: 10%;
     text-align: center;
-    font-size: 1.5em;
     transition: height .5s ease-in-out;
     position: absolute;
     height: 0em;
     transition: height .5s ease-in-out;
     overflow: hidden;
-    background-color: #393e41;
+    background-color: #262626;
+    z-index: 5;
 }
 .section__content{
     background-color: #555555;
@@ -145,6 +188,12 @@ body{
 }
 .table__footer-icon img, .table__header-icon img{
     width: 3em;
+}
+.table__footer-icon{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    margin: .5em;
 }
 .table__footer-filter{
     background-color: #555555;
