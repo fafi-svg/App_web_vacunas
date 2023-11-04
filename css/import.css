@@ -6,3 +6,12 @@
 .x{
     font-family: 'Gothic A1', sans-serif;
 }
+
+#inputCrud{
+    position: relative;
+    z-index: -1;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    
+}

@@ -8,6 +8,7 @@
     require_once(__DIR__."/consultas/gestionVacunas.php");
     $vacunas = (new GestionVacunasConsultas)->readVacunas();
     $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
+    $nombreVocunas = (new GestionVacunasConsultas)->nombreVacunas();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,18 +77,30 @@
                                                 $long = sizeof($variable)-1;
                                                 break;
                                             }
+                                            foreach ($nombreVocunas as $nameVocunas) {
+                                                $longNameVocunas = sizeof($variable)-1;
+                                                break;
+                                            }
                                         ?>
                                         <div class="table__header-container">
                                             <?php 
-                                            for ($i= 0; $i<=$long; $i++) {
-                                                ?>
-                                                    <p class="table__header-rows">                    
+                                                for ($i= 0; $i<=$long; $i++) {
+                                                    ?>
+                                                        <p class="table__header-rows">                    
                                                             <?php  
                                                                 echo (array_keys($variable)[$i]); 
                                                             ?>
-                                                    </p>
+                                                        </p>
+                                                    <?php
+                                                        if($_SESSION['rol']=="2" and $i <= ($long-1)){
+                                                    ?>
+                                                           
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 <?php
                                                 }
+                                                
                                                 ?> 
                                         </div>
                                         <?php 
@@ -100,7 +113,6 @@
                                             } else {    
                                         ?>
                                                 <div class="table__header-icon">
-                                                    <img src="img/icon-pet-perro-pequeño.png" alt="">
                                                     <img src="img/icon-agregar-white.png" alt="">
                                                 </div>
                                         <?php 
@@ -111,37 +123,55 @@
                                 <div class="table__content">
                                     <div class="table__rows">
                                         <?php
+                                            $con = 1;
                                              foreach ($vacunas as $variable) {
                                         ?>
-                                        <div class="table__rows-content">
+                                        <div class="table__rows-content" id="row_<?php echo $con;?>">
                                             <div class="table__rows-column">
                                                 <?php
+                                                $contador=0;
                                                 foreach ($variable as $content) {
                                                     ?>
-                                                        <p class="table__rows-text"  style="text-align: center;">                           
-                                                                <?php  
-                                                                    echo $content; 
-                                                                ?>
-                                                        </p>
+                                                        <div class="table__rows-column-container">
+                                                            <p class="table__rows-text"  style="text-align: center;">                           
+                                                                    <?php  
+                                                                        echo $content; 
+                                                                    ?>
+                                                            </p>
+                                                            <?php
+                                                              if($_SESSION['rol']=="2" and $contador <= ($longNameVocunas-1) and $contador > 0){
+                                                            ?>
+                                                                <div class="inputUpdate__container">
+                                                                    <input class="inputUpdate" id="row_<?php echo $con;?>" style="width: 100%;" type="text" name="<?php echo (array_keys($nameVocunas)[$contador]);  ?>">
+                                                                </div>
+                                                            <?php
+                                                              }  
+                                                            ?>
+                                                        </div>
                                                     <?php
+                                                 $contador++;
                                                 }
+                                                $contador=0;
                                                 ?> 
                                             </div>
                                             <?php
                                                 if($_SESSION['rol']=="2"){
                                                     ?>
-                                                        <div class="table__rows-icon-row">
-                                                            <div class="table__rows-img">
+                                                            <!-- <div id="btnSubmit" class="table__rows-submit row_"> -->
+                                                                    <input class="inputSubmit inputSubmit_row_<?php echo $con;?>" id="row_<?php echo $con;?>" type="submit" name="updateData" value="Actualizar">
+                                                            <!-- </div> -->
+                                                        <!-- <div class="table__rows-icon-row"> -->
+                                                            <div id="btnUpdate" class="table__rows-img row_<?php echo $con;?>">
                                                                 <img src="img/icon-lapiz-white.png" alt="icon-lapiz">
                                                             </div>
-                                                            <div class="table__rows-img">
+                                                            <div id="btnDelete" class="table__rows-img row_<?php echo $con;?>">
                                                                 <img src="img/icon-basurero-white.png" alt="icon-lapiz">
                                                             </div>
-                                                        </div>
+                                                        <!-- </div> -->
                                                 <?php 
                                                     } else {    
                                                 ?>      
-                                                    <div class="table__rows-icon-row">
+                                                    <div id="row_<?php echo $con;?>" class="table__rows-icon-row">
                                                         <input class="table__rows-img" type="checkbox" required name='<?php echo $variable["ID"]?>' >
                                                     </div>
                                                 <?php 
@@ -149,7 +179,9 @@
                                                     ?>
                                             </div>
                                             <?php
+                                                $con++;
                                              }
+                                             $con=0;
                                         ?>
                                     </div>
                                 </div>
@@ -161,7 +193,7 @@
                                     <?php
                                           if($_SESSION['rol']=="2"){
                                     ?>
-                                        <div class="table__footer-filter table__footer-icon">
+                                        <div id="btnFilter_row" class="table__footer-filter table__footer-icon">
                                             <img src="img/icon-filtro.png" alt="">
                                         </div>
                                     <?php
@@ -176,5 +208,8 @@
         } else{header("location: error-not-session.php");}
         ?>
     </main>
+    <script src="js/main.js">
+
+    </script>
 </body>
 </html>

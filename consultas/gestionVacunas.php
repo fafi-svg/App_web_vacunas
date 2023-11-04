@@ -12,5 +12,12 @@ class GestionVacunasConsultas extends ConexionDataBase{
         $sqlQuery = $mysqli->query($sql);
         return $sqlQuery ;
     }
+
+    public function nombreVacunas(){
+        $mysqli = $this->conexion();
+        $sql = "SELECT * FROM vacunas as v";
+        $sqlQuery = $mysqli->query($sql);
+        return $sqlQuery ;
+    }
 }
 ?>
