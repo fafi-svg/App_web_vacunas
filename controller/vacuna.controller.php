@@ -34,8 +34,28 @@
 
             $mysqli->close();
         }
-        public function update(){
-
+        public function update($id){
+            if(!empty($_POST['updateData']) or $_POST['updateData'] !="-1"){
+                $mysqli = $this->conexion();
+                $longPost = sizeof($_POST)-2;
+                $stringQuery="";
+                for ($i= 0; $i<=$longPost; $i++) {
+                    $nameColumn =array_keys($_POST)[$i];
+                    if($nameColumn != 'updateData' and !(empty($_POST[$nameColumn]))){
+                        $stringQuery = $stringQuery." ".$nameColumn."="."'".$_POST[$nameColumn]."'";
+                        if($i < $longPost){
+                            $stringQuery = $stringQuery.",";
+                        }
+                    }
+                }
+                $sql ="update Vacunas set $stringQuery where id = $id";
+                $resultado = $mysqli->query($sql);
+                if($resultado){
+                    echo "<div style='background-color: green;'>Datos Actualizados</div>";
+                }
+                $_POST['updateData'] = "-1";
+                $mysqli -> close();
+            }
         }
     }
 ?>

@@ -6,9 +6,7 @@
     require_once(__DIR__."/controller/user.controller.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/gestionVacunas.php");
-    $vacunas = (new GestionVacunasConsultas)->readVacunas();
-    $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
-    $nombreVocunas = (new GestionVacunasConsultas)->nombreVacunas();
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,10 +63,24 @@
                         </div>
                     </div>
                 </header>
+                <?php
+                   
+                ?>
                 <section class="section__content">
                     <div class="table">
                         <div class="table__title">
                             <p class="table__title-text">Gestion De Vacunas</p>
+                            <?php
+                                if(isset($_POST['updateData'])){
+                                    if(!empty($_POST['updateData']) or $_POST['updateData'] !="-1"){
+                                        require_once(__DIR__."/processes/controlUpdateVacunas.php");
+                                        (new ControlUpdateVacunas) ->updateVacunas();
+                                    }
+                                }
+                                $vacunas = (new GestionVacunasConsultas)->readVacunas();
+                                $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
+                                $nombreColumnas = (new GestionVacunasConsultas)->nombreVacunas();
+                            ?>
                         </div>
                             <div class="table__container">
                                 <div class="table__header">
@@ -77,7 +89,7 @@
                                                 $long = sizeof($variable)-1;
                                                 break;
                                             }
-                                            foreach ($nombreVocunas as $nameVocunas) {
+                                            foreach ($nombreColumnas as $nameVocunas) {
                                                 $longNameVocunas = sizeof($variable)-1;
                                                 break;
                                             }
@@ -86,11 +98,7 @@
                                             <?php 
                                                 for ($i= 0; $i<=$long; $i++) {
                                                     ?>
-                                                        <p class="table__header-rows">                    
-                                                            <?php  
-                                                                echo (array_keys($variable)[$i]); 
-                                                            ?>
-                                                        </p>
+                                                        <p class="table__header-rows"> <?php echo (array_keys($variable)[$i]); ?> </p>
                                                     <?php
                                                         if($_SESSION['rol']=="2" and $i <= ($long-1)){
                                                     ?>
@@ -126,23 +134,19 @@
                                             $con = 1;
                                              foreach ($vacunas as $variable) {
                                         ?>
-                                        <div class="table__rows-content" id="row_<?php echo $con;?>">
+                                        <form method="post" class="table__rows-content" id="row_<?php echo $con;?>">
                                             <div class="table__rows-column">
                                                 <?php
                                                 $contador=0;
                                                 foreach ($variable as $content) {
                                                     ?>
                                                         <div class="table__rows-column-container">
-                                                            <p class="table__rows-text"  style="text-align: center;">                           
-                                                                    <?php  
-                                                                        echo $content; 
-                                                                    ?>
-                                                            </p>
+                                                            <p class="table__rows-text"><?php echo $content;?></p>
                                                             <?php
                                                               if($_SESSION['rol']=="2" and $contador <= ($longNameVocunas-1) and $contador > 0){
                                                             ?>
-                                                                <div class="inputUpdate__container">
-                                                                    <input class="inputUpdate" id="row_<?php echo $con;?>" style="width: 100%;" type="text" name="<?php echo (array_keys($nameVocunas)[$contador]);  ?>">
+                                                                <div class="inputUpdate__container"></div>
+                                                                    <input class="inputUpdate inputUpdate_row_<?php echo $con;?>" id="row_<?php echo $con;?>"  type="<?php if(array_keys($nameVocunas)[$contador] == 'nombre'){echo'text';}else{echo'number';}?>" name="<?php echo (array_keys($nameVocunas)[$contador]);  ?>">
                                                                 </div>
                                                             <?php
                                                               }  
@@ -157,17 +161,16 @@
                                             <?php
                                                 if($_SESSION['rol']=="2"){
                                                     ?>
-                                                            <!-- <div id="btnSubmit" class="table__rows-submit row_"> -->
-                                                                    <input class="inputSubmit inputSubmit_row_<?php echo $con;?>" id="row_<?php echo $con;?>" type="submit" name="updateData" value="Actualizar">
-                                                            <!-- </div> -->
-                                                        <!-- <div class="table__rows-icon-row"> -->
+                                                        
+                                                        <div class="table__rows-btn table__rows-btn_row_<?php echo $con;?>">
                                                             <div id="btnUpdate" class="table__rows-img row_<?php echo $con;?>">
                                                                 <img src="img/icon-lapiz-white.png" alt="icon-lapiz">
                                                             </div>
                                                             <div id="btnDelete" class="table__rows-img row_<?php echo $con;?>">
                                                                 <img src="img/icon-basurero-white.png" alt="icon-lapiz">
                                                             </div>
-                                                        <!-- </div> -->
+                                                            <input class="btnSubmit inputSubmit_row_<?php echo $con;?>" id="row_<?php echo $con;?>" value="<?php echo $con;?>" type="submit" name="updateData" src="img/icon-update.png">
+                                                        </div>
                                                 <?php 
                                                     } else {    
                                                 ?>      
@@ -177,7 +180,7 @@
                                                 <?php 
                                                     }
                                                     ?>
-                                            </div>
+                                        </form>
                                             <?php
                                                 $con++;
                                              }
