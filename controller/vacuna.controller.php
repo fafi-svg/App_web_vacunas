@@ -37,21 +37,23 @@
         public function update($id){
             if(!empty($_POST['updateData']) or $_POST['updateData'] !="-1"){
                 $mysqli = $this->conexion();
-                $longPost = sizeof($_POST)-2;
+                $longPost = sizeof($_POST)-1;
+                $con=0;
                 $stringQuery="";
                 for ($i= 0; $i<=$longPost; $i++) {
                     $nameColumn =array_keys($_POST)[$i];
                     if($nameColumn != 'updateData' and !(empty($_POST[$nameColumn]))){
-                        $stringQuery = $stringQuery." ".$nameColumn."="."'".$_POST[$nameColumn]."'";
-                        if($i < $longPost){
+                        $con++;
+                        if($i < $longPost and $con >=2){
                             $stringQuery = $stringQuery.",";
                         }
+                        $stringQuery = $stringQuery." ".$nameColumn."="."'".$_POST[$nameColumn]."'";
                     }
                 }
                 $sql ="update Vacunas set $stringQuery where id = $id";
                 $resultado = $mysqli->query($sql);
                 if($resultado){
-                    echo "<div style='background-color: green;'>Datos Actualizados</div>";
+                    echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
                 }
                 $_POST['updateData'] = "-1";
                 $mysqli -> close();

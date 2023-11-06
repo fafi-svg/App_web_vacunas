@@ -6,7 +6,7 @@
     require_once(__DIR__."/controller/user.controller.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/gestionVacunas.php");
-   
+    require_once(__DIR__."/consultas/gestionMascotas.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,24 +63,22 @@
                         </div>
                     </div>
                 </header>
-                <?php
-                   
-                ?>
                 <section class="section__content">
                     <div class="table">
                         <div class="table__title">
                             <p class="table__title-text">Gestion De Vacunas</p>
-                            <?php
-                                if(isset($_POST['updateData'])){
-                                    if(!empty($_POST['updateData']) or $_POST['updateData'] !="-1"){
-                                        require_once(__DIR__."/processes/controlUpdateVacunas.php");
-                                        (new ControlUpdateVacunas) ->updateVacunas();
+                                <?php
+                                    if(isset($_POST['updateData'])){
+                                        if(!empty($_POST['updateData']) or $_POST['updateData'] !="-1"){
+                                            require_once(__DIR__."/processes/controlUpdateVacunas.php");
+                                            (new ControlUpdateVacunas) ->updateVacunas();
+                                        }
                                     }
-                                }
-                                $vacunas = (new GestionVacunasConsultas)->readVacunas();
-                                $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
-                                $nombreColumnas = (new GestionVacunasConsultas)->nombreVacunas();
-                            ?>
+                                    $vacunas = (new GestionVacunasConsultas)->readVacunas();
+                                    $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
+                                    $nombreColumnas = (new GestionVacunasConsultas)->nombreVacunas();
+                                    $tiposMascotas = (new GestionMascotasConsultas)->tiposMascotas();
+                                ?>
                         </div>
                             <div class="table__container">
                                 <div class="table__header">
@@ -90,25 +88,21 @@
                                                 break;
                                             }
                                             foreach ($nombreColumnas as $nameVocunas) {
-                                                $longNameVocunas = sizeof($variable)-1;
+                                                $longNameVocunas = sizeof($nameVocunas)-1;
+                                                break;
+                                            }
+                                            foreach ($tiposMascotas as $typePets) {
+                                                $longTypePets = sizeof($typePets)-1;
                                                 break;
                                             }
                                         ?>
                                         <div class="table__header-container">
                                             <?php 
                                                 for ($i= 0; $i<=$long; $i++) {
-                                                    ?>
-                                                        <p class="table__header-rows"> <?php echo (array_keys($variable)[$i]); ?> </p>
-                                                    <?php
-                                                        if($_SESSION['rol']=="2" and $i <= ($long-1)){
-                                                    ?>
-                                                           
-                                                    <?php
-                                                        }
-                                                    ?>
+                                                ?>
+                                                    <p class="table__header-rows"> <?php echo (array_keys($variable)[$i]); ?> </p>
                                                 <?php
                                                 }
-                                                
                                                 ?> 
                                         </div>
                                         <?php 
@@ -137,23 +131,37 @@
                                         <form method="post" class="table__rows-content" id="row_<?php echo $con;?>">
                                             <div class="table__rows-column">
                                                 <?php
-                                                $contador=0;
-                                                foreach ($variable as $content) {
-                                                    ?>
+                                                    $contador=0;
+                                                    foreach ($variable as $content) {
+                                                ?>
                                                         <div class="table__rows-column-container">
                                                             <p class="table__rows-text"><?php echo $content;?></p>
                                                             <?php
-                                                              if($_SESSION['rol']=="2" and $contador <= ($longNameVocunas-1) and $contador > 0){
+                                                              if($_SESSION['rol']=="2" and $contador <= ($longNameVocunas) and $contador > 0){
                                                             ?>
-                                                                <div class="inputUpdate__container"></div>
-                                                                    <input class="inputUpdate inputUpdate_row_<?php echo $con;?>" id="row_<?php echo $con;?>"  type="<?php if(array_keys($nameVocunas)[$contador] == 'nombre'){echo'text';}else{echo'number';}?>" name="<?php echo (array_keys($nameVocunas)[$contador]);  ?>">
+                                                                <div class="inputUpdate__container">
+                                                                    <?php
+                                                                    if(array_keys($nameVocunas)[$contador] == 'tipomascota_id'){
+                                                                    ?>
+                                                                        <select class="inputUpdate inputUpdate_row_<?php echo$con;?>" name="<?php echo (array_keys($nameVocunas)[$contador]);?>" id="row_<?php echo$con;?>">
+                                                                                <option value=""></option>
+                                                                                <option value="2">Perro-2</option>
+                                                                                <option value="1">Gato-1</option>
+                                                                        </select>
+                                                                    <?php
+                                                                    }else{
+                                                                    ?>
+                                                                        <input class="inputUpdate inputUpdate_row_<?php echo $con;?>" id="row_<?php echo $con;?>"  type="<?php if(array_keys($nameVocunas)[$contador] == 'nombre'){echo'text';}else{echo'number';}?>" name="<?php echo (array_keys($nameVocunas)[$contador]);?>">
+                                                                    <?php
+                                                                    }
+                                                                    ?>
                                                                 </div>
                                                             <?php
                                                               }  
                                                             ?>
                                                         </div>
                                                     <?php
-                                                 $contador++;
+                                                    $contador++;
                                                 }
                                                 $contador=0;
                                                 ?> 
@@ -161,7 +169,6 @@
                                             <?php
                                                 if($_SESSION['rol']=="2"){
                                                     ?>
-                                                        
                                                         <div class="table__rows-btn table__rows-btn_row_<?php echo $con;?>">
                                                             <div id="btnUpdate" class="table__rows-img row_<?php echo $con;?>">
                                                                 <img src="img/icon-lapiz-white.png" alt="icon-lapiz">
@@ -169,7 +176,13 @@
                                                             <div id="btnDelete" class="table__rows-img row_<?php echo $con;?>">
                                                                 <img src="img/icon-basurero-white.png" alt="icon-lapiz">
                                                             </div>
-                                                            <input class="btnSubmit inputSubmit_row_<?php echo $con;?>" id="row_<?php echo $con;?>" value="<?php echo $con;?>" type="submit" name="updateData" src="img/icon-update.png">
+                                                            <div class="labelSubmit labelSubmit_row_<?php echo $con;?>">
+                                                                    <img class="btnSubmit-img" src="img/icon-update.png" alt="">
+                                                                    <input class="btnSubmit inputSubmit_row_<?php echo $con;?>" id="row_<?php echo $con;?>" value="<?php echo $con;?>" type="submit" name="updateData">
+                                                            </div>
+                                                            <div class="btnFlecha">
+                                                                    <img class="btnFlecha-img" src="img/icon-flecha.png" alt="">
+                                                            </div>
                                                         </div>
                                                 <?php 
                                                     } else {    
@@ -180,9 +193,9 @@
                                                 <?php 
                                                     }
                                                     ?>
-                                        </form>
+                                    </form>
                                             <?php
-                                                $con++;
+                                            $con++;
                                              }
                                              $con=0;
                                         ?>

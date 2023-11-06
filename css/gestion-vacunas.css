@@ -5,7 +5,6 @@ body{
     font-family: "OCR A Extended";
     margin: 0;
     color: white;
-    background-color: #e94f37;
 }
 *{
     box-sizing: border-box;
@@ -125,9 +124,21 @@ body{
     font-size: 2.5em;
     margin: .5em 0; 
 }
+.table__title-message{
+    background-color: green;
+    display:grid;
+    place-content:center;
+    padding: 1em 2em;
+    border-radius: .5em;
+    width: 50%;
+    margin: auto;
+    font-family: 'Gothic A1', sans-serif;
+    text-align: center;
+}
 .table__title{
     display: flex;
     gap: 2em;
+    flex-wrap: wrap;
 }
 .table__content{
     background-color: #555555;
@@ -258,6 +269,7 @@ body{
     gap: 1.5em;
     align-items: center;
     flex-direction: row-reverse;
+    position: relative;
 }
 .table__rows-img{
     display: flex;
@@ -268,14 +280,44 @@ body{
     z-index: 2;
 }
 .btnSubmit{
-    /* overflow: hidden; */
     display: none;
-    /* right: 0;
-    top: 0;
-    bottom: 0; */
     margin: auto;
     z-index: 4;
-    width: 2em;
+    height: 2.5em;
+    width: 2.5em;
+    border-radius: 3em;
+    border: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.labelSubmit{
+    display: none;
+    margin: auto;
+    z-index: 3;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 1em;
+    border: 0;
+    position: relative;
+    place-content: center;
+    user-select: none;
+}
+.btnFlecha{
+    display: none;
+}
+.btnFlecha-img{
+    width: 1em;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+.btnSubmit-img{
+    width: inherit;
+    position: absolute;
+    top: .13em;
 }
 .inputUpdateView{
     display: grid;
@@ -287,7 +329,7 @@ body{
     top: 0;
     bottom: 0;
     left: -1em;
-    width: 230%;
+    width: 200%;
     margin: auto;
     border-radius: 50%;
     aspect-ratio: 1/1;
@@ -336,6 +378,15 @@ body{
     outline: 0 solid;
     transition: .3s ease-in-out;
     transition-property: outline;
+    font-size: 1em;
+}
+select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+select::-ms-expand {
+    display: none;
 }
 .inputUpdate:focus{
     outline: .5vh solid #32a1ce;
@@ -347,7 +398,7 @@ body{
     cursor: pointer;
 }
 .table__rows-img img{
-    width: 1.5em;
+    width: 1.9em;
 }
 
 .table__content::-webkit-scrollbar {
@@ -400,7 +451,7 @@ body{
     }
     .table__rows-btn{
         position: absolute;
-        right: -4.5em;
+        right: -6.5em;
         top: 0;
         bottom: 0;
         margin: auto;
@@ -439,6 +490,15 @@ body{
     }
     .table__rows-text{
         height: 1.5em;
+    }
+    .table__title-message{
+        width: 100%;
+    }
+    .btnFlecha{
+        display: grid;
+        position: relative;
+        height: 1em;
+        width: 1em;
     }
 }
 

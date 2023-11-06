@@ -34,21 +34,22 @@ var  noValido = '/\s/';
 inputUpdate.forEach(input => {
     input.addEventListener("change", ()=>{
         var inputId = input.id;
-        console.log(inputId);
         btnSubmit.forEach(btnElement => {
             if(inputId == btnElement.id && con==0){
                 var btnElementRow ='.inputSubmit_'+btnElement.id
+                var labelElementRow ='.labelSubmit_'+btnElement.id
                 // console.log(document.querySelector(btnElementRow));
-                var inputValueRow = "input.inputUpdate_"+inputId;
+                var inputValueRow = ".inputUpdate_"+inputId;
                 var inputEmpy = document.querySelectorAll(inputValueRow);
-                activeBtnSubmit(inputEmpy, btnElementRow, inputId);
+                console.log(inputId);
+                activeBtnSubmit(inputEmpy, btnElementRow, inputId, labelElementRow);
                 // document.querySelector(btnElementRow).style;
             }
         });
     });
 });
 
-function activeBtnSubmit(arrayInput, btnElementRow, inputId){
+function activeBtnSubmit(arrayInput, btnElementRow, inputId, labelElementRow){
     inputCount = arrayInput.length;
     arrayInput.forEach(inputEmpyChange => {
         if(!(/\s/.test(inputEmpyChange.value)) && inputEmpyChange.value != ""){
@@ -64,12 +65,13 @@ function activeBtnSubmit(arrayInput, btnElementRow, inputId){
     var inputIdCantainer = ".table__rows-btn_"+inputId; 
     if(inputConValue > 0){
         document.querySelector(btnElementRow).classList.add("inputUpdateView");
-        console.log(inputIdCantainer);
+        document.querySelector(labelElementRow).classList.add("inputUpdateView");
         document.querySelector(inputIdCantainer).classList.add("table__rows-btn_color");
         inputConValue = 0;
     }
     else if(inputConValue == 0){
         document.querySelector(inputIdCantainer).classList.remove("table__rows-btn_color");
         document.querySelector(btnElementRow).classList.remove("inputUpdateView");
+        document.querySelector(labelElementRow).classList.remove("inputUpdateView");
     }
 }
