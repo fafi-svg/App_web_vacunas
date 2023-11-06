@@ -51,7 +51,7 @@ user om·"#kjcvu23
 
 4- Error log:
 
-    <select class="inputUpdate inputUpdate_row_<?php echo$con;?>" name="<?php echo (array_keys($nameVocunas)[$contador]);?>" id="row_<?php echo$con;?>">
+    <select class="inputUpdate inputUpdate_row_<?php echo$con;?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>" id="row_<?php echo$con;?>">
         <?php $conPets=0; foreach ($typePets as $namePet) {?>  
             <?php if($conPets==0){?>
                  <option value="">  </option>
@@ -59,3 +59,4 @@ user om·"#kjcvu23
             <option value="<?php if($namePet=="gato"){echo'1';}elseif($namePet=="perro"){echo'2';}?>"><?php echo $namePet;if($namePet=="gato"){echo'1';}elseif($namePet=="perro"){echo'2';} ?></option>
         <?php } $conPets=0; ?>
     </select>
+array(4) { ["id"]=> string(1) "1" ["nombre"]=> string(12) "Parvovirosis" ["aplicacion"]=> string(2) "45" ["tipomascota_id"]=> string(1) "2" }

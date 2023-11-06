@@ -211,7 +211,6 @@ body{
 }
 .table__rows-btn-flecha img{
     width: .7em;
-
 }
 .table__rows-btn-flecha{
     display: none;
@@ -229,6 +228,22 @@ body{
 .table__rows-text{
     text-align: center;
     height: .7em;
+}
+.table__rows-text-img img{
+    width: 2em;
+    transform: rotatey(180deg);
+}
+.table__rows-text-img{
+    text-align: center;
+    height: .7em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.table__rows-img{
+    height: 100%;
+}
+.table__rows-img img{
+    width: inherit;
 }
 .inputUpdate__container{
     width: 100%;
@@ -271,11 +286,11 @@ body{
     flex-direction: row-reverse;
     position: relative;
 }
-.table__rows-img{
+.table__rows-btn-img{
     display: flex;
     align-items: center;
 }
-.table__rows-img img{
+.table__rows-btn-img img{
     position: relative;
     z-index: 2;
 }
@@ -393,11 +408,11 @@ select::-ms-expand {
     transition: .3s ease-in-out;
     transition-property: outline;
 }
-.table__rows-img{
+.table__rows-btn-img{
     user-select: none;
     cursor: pointer;
 }
-.table__rows-img img{
+.table__rows-btn-img img{
     width: 1.9em;
 }
 
@@ -489,6 +504,9 @@ select::-ms-expand {
         height: 4.5em;
     }
     .table__rows-text{
+        height: 1.5em;
+    }
+    .table__rows-text-img{
         height: 1.5em;
     }
     .table__title-message{

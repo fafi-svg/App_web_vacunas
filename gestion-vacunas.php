@@ -69,7 +69,7 @@
                             <p class="table__title-text">Gestion De Vacunas</p>
                                 <?php
                                     if(isset($_POST['updateData'])){
-                                        if(!empty($_POST['updateData']) or $_POST['updateData'] !="-1"){
+                                        if(!(empty($_POST['updateData']))){
                                             require_once(__DIR__."/processes/controlUpdateVacunas.php");
                                             (new ControlUpdateVacunas) ->updateVacunas();
                                         }
@@ -87,8 +87,8 @@
                                                 $long = sizeof($variable)-1;
                                                 break;
                                             }
-                                            foreach ($nombreColumnas as $nameVocunas) {
-                                                $longNameVocunas = sizeof($nameVocunas)-1;
+                                            foreach ($nombreColumnas as $nameColumn) {
+                                                $longnameColumn = sizeof($nameColumn)-1;
                                                 break;
                                             }
                                             foreach ($tiposMascotas as $typePets) {
@@ -131,27 +131,52 @@
                                         <form method="post" class="table__rows-content" id="row_<?php echo $con;?>">
                                             <div class="table__rows-column">
                                                 <?php
-                                                    $contador=0;
-                                                    foreach ($variable as $content) {
+                                                $contador=0;
+                                                $contPetImg = 0;
+                                                foreach ($variable as $content) {
                                                 ?>
                                                         <div class="table__rows-column-container">
-                                                            <p class="table__rows-text"><?php echo $content;?></p>
+                                                                    <?php
+                                                                    if($contador == 3){
+                                                                        if(array_keys($nameColumn)[$contador] == 'tipomascota_id' ){
+                                                                    ?>
+                                                                            <?php if($content == 1){?>
+                                                                                <div class="table__rows-text-img">
+                                                                                    <img src="img/icon-pet-gato.png" alt="">
+                                                                                </div>
+                                                                            <?php }else if($content == 2){?>
+                                                                                <div class="table__rows-text-img">
+                                                                                    <img src="img/icon-pet-perro-pequeño.png" alt="">
+                                                                                </div>
+                                                                            <?php }else{?>
+                                                                                <div class="table__rows-text-img">
+                                                                                    <img src="img/icon-pet-perro-grande.png" alt="">
+                                                                                </div>
+                                                                            <?php } }?>
+                                                                        <?php 
+                                                                    }else{ 
+                                                                    ?>
+                                                                        <p class="table__rows-text">  <?php  echo $content; ?> </p>
+                                                                    <?php
+                                                                        }
+                                                                    ?>
+                                                                
                                                             <?php
-                                                              if($_SESSION['rol']=="2" and $contador <= ($longNameVocunas) and $contador > 0){
+                                                              if($_SESSION['rol']=="2" and $contador <= ($longnameColumn) and $contador > 0){
                                                             ?>
                                                                 <div class="inputUpdate__container">
                                                                     <?php
-                                                                    if(array_keys($nameVocunas)[$contador] == 'tipomascota_id'){
+                                                                    if(array_keys($nameColumn)[$contador] == 'tipomascota_id'){
                                                                     ?>
-                                                                        <select class="inputUpdate inputUpdate_row_<?php echo$con;?>" name="<?php echo (array_keys($nameVocunas)[$contador]);?>" id="row_<?php echo$con;?>">
+                                                                        <select class="inputUpdate inputUpdate_row_<?php echo$con;?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>" id="row_<?php echo$con;?>">
                                                                                 <option value=""></option>
-                                                                                <option value="2">Perro-2</option>
-                                                                                <option value="1">Gato-1</option>
+                                                                                <option value="2">Perro</option>
+                                                                                <option value="1">Gato</option>
                                                                         </select>
                                                                     <?php
                                                                     }else{
                                                                     ?>
-                                                                        <input class="inputUpdate inputUpdate_row_<?php echo $con;?>" id="row_<?php echo $con;?>"  type="<?php if(array_keys($nameVocunas)[$contador] == 'nombre'){echo'text';}else{echo'number';}?>" name="<?php echo (array_keys($nameVocunas)[$contador]);?>">
+                                                                        <input class="inputUpdate inputUpdate_row_<?php echo $con;?>" id="row_<?php echo $con;?>"  type="<?php if(array_keys($nameColumn)[$contador] == 'nombre'){echo'text';}else{echo'number';}?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>">
                                                                     <?php
                                                                     }
                                                                     ?>
@@ -161,7 +186,11 @@
                                                             ?>
                                                         </div>
                                                     <?php
-                                                    $contador++;
+                                                    $contador++; 
+                                                    if($contPetImg < 3){
+                                                        $contPetImg ++;
+                                                    }
+                                                    
                                                 }
                                                 $contador=0;
                                                 ?> 
@@ -170,10 +199,10 @@
                                                 if($_SESSION['rol']=="2"){
                                                     ?>
                                                         <div class="table__rows-btn table__rows-btn_row_<?php echo $con;?>">
-                                                            <div id="btnUpdate" class="table__rows-img row_<?php echo $con;?>">
+                                                            <div id="btnUpdate" class="table__rows-btn-img row_<?php echo $con;?>">
                                                                 <img src="img/icon-lapiz-white.png" alt="icon-lapiz">
                                                             </div>
-                                                            <div id="btnDelete" class="table__rows-img row_<?php echo $con;?>">
+                                                            <div id="btnDelete" class="table__rows-btn-img row_<?php echo $con;?>">
                                                                 <img src="img/icon-basurero-white.png" alt="icon-lapiz">
                                                             </div>
                                                             <div class="labelSubmit labelSubmit_row_<?php echo $con;?>">

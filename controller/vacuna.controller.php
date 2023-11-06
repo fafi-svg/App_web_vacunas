@@ -55,7 +55,7 @@
                 if($resultado){
                     echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
                 }
-                $_POST['updateData'] = "-1";
+                unset($_POST['updateData']);
                 $mysqli -> close();
             }
         }
