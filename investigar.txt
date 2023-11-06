@@ -50,3 +50,12 @@ user om·"#kjcvu23
 		]
 
 4- Error log:
+
+    <select class="inputUpdate inputUpdate_row_<?php echo$con;?>" name="<?php echo (array_keys($nameVocunas)[$contador]);?>" id="row_<?php echo$con;?>">
+        <?php $conPets=0; foreach ($typePets as $namePet) {?>  
+            <?php if($conPets==0){?>
+                 <option value="">  </option>
+            <?php $conPets++;}?>
+            <option value="<?php if($namePet=="gato"){echo'1';}elseif($namePet=="perro"){echo'2';}?>"><?php echo $namePet;if($namePet=="gato"){echo'1';}elseif($namePet=="perro"){echo'2';} ?></option>
+        <?php } $conPets=0; ?>
+    </select>
