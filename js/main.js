@@ -12,7 +12,6 @@ btnUpdate.forEach(element => {
         // element.add("expan_btn");
         var x = (element.className.split(" ")[1]);
         if(x != parent.id && cont==1){
-            console.log("entro");
             parent.classList.remove("expan_row");
             expan_btn.classList.remove("expan_btn");
             cont=0;
@@ -75,3 +74,26 @@ function activeBtnSubmit(arrayInput, btnElementRow, inputId, labelElementRow){
         document.querySelector(labelElementRow).classList.remove("inputUpdateView");
     }
 }
+
+var list = document.querySelectorAll("div#btnDelete");
+list.forEach(element => {
+    element.addEventListener("click", function (ev){
+        console.log(ev.target.parentNode.parentNode.parentNode);
+        var parentRow = ev.target.parentNode.parentNode.parentNode.id; //classList.toggle("expan_delete")
+        var childId =  ".screenDelete_"+parentRow;
+        console.log(childId);
+        document.querySelector(childId).classList.toggle("expan_delete");
+    });
+}); 
+
+// var list = document.querySelector("ul.x");
+// list.addEventListener(
+//   "click",
+//   function (ev) {
+//     if (ev.target.tagName === "P") {
+//       ev.target.classList.toggle("done");
+//     }
+//   },
+//   false,
+// );
+

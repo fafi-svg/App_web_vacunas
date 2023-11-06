@@ -298,9 +298,9 @@ body{
     display: none;
     margin: auto;
     z-index: 4;
-    height: 2.5em;
-    width: 2.5em;
-    border-radius: 3em;
+    height: 4.5vh;
+    width: 4.5vh;
+    border-radius: 1vh;
     border: 0;
     opacity: 0;
     cursor: pointer;
@@ -352,6 +352,56 @@ body{
     z-index: 1;
     transform: scale(0);
     animation: expan_btn-scale 1s forwards;
+}
+.screenDelete{
+    overflow: hidden;
+    display: none;
+    position: relative;
+    width: 0;
+}
+.btnDelete_img{
+    height: 81%;
+    /* position: absolute; */
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.btnDelete_input{
+    margin: auto;
+    z-index: 4;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 3em;
+    border: 0;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+}
+.screenDelete_btn{
+    aspect-ratio: 1/1;
+    height: 100%;
+    width: max-content;
+    display: flex;
+    position: absolute;
+    right: 1%;
+}
+.screenDelete_text{
+margin: 0;
+font-size: 1.3em;
+}
+.expan_delete {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    background-color: rgba(255, 0, 0, 0.9);
+    border-bottom: .1vh solid black;
+    height: 100%;
+    /* width: 100%; */
+    left: 0em;
+    transition: .2s ease-in-out;
 }
 #btnUpdate{
     position: relative;

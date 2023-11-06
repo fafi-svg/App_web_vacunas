@@ -129,6 +129,21 @@
                                              foreach ($vacunas as $variable) {
                                         ?>
                                         <form method="post" class="table__rows-content" id="row_<?php echo $con;?>">
+                                                <?php
+                                                    if($_SESSION['rol']=="2"){
+                                                ?>
+                                                    <div class="screenDelete screenDelete_row_<?php echo$con;?>">
+                                                        <div class="screenDelete_btn">
+                                                            <img class="btnDelete_img" src="img/icon-update.png" alt="icon-update">
+                                                            <input class="btnDelete_input inputDelete_row_<?php echo $con;?>" id="row_<?php echo $con;?>" value="<?php echo $con;?>" type="submit" name="deleteData">
+                                                        </div>
+                                                        <p class="screenDelete_text">
+                                                            Desea Eliminar El registro vacuna
+                                                        </p>
+                                                    </div>
+                                                <?php
+                                                   }
+                                                ?>
                                             <div class="table__rows-column">
                                                 <?php
                                                 $contador=0;
@@ -203,11 +218,11 @@
                                                                 <img src="img/icon-lapiz-white.png" alt="icon-lapiz">
                                                             </div>
                                                             <div id="btnDelete" class="table__rows-btn-img row_<?php echo $con;?>">
-                                                                <img src="img/icon-basurero-white.png" alt="icon-lapiz">
+                                                                <img class="btnDelete-img" src="img/icon-basurero-white.png" alt="icon-basurero">
                                                             </div>
                                                             <div class="labelSubmit labelSubmit_row_<?php echo $con;?>">
-                                                                    <img class="btnSubmit-img" src="img/icon-update.png" alt="">
-                                                                    <input class="btnSubmit inputSubmit_row_<?php echo $con;?>" id="row_<?php echo $con;?>" value="<?php echo $con;?>" type="submit" name="updateData">
+                                                                <img class="btnSubmit-img" src="img/icon-update.png" alt="icon-update">
+                                                                <input class="btnSubmit inputSubmit_row_<?php echo $con;?>" id="row_<?php echo $con;?>" value="<?php echo $con;?>" type="submit" name="updateData">
                                                             </div>
                                                             <div class="btnFlecha">
                                                                     <img class="btnFlecha-img" src="img/icon-flecha.png" alt="">
