@@ -18,7 +18,7 @@
         public function read(){
             $mysqli = $this->conexion();
             //u.id as ID, u.nombre as 'Nombre', u.username as 'Nombre Usuario' , u.email as 'Correo Electronico', u.Role_id as Rol, u.foto as Foto 
-            $sql = "SELECT u.id as ID, u.nombre as Nombre, u.username as 'Nombre Usuario', u.email as Correo, u.foto as Foto FROM User as u";
+            $sql = "SELECT * FROM User as u";
             $result = $mysqli->query($sql);
             $users = [];
             if ($result->num_rows > 0) {

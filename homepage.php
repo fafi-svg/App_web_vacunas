@@ -57,25 +57,25 @@
                             <p class="box__text-name"><?php if($_SESSION['rol']=="1"){echo 'Gestionar Vacunas';}else{echo 'Registro De Vacunas';}?></p>
                         </div>
                     </a>
-                    <div <?php if($_SESSION['rol']=="1"){echo "style='height:30vh;'";} ?> class="box__container"> 
+                    <a href="gestion-vacunas.php" <?php if($_SESSION['rol']=="1"){echo "style='height:30vh;'";} ?> class="box__container"> 
                         <div class="box__img">
                             <img src="img/icon-animals.png" alt="">
                         </div>
                         <div class="box__text">
                             <p class="box__text-name"><?php if($_SESSION['rol']=="1"){echo 'Mis Mascotas';}else{echo 'Gestionar Razas';}?></p>
                         </div>
-                    </div>
+                    </a>
                     <?php
                         if($_SESSION['rol']=="2"){
                     ?>
-                    <div <?php if($_SESSION['rol']=="1"){echo "style='display:flex;'";} ?> class="box__container"> 
+                    <a href="gestion-vacunas.php" <?php if($_SESSION['rol']=="1"){echo "style='display:flex;'";} ?> class="box__container"> 
                         <div class="box__img">
                             <img src="img/icon-pet-gato.png" alt="">
                         </div>
                         <div class="box__text">
                             <p class="box__text-name">Gestionar Mascota</p>
                         </div>
-                    </div>
+                    </a>
                     <?php
                         }
                     ?>
@@ -83,9 +83,8 @@
                 </div>
             </div>
         <?php
-            } else{header("location: error-not-session.php");}
+            } else{header("location: error-not-session");}
         ?>
-        <a href="inicio.php">inicio</a>
     </main>
 </body>
 </html>

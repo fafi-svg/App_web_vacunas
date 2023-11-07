@@ -80,11 +80,12 @@ body{
     transition-property: background-color;
 }
 #button__exit{
-    position: relative;
-    z-index: -1;
+    position: absolute;
+    /* z-index: -1; */
     height: 0;
-    width: 0;
+    width: 100%;
     opacity: 0;
+    height: 100%;
 }
 .menu__option-img img{
     width: 2em;

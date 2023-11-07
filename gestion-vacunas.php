@@ -99,8 +99,14 @@
                                         <div class="table__header-container">
                                             <?php 
                                                 for ($i= 0; $i<=$long; $i++) {
-                                                ?>
-                                                    <p class="table__header-rows"> <?php echo (array_keys($variable)[$i]); ?> </p>
+                                                ?>  
+                                                    <div class="">
+                                                        <p class="table__header-rows"> <?php echo (array_keys($variable)[$i]); ?> </p>
+                                                        <div class="">
+                                                            <input type="text">
+                                                        </div>
+                                                    </div>
+                                                    
                                                 <?php
                                                 }
                                                 ?> 

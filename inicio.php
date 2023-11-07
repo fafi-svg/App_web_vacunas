@@ -147,10 +147,47 @@
                 // }
            
             ?>
+            <style>
+                .content, .header{
+                    display: grid;
+                    grid-template-columns: 5% 10% 25% 15%;
+                    margin:auto;
+                    width: 80%;
+                    text-align: center;
+                }
+                .content p{
+                    background-color: gray;
+                    margin:0;
+                }
+                .header{
+
+                }
+            </style>
+            <div class="header">
+                <p> id</p>
+                <p> nombre</p>
+                <p> email</p>
+                <p> username</p>
+            </div>
+            <?php
+            foreach ($users as $variable){
+            ?>
+            <div class="content">
+                <p  ><?php echo $variable['id']."</br>"; ?></p>
+                <p  ><?php echo $variable['nombre']."</br>"; ?></p>
+                <p  ><?php echo $variable['email'] ."</br>"; ?></p>
+                <p  ><?php echo $variable['username'] ."</br>"; ?></p>
+            </div>
+            <?php
+            }
+            ?>
             <?php
             // echo 'id'."</br>";
             // foreach ($users as $variable) {
             //     echo $variable['id']."</br>";
+            //     echo $variable['nombre']."</br>";
+            //     echo $variable['email'] ."</br>";
+            //     echo $variable['username'] ."</br>";
             // }
             // echo 'nombre'."</br>";
             // foreach ($users as $variable) {
