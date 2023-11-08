@@ -96,36 +96,48 @@
                                                 break;
                                             }
                                         ?>
-                                        <div class="table__header-container">
-                                            <?php 
-                                                for ($i= 0; $i<=$long; $i++) {
-                                                ?>  
-                                                    <div class="">
-                                                        <p class="table__header-rows"> <?php echo (array_keys($variable)[$i]); ?> </p>
-                                                        <div class="">
-                                                            <input type="text">
-                                                        </div>
-                                                    </div>
-                                                    
-                                                <?php
-                                                }
-                                                ?> 
+                                        <div tabindex="0"  class="table__header-x">
+                                            <div class="table__header-container">
+                                                <div class="table__header-content">
+                                                     <p class="table__header-rows">ID</p>
+                                                </div>
+                                                <div class="table__header-content">
+                                                     <p class="table__header-rows">Nombre vacuna</p>
+                                                     <input id="inputCreate" class="inputAgregar" type="text" name="nombre" require>
+                                                </div>
+                                                <div class="table__header-content">
+                                                     <p class="table__header-rows">Dias Aplicacion </p>
+                                                     <input id="inputCreate" class="inputAgregar" type="text" name="aplicacion" require>
+                                                </div>
+                                                <div class="table__header-content">
+                                                     <p class="table__header-rows">Tipo Mascota</p>
+                                                     <select class="inputAgregar" name="tipomascota_id" id="inputCreate" require>
+                                                        <option value=""></option>
+                                                        <option value="2">Perro</option>
+                                                        <option value="1">Gato</option>
+                                                     </select>
+                                                </div>
+                                                <div class="table__header-content">
+                                                     <p class="table__header-rows">Vacunas Usadas</p>
+                                                 </div>
                                         </div>
-                                        <?php 
+                                            <?php 
                                             if($_SESSION['rol']=="2"){
-                                        ?>
+                                            ?>
                                                 <div class="table__header-icon">
-                                                    <img src="img/icon-agregar-white.png" alt="">
+                                                    <img class="btnSubmit-img" src="img/icon-agregar-white.png" alt="">
+                                                    <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit">
                                                 </div>
-                                        <?php 
+                                            <?php 
                                             } else {    
-                                        ?>
+                                            ?>
                                                 <div class="table__header-icon">
                                                     <img src="img/icon-agregar-white.png" alt="">
                                                 </div>
-                                        <?php 
+                                            <?php 
                                             }    
-                                        ?>
+                                            ?>
+                                        </div>
                                     </div>
                                     
                                 <div class="table__content">

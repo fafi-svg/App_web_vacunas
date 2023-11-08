@@ -156,6 +156,22 @@ body{
     min-height: 8vh;
     position: relative;
     padding: .4em 1em;
+
+}
+.table__header-x:focus-within{
+    height: 7em;
+    transition: .2s ease-in-out;
+    transition-property: height;
+}
+.table__header-x{
+    display: flex;
+    height: 3em;
+    transition: .2s ease-in-out;
+    transition-property: height;
+}
+.table__header-content{
+    display: grid;
+    gap: 1em;
 }
 .table__header{
     border-top-right-radius: .5em;
@@ -163,6 +179,7 @@ body{
     width: inherit;
     top: 0;
     gap: 5em;
+    overflow: hidden;
 }
 .table__header-container , .table__rows-column{
     display: grid;
@@ -180,7 +197,6 @@ body{
 }
 .table__header-rows{
     display: grid;
-    place-content: center;
     text-align: center;
 }
 /* .table__rows-column{
@@ -270,10 +286,9 @@ body{
     place-content: center;
 }
 .table__header-icon{
-    position: absolute;
-    right: 2%;
+    /* position: absolute; */
+
     margin: auto;
-    top: 6.5%; 
 }
 .table__rows-icon-row{
    display: flex;
@@ -302,6 +317,18 @@ body{
     height: 4.5vh;
     width: 4.5vh;
     border-radius: 1vh;
+    border: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.btnSubmitAgregar{
+    display: none;
+    position: absolute;
+    margin: auto;
+    z-index: 4;
+    height: 6vh;
+    width: 6vh;
+    top: 4%;
     border: 0;
     opacity: 0;
     cursor: pointer;
@@ -387,8 +414,10 @@ body{
     right: 1%;
 }
 .screenDelete_text{
-margin: 0;
-font-size: 1.3em;
+
+margin: 0;
+
+font-size: 1.3em;
 }
 .expan_delete {
     display: flex;
@@ -434,7 +463,7 @@ body{
     transition-property: height;
     background-color: #5c415d !important;
 }
-.inputUpdate{
+.inputUpdate, .inputAgregar{
     border: 0;
     height: 5vh;
     min-height: 1vh;
@@ -446,6 +475,9 @@ body{
     transition-property: outline;
     font-size: 1em;
 }
+/* .inputAgregar{
+    
+} */
 select{
 	appearance: none;
 	-webkit-appearance: none;

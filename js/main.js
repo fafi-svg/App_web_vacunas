@@ -1,6 +1,11 @@
 var btnUpdate = document.querySelectorAll("#btnUpdate");
 var btnSubmit = document.querySelectorAll(".btnSubmit");
-var inputUpdate = document.querySelectorAll(".inputUpdate")
+var inputUpdate = document.querySelectorAll(".inputUpdate");
+var btnAgregar = document.querySelector('.btnSubmit-img');
+var inputAgregar = document.querySelectorAll("#inputCreate");
+inputAgregar.forEach(element => {
+        console.log(element);
+});
 var rowActive = "";
 var cont = 0;
 var parent ="";
@@ -96,4 +101,31 @@ list.forEach(element => {
 //   },
 //   false,
 // );
+btnAgregar.addEventListener("click", ()=>{
+    var parenbtn = btnAgregar.parentNode;
+    parenbtn.tabIndex=0;
+    parenbtn.focus();
 
+})
+inputAgregar.forEach(btnAgregarS => {
+    btnAgregarS.addEventListener("change", ()=>{
+        inputAgregar.forEach(inputEmpyChange => {
+            if((/\s/.test(inputEmpyChange.value))){
+                inputEmpyChange.value="";
+            }
+            if(!(/\s/.test(inputEmpyChange.value)) && inputEmpyChange.value != ""){
+                console.log(inputConValue);
+                inputConValue++;
+                console.log(inputConValue);
+            }
+        });
+        if(inputConValue > 0){
+            document.querySelector("#btnAgregarSubmit").classList.add("inputUpdateView");
+            inputConValue = 0;
+            console.log(inputConValue);
+        }
+        else if(inputConValue == 0){
+            document.querySelector("#btnAgregarSubmit").classList.remove("inputUpdateView");
+        }
+    });
+});
