@@ -105,7 +105,6 @@ btnAgregar.addEventListener("click", ()=>{
     var parenbtn = btnAgregar.parentNode;
     parenbtn.tabIndex=0;
     parenbtn.focus();
-
 })
 inputAgregar.forEach(btnAgregarS => {
     btnAgregarS.addEventListener("change", ()=>{
@@ -120,11 +119,14 @@ inputAgregar.forEach(btnAgregarS => {
             }
         });
         if(inputConValue > 0){
+            
+            document.querySelector("#table__header-input").classList.add("inputUpdateView");
             document.querySelector("#btnAgregarSubmit").classList.add("inputUpdateView");
             inputConValue = 0;
             console.log(inputConValue);
         }
         else if(inputConValue == 0){
+            document.querySelector("#table__header-input").classList.remove("inputUpdateView");
             document.querySelector("#btnAgregarSubmit").classList.remove("inputUpdateView");
         }
     });

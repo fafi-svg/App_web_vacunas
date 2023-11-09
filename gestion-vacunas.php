@@ -126,7 +126,11 @@
                                             ?>
                                                 <div class="table__header-icon">
                                                     <img class="btnSubmit-img" src="img/icon-agregar-white.png" alt="">
-                                                    <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit">
+                                                    <div class="table__header-input" id="table__header-input">
+                                                        <img class="btnSubmit-img" src="img/icon-guardar.png" alt="">
+                                                        <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit">
+                                                    </div>
+                                                    
                                                 </div>
                                             <?php 
                                             } else {    
