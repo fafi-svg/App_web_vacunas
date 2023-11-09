@@ -1,11 +1,9 @@
 var btnUpdate = document.querySelectorAll("#btnUpdate");
 var btnSubmit = document.querySelectorAll(".btnSubmit");
 var inputUpdate = document.querySelectorAll(".inputUpdate");
-var btnAgregar = document.querySelector('.btnSubmit-img');
+var btnAgregar = document.querySelector('.btnSubmit_img');
 var inputAgregar = document.querySelectorAll("#inputCreate");
-inputAgregar.forEach(element => {
-        console.log(element);
-});
+var CancelarDelete = document.querySelectorAll(".btnExit_img");
 var rowActive = "";
 var cont = 0;
 var parent ="";
@@ -89,6 +87,15 @@ list.forEach(element => {
         console.log(childId);
         document.querySelector(childId).classList.toggle("expan_delete");
     });
+});
+CancelarDelete.forEach(element => {
+    element.addEventListener("click", ()=>{
+        var parentClose = element.parentNode.parentNode.id;
+        // var parentClose = "."+parentClose;
+        console.log(parentClose);
+        document.querySelector("."+parentClose).classList.remove("expan_delete");
+    })
+    
 }); 
 
 // var list = document.querySelector("ul.x");

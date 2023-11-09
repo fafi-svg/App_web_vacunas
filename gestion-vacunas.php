@@ -74,6 +74,10 @@
                                             (new ControlUpdateVacunas) ->updateVacunas();
                                         }
                                     }
+                                    if(isset(($_POST['deleteData']))){
+                                        require_once(__DIR__."/controller/vacuna.controller.php");
+                                        (new controllerVacuna) ->delete($_POST['deleteData']);
+                                    }
                                     $vacunas = (new GestionVacunasConsultas)->readVacunas();
                                     $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
                                     $nombreColumnas = (new GestionVacunasConsultas)->nombreVacunas();
@@ -96,7 +100,7 @@
                                                 break;
                                             }
                                         ?>
-                                        <div tabindex="0"  class="table__header-x">
+                                        <div class="table__header-x">
                                             <div class="table__header-container">
                                                 <div class="table__header-content">
                                                      <p class="table__header-rows">ID</p>
@@ -125,9 +129,9 @@
                                             if($_SESSION['rol']=="2"){
                                             ?>
                                                 <div class="table__header-icon">
-                                                    <img class="btnSubmit-img" src="img/icon-agregar-white.png" alt="">
+                                                    <img class="btnSubmit_img" src="img/icon-agregar-white.png" alt="">
                                                     <div class="table__header-input" id="table__header-input">
-                                                        <img class="btnSubmit-img" src="img/icon-guardar.png" alt="">
+                                                        <img class="btnSubmit_img" src="img/icon-guardar.png" alt="">
                                                         <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit">
                                                     </div>
                                                     
@@ -136,7 +140,7 @@
                                             } else {    
                                             ?>
                                                 <div class="table__header-icon">
-                                                    <img src="img/icon-agregar-white.png" alt="">
+                                                    <img src="img/icon-pet-gato.png" alt="">
                                                 </div>
                                             <?php 
                                             }    
@@ -154,9 +158,10 @@
                                                 <?php
                                                     if($_SESSION['rol']=="2"){
                                                 ?>
-                                                    <div class="screenDelete screenDelete_row_<?php echo$con;?>">
+                                                    <div class="screenDelete screenDelete_row_<?php echo$con;?>" id="screenDelete_row_<?php echo$con;?>">
                                                         <div class="screenDelete_btn">
-                                                            <img class="btnDelete_img" src="img/icon-update.png" alt="icon-update">
+                                                            <img class="btnDelete_img" src="img/icon-basurero-white.png" alt="icon-update">
+                                                            <img class="btnExit_img" src="img/icon-cruz-white.png" alt="icon-update">
                                                             <input class="btnDelete_input inputDelete_row_<?php echo $con;?>" id="row_<?php echo $con;?>" value="<?php echo $con;?>" type="submit" name="deleteData">
                                                         </div>
                                                         <p class="screenDelete_text">
@@ -253,7 +258,7 @@
                                                 <?php 
                                                     } else {    
                                                 ?>      
-                                                    <div id="row_<?php echo $con;?>" class="table__rows-icon-row">
+                                                    <div id="row_<?php echo $variable["ID"];?>" class="table__rows-icon-row">
                                                         <input class="table__rows-img" type="checkbox" required name='<?php echo $variable["ID"]?>' >
                                                     </div>
                                                 <?php 

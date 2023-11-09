@@ -153,10 +153,9 @@ body{
 }
 .table__header{
     background-color: #262626;
-    min-height: 8vh;
+    min-height: 5vh;
     position: relative;
     padding: .4em 1em;
-
 }
 .table__header-x:focus-within{
     height: 7em;
@@ -166,7 +165,7 @@ body{
 .table__header-x{
     display: grid;
     grid-template-columns: auto max-content;
-    height: 3em;
+    height: 7em;
     transition: .2s ease-in-out;
     transition-property: height;
 }
@@ -181,9 +180,11 @@ body{
     left: 0;
     bottom: 0;
     right: 0;
-    width: 3.5vh !important;
+    width: 5vh !important;
+    border-radius: .5em;
     z-index: 5;
-    filter: brightness(100%);
+    background-color: #5c415d;
+    padding: .5vh;
 }
 .table__header-content{
     display: grid;
@@ -344,18 +345,14 @@ body{
 }
 .btnSubmitAgregar{
     display: none;
-    /* position: absolute; */
-    /* margin: auto; */
-    z-index: 4;
+    margin: auto;
+    z-index: 5;
     height: 5vh;
     width: 5vh;
-    top: 109%;
     border: 0;
     border-radius: .5em;
-    /* opacity: 0; */
+    opacity: 0;
     cursor: pointer;
-    color: black;
-    background-color: black;
 }
 .labelSubmit{
     display: none;
@@ -386,6 +383,9 @@ body{
     /* position: absolute; */
     top: .13em;
 }
+.btnSubmit_img{
+    width: inherit;
+}
 .inputUpdateView{
     display: grid;
 }
@@ -411,12 +411,25 @@ body{
     position: relative;
     width: 0;
 }
-.btnDelete_img{
-    height: 81%;
-    /* position: absolute; */
-    top: 0;
-    bottom: 0;
+
+.btnExit_img, .btnDelete_img{
     margin: auto;
+    height: 81%;
+    max-height: 5vh;
+    max-height: 5vh;
+    cursor: pointer;
+}
+.screenDelete_btn{
+    display: flex;
+    gap: 1em;
+    height: 100%;
+    width: max-content;
+    display: flex;
+    position: absolute;
+    right: 5%;
+}
+.btnDelete_img{
+    cursor: pointer;
 }
 .btnDelete_input{
     margin: auto;
@@ -428,20 +441,11 @@ body{
     opacity: 0;
     cursor: pointer;
     position: absolute;
-}
-.screenDelete_btn{
-    aspect-ratio: 1/1;
-    height: 100%;
-    width: max-content;
-    display: flex;
-    position: absolute;
-    right: 1%;
+    width: 5vh;
 }
 .screenDelete_text{
-
-margin: 0;
-
-font-size: 1.3em;
+    margin: 0;
+    font-size: 1.3em;
 }
 .expan_delete {
     display: flex;
@@ -614,7 +618,7 @@ select::-ms-expand {
         right: -8em;
     }
     .table__rows-content{
-        height: 4.5em;
+        height: 4em;
     }
     .table__rows-text{
         height: 1.5em;

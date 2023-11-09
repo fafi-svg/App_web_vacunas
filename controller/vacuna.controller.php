@@ -25,9 +25,10 @@
         }
         public function delete($id){
             $mysqli = $this->conexion();
-            $sql = "DELETE FROM user WHERE id = $id";
-            if ($mysqli->query($sql)) {
-                echo "Registro eliminado con éxito.";
+            $sql = "DELETE FROM Vacunas WHERE id = $id";
+            $mysqli->query($sql);
+            if ($mysqli) {
+                echo "<div class='table__title-message'>Registro eliminado con éxito.</div>";
             } else {
                 echo "Error al eliminar el registro: " . $mysqli->error;
             }
@@ -50,7 +51,7 @@
                         $stringQuery = $stringQuery." ".$nameColumn."="."'".$_POST[$nameColumn]."'";
                     }
                 }
-                $sql ="update Vacunas set $stringQuery where id = $id";
+                $sql ="UPDATE Vacunas set $stringQuery where id = $id";
                 $resultado = $mysqli->query($sql);
                 if($resultado){
                     echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
