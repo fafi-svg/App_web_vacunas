@@ -17,155 +17,6 @@ body{
 
 /*______________________________ HEADER ______________________________*/
 
-.table__header-x:focus-within{
-    height: 7em;
-    transition: .2s ease-in-out;
-    transition-property: height;
-}
-.table__header-x{
-    display: grid;
-    grid-template-columns: auto max-content;
-    height: 3.4em;
-    transition: .2s ease-in-out;
-    transition-property: height;
-}
-.table__header-input{
-    position: relative;
-    display: none;
-}
-.table__header-input img{
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 5vh !important;
-    border-radius: .5em;
-    z-index: 4;
-    background-color: #5c415d;
-    padding: .5vh;
-}
-.table__header-content{
-    display: grid;
-    gap: 1em;
-}
-.table__header-container , .table__rows-column{
-    grid-template-columns: 5% 30% 20% 15% 14%;
-}
-
-.table__rows-column{
-    width: 85.5%;
-}
-.table__header-rows{
-    display: grid;
-    text-align: center;
-}
-/* .table__rows-column{
-} */
-
-.table__content{
-    min-height: 5vh;
-    overflow: auto;
-}
-.table__rows{
-    min-height: 5.5vh;
-    display: grid;
-    align-items: center;
-    position: relative;
-}
-.table__rows-content:nth-child(even){
-    background-color: #808585;
-}
-.table__rows-btn-flecha img{
-    width: .7em;
-}
-.table__rows-btn-flecha{
-    display: none;
-}
-.table__rows-column-container{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    /* align-items: center; */
-    /* justify-content: flex-start; */
-    /* width: inherit; */
-    position: relative;
-    /* overflow: hidden; */
-}
-.table__rows-text{
-    text-align: center;
-    height: .7em;
-}
-.table__rows-text-img img{
-    width: 2em;
-    transform: rotatey(180deg);
-}
-.table__rows-text-img{
-    text-align: center;
-    height: .7em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-.table__rows-img{
-    height: 100%;
-}
-.table__rows-img img{
-    width: inherit;
-}
-.inputUpdate__container{
-    width: 100%;
-    /* left:0;
-    top: 4em;
-    right:0; */
-}
-.table__footer-icon img, .table__header-icon img{
-    width: 3em;
-}
-.table__footer-icon{
-    display: flex;
-    align-items: center;
-    gap: 2em;
-    margin: .5em;
-}
-.table__footer-filter{
-    background-color: #555555;
-    padding: 1em;
-    border-radius: 50%;
-    margin-right: 5%;
-    display: grid;
-    place-content: center;
-}
-.table__header-icon{
-    position: relative;
-    margin: auto;
-    display: grid;
-    gap: 1.5vh;
-    justify-items: center;
-    align-content: start;
-    height: 7em;
-    margin-top: .5vh;
-}
-.table__rows-icon-row{
-   display: flex;
-   align-items: center;
-   gap: 3vh;
-}
-.table__rows-btn{
-    display: flex;
-    gap: 1.5em;
-    align-items: center;
-    flex-direction: row-reverse;
-    position: relative;
-}
-.table__rows-btn-img{
-    display: flex;
-    align-items: center;
-}
-.table__rows-btn-img img{
-    position: relative;
-    z-index: 2;
-}
 .btnSubmit{
     display: none;
     margin: auto;
@@ -240,12 +91,6 @@ body{
     transform: scale(0);
     animation: expan_btn-scale 1s forwards;
 }
-.screenDelete{
-    overflow: hidden;
-    display: none;
-    position: relative;
-    width: 0;
-}
 
 .btnExit_img, .btnDelete_img{
     margin: auto;
@@ -253,15 +98,6 @@ body{
     max-height: 5vh;
     max-height: 5vh;
     cursor: pointer;
-}
-.screenDelete_btn{
-    display: flex;
-    gap: 1em;
-    height: 100%;
-    width: max-content;
-    display: flex;
-    position: absolute;
-    right: 5%;
 }
 .btnDelete_img{
     cursor: pointer;
@@ -277,10 +113,6 @@ body{
     cursor: pointer;
     position: absolute;
     width: 5vh;
-}
-.screenDelete_text{
-    margin: 0;
-    font-size: 1.3em;
 }
 .expan_delete {
     display: flex;
@@ -309,17 +141,7 @@ body{
     position: absolute;
     right: 3em;
 }
-.table__rows-content{
-    display: flex;
-    justify-content: space-between;
-    padding: 0em 1em;
-    height: 3.5em;
-    overflow: hidden;
-    transition: .2s ease-in;
-    transition-property: height;
-    position: relative;
-    gap: 1.2em;
-}
+
 .expan_row{
     height: 7.5em !important;
     transition: .2s ease-in;
@@ -362,57 +184,7 @@ select::-ms-expand {
     width: 1.9em;
 }
 
-.table__content::-webkit-scrollbar {
-    -webkit-appearance: none;
-}
-
-.table__content::-webkit-scrollbar:vertical {
-    width:1.5em;
-}
-
-.table__content::-webkit-scrollbar-button:increment,.table__content::-webkit-scrollbar-button {
-    display: none;
-} 
-
-.table__content::-webkit-scrollbar:horizontal {
-    height: 1em;
-}
-
-.table__content::-webkit-scrollbar-thumb {
-    background-color: #5c415d;
-    border-radius: 1em;
-    border: .3em solid #262626;
-}
-
-.table__content::-webkit-scrollbar-track {
-   background-color: #262626;
-}
-
-@media (max-width: 768px){
-    .table{
-        width: 100%;
-    }
-    .table__header-container, .table__rows-column{
-        grid-template-columns: 40% 25% 25%;
-    }
-    .table__header-content:last-child{
-        display: none;
-    }
-    .table__header-content:first-child{
-        display: none;
-    }
-    .table__rows-column-container:last-child{
-        display: none;
-    }
-    .table__rows-column-container:first-child{
-        display: none;
-    }
-    .table__rows-content{
-        padding: 0em 1em;
-    }
-    .table__header{
-        padding: .4em 1em;
-    }
+@media (max-width:768px){
     .table__rows-btn-flecha{
         display: grid;
     }
@@ -436,34 +208,12 @@ select::-ms-expand {
         transition: .2s ease-in-out;
         transition-property: right;
     }
-    .table__rows-content:nth-child(even) > .table__rows-btn{
-        background-color: #555555;
-    }
-    .table__rows-content:nth-child(odd) > .table__rows-btn{
-        background-color: #808585;
-    }
-    .table__header-container {
-        width: 93%;
-    }
-    .table__rows-column{
-        width: 90%;
-    }
     .table__rows-btn_color{
         background-color: #e94f37 !important;
         right: -8em;
     }
-    .table__rows-content{
-        height: 4em;
-    }
-    .table__rows-text{
-        height: 1.5em;
-    }
-    .table__rows-text-img{
-        height: 1.5em;
-    }
-    .table__title-message{
-        width: 100%;
-    }
+
+
     .btnFlecha{
         display: grid;
         position: relative;

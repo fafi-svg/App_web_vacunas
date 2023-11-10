@@ -33,7 +33,7 @@
     background-color: #555555;
 }
 .table__container{
-    height: 65vh;
+    height: 70vh;
     width: inherit;
     position: relative;
     display: grid;
@@ -46,22 +46,226 @@
     top: 0;
     gap: 5em;
     overflow: hidden;
-}
-.table__header{
     background-color: #262626;
     min-height: 5vh;
     position: relative;
     padding: .4em 1em;
 }
-.table__header-container , .table__rows-column{
+/*____________________________ ROWS_TABLE ____________________________*/
+.table__rows-content{
+    display: flex;
+    justify-content: space-between;
+    padding: 0em 1em;
+    height: 3.5em;
+    overflow: hidden;
+    transition: .2s ease-in;
+    transition-property: height;
+    position: relative;
+    gap: 1.2em;
+}
+.table__rows-column{
+    width: 85.5%;
+}
+.table__header-container,.table__rows-column{
     display: grid;
     justify-content: space-between;
-    width: 87%;
     height: 100%;
     position: relative;
     gap: 0.5em;
+    grid-template-columns: 8% 30% 20% 15% 14%;
+}
+.table__rows-column{
+    width: 87%;
+}
+.table__header-container{
+    width: 88.6%;
 }
 
+/*______________ SCREEB_DELETE_ROWS ______________*/
+.screenDelete{
+    overflow: hidden;
+    display: none;
+    position: relative;
+    width: 0;
+}
+.screenDelete_btn{
+    display: flex;
+    gap: 1em;
+    height: 100%;
+    width: max-content;
+    display: flex;
+    position: absolute;
+    right: 5%;
+}
+.screenDelete_text{
+    margin: 0;
+    font-size: 1.3em;
+}
+/*______________ SCREEB_DELETE_ROWS ______________*/
+
+/*____________________________ ROWS_TABLE ____________________________*/
+.table__header-head:focus-within{
+    height: 7em;
+    transition: .2s ease-in-out;
+    transition-property: height;
+}
+.table__header-head{
+    display: grid;
+    grid-template-columns: auto max-content;
+    height: 3.4em;
+    transition: .2s ease-in-out;
+    transition-property: height;
+}
+.table__header-input{
+    position: relative;
+    display: none;
+}
+.table__header-input img{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 5vh !important;
+    border-radius: .5em;
+    z-index: 4;
+    background-color: #5c415d;
+    padding: .5vh;
+}
+.table__header-content{
+    display: grid;
+    gap: 1em;
+}
+
+.table__header-text{
+    display: grid;
+    text-align: center;
+}
+
+.table__content{
+    min-height: 5vh;
+    overflow: auto;
+}
+.table__rows{
+    min-height: 5.5vh;
+    display: grid;
+    align-items: center;
+    position: relative;
+}
+.table__rows-content:nth-child(even){
+    background-color: #808585;
+}
+.table__rows-btn-flecha img{
+    width: .7em;
+}
+.table__rows-btn-flecha{
+    display: none;
+}
+.table__rows-column-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    /* align-items: center; */
+    /* justify-content: flex-start; */
+    /* width: inherit; */
+    position: relative;
+    /* overflow: hidden; */
+}
+.table__rows-text{
+    text-align: center;
+    height: .7em;
+}
+.table__rows-text-img img{
+    width: 2em;
+    transform: rotatey(180deg);
+}
+.table__rows-text-img{
+    text-align: center;
+    height: .7em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.table__rows-img{
+    height: 100%;
+}
+.table__rows-img img{
+    width: inherit;
+}
+.inputUpdate__container{
+    width: 100%;
+    /* left:0;
+    top: 4em;
+    right:0; */
+}
+.table__footer-icon img, .table__header-icon img{
+    width: 3em;
+}
+.table__footer-icon{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    margin: .5em;
+}
+.table__footer-filter{
+    background-color: #555555;
+    padding: 1em;
+    border-radius: 50%;
+    margin-right: 5%;
+    display: grid;
+    place-content: center;
+}
+.table__header-icon{
+    position: relative;
+    margin: auto;
+    display: grid;
+    gap: 1.5vh;
+    justify-items: center;
+    align-content: start;
+    height: 7em;
+    margin-top: .5vh;
+}
+.table__rows-icon-row{
+   display: flex;
+   align-items: center;
+   gap: 3vh;
+}
+.table__rows-btn{
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+    flex-direction: row-reverse;
+    position: relative;
+}
+.table__rows-btn-img{
+    display: flex;
+    align-items: center;
+}
+.table__rows-btn-img img{
+    position: relative;
+    z-index: 2;
+}
+
+.table__content::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+.table__content::-webkit-scrollbar:vertical {
+    width:1.5em;
+}
+.table__content::-webkit-scrollbar-button:increment,.table__content::-webkit-scrollbar-button {
+    display: none;
+} 
+.table__content::-webkit-scrollbar:horizontal {
+    height: 1em;
+}
+.table__content::-webkit-scrollbar-thumb {
+    background-color: #5c415d;
+    border-radius: 1em;
+    border: .3em solid #262626;
+}
+.table__content::-webkit-scrollbar-track {
+   background-color: #262626;
+}
 .table__footer{
     background-color: #262626;
     min-height: 5vh;
@@ -73,4 +277,65 @@
     width: inherit;
     bottom: 0;
     padding: 0em 2em;
+}
+
+@media  (max-width:768px){
+    .table__header{
+        padding: .4em 1em;
+    }
+    .table{
+        width: 100%;
+    }
+
+    /*____________________________ HEADER_TABLE ____________________________*/
+    .table__rows-column-container:last-child{
+        display: none;
+    }
+    .table__rows-column-container:first-child{
+        display: none;
+    }
+    .table__header-content:last-child{
+        display: none;
+    }
+    .table__header-content:first-child{
+        display: none;
+    }
+    /*____________________________ HEADER_TABLE ____________________________*/
+
+    .table__rows-column{
+        width: 90%;
+    }
+    .table__header-container{
+        width: 96.3%;
+    }
+
+    .table__rows-content{
+        padding: 0em 1em;
+    }
+    .table__title{
+        gap: 0em;
+    }
+    /*____________________________ ROWS_COLOR_TABLE ____________________________*/
+    .table__rows-content:nth-child(even) > .table__rows-btn{
+        background-color: #555555;
+    }
+    .table__rows-content:nth-child(odd) > .table__rows-btn{
+        background-color: #808585;
+    }
+    /*____________________________ ROWS_COLOR_TABLE ____________________________*/
+    .table__header-container, .table__rows-column{
+        grid-template-columns: 40% 30% 25%;
+    }
+    .table__rows-content{
+        height: 4em;
+    }
+    .table__rows-text{
+        height: 1.5em;
+    }
+    .table__rows-text-img{
+        height: 1.5em;
+    }
+    .table__title-message{
+        width: 100%;
+    }
 }

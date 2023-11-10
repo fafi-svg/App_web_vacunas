@@ -108,21 +108,21 @@
                                                 break;
                                             }
                                         ?>
-                                        <form method="post" class="table__header-x">
+                                        <form method="post" class="table__header-head">
                                             <div class="table__header-container">
                                                 <div class="table__header-content">
-                                                     <p class="table__header-rows">ID</p>
+                                                     <p class="table__header-text">Fila</p>
                                                 </div>
                                                 <div class="table__header-content">
-                                                     <p class="table__header-rows">Nombre vacuna</p>
+                                                     <p class="table__header-text">Nombre vacuna</p>
                                                      <input id="inputCreate" class="inputAgregar" type="text" name="nombre" require>
                                                 </div>
                                                 <div class="table__header-content">
-                                                     <p class="table__header-rows">Dias Aplicacion </p>
+                                                     <p class="table__header-text">Dias Aplicacion </p>
                                                      <input id="inputCreate" class="inputAgregar" type="text" name="aplicacion" require>
                                                 </div>
                                                 <div class="table__header-content">
-                                                     <p class="table__header-rows">Tipo Mascota</p>
+                                                     <p class="table__header-text">Tipo Mascota</p>
                                                      <select class="inputAgregar" name="tipomascota_id" id="inputCreate" require>
                                                         <option value=""></option>
                                                         <option value="2">Perro</option>
@@ -130,7 +130,7 @@
                                                      </select>
                                                 </div>
                                                 <div class="table__header-content">
-                                                     <p class="table__header-rows">Vacunas Usadas</p>
+                                                     <p class="table__header-text">Vacunas Usadas</p>
                                                  </div>
                                             </div>
                                             <?php 
@@ -160,6 +160,7 @@
                                     <div class="table__rows">
                                         <?php
                                             $con = 1;
+                                            $row=1;
                                              foreach ($vacunas as $variable) {
                                         ?>
                                         <form method="post" class="table__rows-content" id="row_<?php echo $variable["id"];?>">
@@ -203,14 +204,17 @@
                                                                                     <img src="img/icon-pet-perro-grande.png" alt="">
                                                                                 </div>
                                                                             <?php } }?>
-                                                                        <?php 
-                                                                    }else{ 
+                                                                    <?php 
+                                                                    }else if(array_keys($nameColumn)[$contador] == 'id' ){
+                                                                    ?>
+                                                                        <p class="table__rows-text">  <?php  echo $row; ?> </p>
+                                                                    <?php
+                                                                        }else{
                                                                     ?>
                                                                         <p class="table__rows-text">  <?php  echo $content; ?> </p>
                                                                     <?php
                                                                         }
                                                                     ?>
-                                                                
                                                             <?php
                                                               if($_SESSION['rol']=="2" and $contador <= ($longnameColumn) and $contador > 0){
                                                             ?>
@@ -218,7 +222,7 @@
                                                                     <?php
                                                                     if(array_keys($nameColumn)[$contador] == 'tipomascota_id'){
                                                                     ?>
-                                                                        <select class="inputUpdate inputUpdate_row_<?php echo$con;?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>" id="row_<?php echo $variable["id"];?>">
+                                                                        <select class="inputUpdate inputUpdate_row_<?php echo $variable["id"];?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>" id="row_<?php echo $variable["id"];?>">
                                                                                 <option value=""></option>
                                                                                 <option value="2">Perro</option>
                                                                                 <option value="1">Gato</option>
@@ -242,8 +246,9 @@
                                                     }
                                                     
                                                 }
+                                                $row++; 
                                                 $contador=0;
-                                                ?> 
+                                                ?>
                                             </div>
                                             <?php
                                                 if($_SESSION['rol']=="2"){
@@ -272,7 +277,7 @@
                                                 <?php 
                                                     }
                                                     ?>
-                                    </form>
+                                        </form>
                                             <?php
                                             $con++;
                                              }
