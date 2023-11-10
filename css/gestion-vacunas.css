@@ -13,150 +13,10 @@ body{
     display: grid;
     grid-template-rows: max-content auto;
 }
-.header__gestion-vacuna{
-    background-color: #262626;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .5em 3em;
-}
-.header__logo{
-    display: flex;
-    align-items: center;
-    gap: 2em;
-}
-.header__icon-img img{
-    width: 2.5em;
-}
-.header__logo-img img{
-    width: 5em;
-}
-.header__logo-name{
-    font-size: 1.5em;
-}
-/* .screen__gestion-vacuna::before{
-    content: "";
-    background-image: url(../img/Diseños_pagina/diseño-gestion_vacuna.png);
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 88vw;
-    background-size: 100% auto;
-    position: absolute;
-    z-index: 5;
-    opacity: .5;
-    left: 0;
-    right: 0;
-    top: -1%;
-    margin: auto;
-} */
-.button__menu:focus-within ~ .menu__exit{
-    height: 25em;
-    transition: height .5s ease-in-out;
-}
-/* .menu__exit-form{
+/*______________________________ HEADER ______________________________*/
 
-} */
-.menu__exit-form{
-    width: max-content;
-    position: absolute;
-    bottom: 2em;
-    right: 2em;
-}
-.menu__option{
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    background-color: #555555;
-    padding: 0 1.5em;
-    border-radius: .5em;
-    cursor: pointer;
-    user-select: none;
-    transition: .2s ease-in;
-    transition-property: background-color;
-}
-.menu__option:hover{
-    background-color: #5c415d;
-    transition: .2s ease-in;
-    transition-property: background-color;
-}
-#button__exit{
-    position: absolute;
-    /* z-index: -1; */
-    height: 0;
-    width: 100%;
-    opacity: 0;
-    height: 100%;
-}
-.menu__option-img img{
-    width: 2em;
-}
-.menu__option-text{
-    font-size: 1.5em;
-}
-.menu__exit-content{
-    margin: 2em;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;   
-    height: 20em; 
-}
-.menu__exit{
-    border-bottom-left-radius: 1.5em;
-    right: 0%;
-    top: 10%;
-    text-align: center;
-    transition: height .5s ease-in-out;
-    position: absolute;
-    height: 0em;
-    transition: height .5s ease-in-out;
-    overflow: hidden;
-    background-color: #262626;
-    z-index: 5;
-}
-.section__content{
-    background-color: #555555;
-    height: 88.26vh;
-}
-.table{
-    width: 85vw;
-    margin: auto;
-}
-.table__title-text{
-    font-size: 2.5em;
-    margin: .5em 0; 
-}
-.table__title-message{
-    background-color: green;
-    display:grid;
-    place-content:center;
-    padding: 1em 2em;
-    border-radius: .5em;
-    width: 50%;
-    margin: auto;
-    font-family: 'Gothic A1', sans-serif;
-    text-align: center;
-}
-.table__title{
-    display: flex;
-    gap: 2em;
-    flex-wrap: wrap;
-}
-.table__content{
-    background-color: #555555;
-}
-.table__container{
-    height: 65vh;
-    width: inherit;
-    position: relative;
-    display: grid;
-    grid-template-rows: max-content auto max-content;
-}
-.table__header{
-    background-color: #262626;
-    min-height: 5vh;
-    position: relative;
-    padding: .4em 1em;
-}
+/*______________________________ HEADER ______________________________*/
+
 .table__header-x:focus-within{
     height: 7em;
     transition: .2s ease-in-out;
@@ -165,7 +25,7 @@ body{
 .table__header-x{
     display: grid;
     grid-template-columns: auto max-content;
-    height: 7em;
+    height: 3.4em;
     transition: .2s ease-in-out;
     transition-property: height;
 }
@@ -182,7 +42,7 @@ body{
     right: 0;
     width: 5vh !important;
     border-radius: .5em;
-    z-index: 5;
+    z-index: 4;
     background-color: #5c415d;
     padding: .5vh;
 }
@@ -190,23 +50,8 @@ body{
     display: grid;
     gap: 1em;
 }
-.table__header{
-    border-top-right-radius: .5em;
-    border-top-left-radius: .5em;
-    width: inherit;
-    top: 0;
-    gap: 5em;
-    overflow: hidden;
-}
 .table__header-container , .table__rows-column{
-    display: grid;
-    justify-content: space-between;
     grid-template-columns: 5% 30% 20% 15% 14%;
-    /* grid-template-columns: clamp(20px, 1vw, 40px) clamp(140px, 14%, 240px) clamp(90px, 9%, 240px) 20% clamp(63px, 15%, 240px); */
-    width: 87%;
-    height: 100%;
-    position: relative;
-    gap: 0.5em;
 }
 
 .table__rows-column{
@@ -218,18 +63,7 @@ body{
 }
 /* .table__rows-column{
 } */
-.table__footer{
-    background-color: #262626;
-    min-height: 5vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom-right-radius: .5em;
-    border-bottom-left-radius: .5em;
-    width: inherit;
-    bottom: 0;
-    padding: 0em 2em;
-}
+
 .table__content{
     min-height: 5vh;
     overflow: auto;
@@ -380,8 +214,9 @@ body{
 }
 .btnSubmit-img{
     width: inherit;
-    /* position: absolute; */
+    position: absolute;
     top: .13em;
+    margin: auto;
 }
 .btnSubmit_img{
     width: inherit;
@@ -635,12 +470,7 @@ select::-ms-expand {
         height: 1em;
         width: 1em;
     }
-    .header__logo{
-        gap: 1em;
-    }
-    .header__gestion-vacuna{
-        padding: 0.5em 1.5em;
-    }
+
 }
 
 @keyframes expan_btn-scale {

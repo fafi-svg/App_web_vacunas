@@ -1,0 +1,76 @@
+*{
+    box-sizing: border-box;
+}
+.section__content{
+    background-color: #555555;
+    height: 88.26vh;
+}
+.table{
+    width: 85vw;
+    margin: auto;
+}
+.table__title-text{
+    font-size: 2.5em;
+    margin: .5em 0; 
+}
+.table__title-message{
+    background-color: green;
+    display:grid;
+    place-content:center;
+    padding: 1em 2em;
+    border-radius: .5em;
+    width: 50%;
+    margin: auto;
+    font-family: 'Gothic A1', sans-serif;
+    text-align: center;
+}
+.table__title{
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+}
+.table__content{
+    background-color: #555555;
+}
+.table__container{
+    height: 65vh;
+    width: inherit;
+    position: relative;
+    display: grid;
+    grid-template-rows: max-content auto max-content;
+}
+.table__header{
+    border-top-right-radius: .5em;
+    border-top-left-radius: .5em;
+    width: inherit;
+    top: 0;
+    gap: 5em;
+    overflow: hidden;
+}
+.table__header{
+    background-color: #262626;
+    min-height: 5vh;
+    position: relative;
+    padding: .4em 1em;
+}
+.table__header-container , .table__rows-column{
+    display: grid;
+    justify-content: space-between;
+    width: 87%;
+    height: 100%;
+    position: relative;
+    gap: 0.5em;
+}
+
+.table__footer{
+    background-color: #262626;
+    min-height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-right-radius: .5em;
+    border-bottom-left-radius: .5em;
+    width: inherit;
+    bottom: 0;
+    padding: 0em 2em;
+}

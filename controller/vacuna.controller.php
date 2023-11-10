@@ -4,15 +4,15 @@
     class controllerVacuna extends ConexionDataBase{
         public function create(modelVacuna $modelVacuna){
             $mysqli = $this->conexion();
-            $nombre = $modelVacuna->nombre = $mysqli -> real_escape_string($_POST['nombreVacuna']);
-            $aplicacion = $modelVacuna->aplicacion = $mysqli -> real_escape_string($_POST['aplicacionVacuna']);
-            $tipoMascotaId = $modelVacuna->tipoMascotaId = $mysqli -> real_escape_string($_POST['tipoMascota']);
-            $sql ="insert into vacuna (nombre, aplicacion, tipoMascotaId) values('$nombre', '$aplicacion', '$tipoMascotaId')";
+            $nombre = $modelVacuna->nombre = $mysqli -> real_escape_string($_POST['nombre']);
+            $aplicacion = $modelVacuna->aplicacion = $mysqli -> real_escape_string($_POST['aplicacion']);
+            $tipoMascotaId = $modelVacuna->tipoMascotaId = $mysqli -> real_escape_string($_POST['tipomascota_id']);
+            $sql ="INSERT into Vacuna (nombre, aplicacion, tipoMascota_Id) values('$nombre', '$aplicacion', '$tipoMascotaId')";
             $mysqli->close();
         }
         public function read(){
             $mysqli = $this->conexion();
-            $sql = "SELECT v.id as ID, v.nombre as 'Nombre Vacuna', v.aplicacion as 'Dias Aplicacion', v.tipomascota_id as 'Tipo Mascota' FROM vacunas as v";
+            $sql = "SELECT * FROM vacunas as v";
             $result = $mysqli->query($sql);
             $users = [];
             if ($result->num_rows > 0) {
@@ -56,7 +56,7 @@
                 if($resultado){
                     echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
                 }
-                unset($_POST['updateData']);
+                $_POST['updateData']='-1';
                 $mysqli -> close();
             }
         }

@@ -1,0 +1,194 @@
+@import url(https://db.onlinewebfonts.com/c/fd6fa80f1e3345834599de891cca3f4c?family=OCR+A+Extended);
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;400;600&display=swap');
+/*______________________________ HEADER ______________________________*/
+.header__gestion-vacuna{
+    background-color: #262626;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5em 3em;
+}
+.header__logo{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+.header__icon-img img{
+    width: 2.5em;
+}
+.header__logo-img img{
+    width: 5em;
+}
+.header__logo-name{
+    font-size: 1.5em;
+}
+/* .screen__gestion-vacuna::before{
+    content: "";
+    background-image: url(../img/Diseños_pagina/diseño-gestion_vacuna.png);
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 88vw;
+    background-size: 100% auto;
+    position: absolute;
+    z-index: 5;
+    opacity: .5;
+    left: 0;
+    right: 0;
+    top: -1%;
+    margin: auto;
+} */
+.button__menu:focus-within ~ .menu__exit{
+    height: 25em;
+    transition: height .5s ease-in-out;
+}
+/* .menu__exit-form{
+
+} */
+.menu__exit-form{
+    width: max-content;
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+}
+.menu__option{
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    background-color: #555555;
+    padding: 0 1.5em;
+    border-radius: .5em;
+    cursor: pointer;
+    user-select: none;
+    transition: .2s ease-in;
+    transition-property: background-color;
+}
+.menu__option:hover{
+    background-color: #5c415d;
+    transition: .2s ease-in;
+    transition-property: background-color;
+}
+#button__exit{
+    position: absolute;
+    /* z-index: -1; */
+    height: 0;
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+}
+.menu__option-img img{
+    width: 2em;
+}
+.menu__option-text{
+    font-size: 1.5em;
+}
+.menu__exit-content{
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;   
+    height: 20em; 
+}
+.menu__exit{
+    border-bottom-left-radius: 1.5em;
+    right: 0%;
+    top: 10%;
+    text-align: center;
+    transition: height .5s ease-in-out;
+    position: absolute;
+    height: 0em;
+    transition: height .5s ease-in-out;
+    overflow: hidden;
+    background-color: #262626;
+    z-index: 5;
+}
+/*______________________________ HEADER ______________________________*/
+@media (max-width: 768px){
+    .header__logo{
+        gap: 1em;
+    }
+    .header__gestion-vacuna{
+        padding: 0.5em 1.5em;
+    }
+
+}
+/*______________________________ Diseño Base Tabla ______________________________*/
+/* <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/header-style.css">
+    <link rel="stylesheet" href="css/table-style.css">
+    <link rel="stylesheet" href="css/gestion-razas.css">
+    <title>Document</title>
+</head>
+<body class="body__gestion__raza">
+    <main class="main__gestion__raza">
+        <div class="screen__gestion__raza">
+            <header class="header__gestion-vacuna">
+                <div class="header__logo user_select_none">
+                    <div class="header__logo-img">
+                        <img src="img/logo-pets-black-aro.png" alt="logo-pets">
+                    </div>
+                    <p class="header__logo-name">
+                        LEGION OF PETS
+                    </p>
+                </div>
+                <div class="header__icon-img cursor_pointer user_select_none">
+                    <img tabindex="0" class="button__menu" src="img/icon-menu-white.png" alt="">
+                    <div class="menu__exit">
+                        <div class="menu__exit-content">
+                            <a class="menu__option">
+                                <div class="menu__option-img">
+                                    <img src="img/icon-animals.png" alt="">
+                                </div>
+                                <p class="menu__option-text">Gestionar Razas</p>
+                            </a>
+                            <a class="menu__option">
+                                <div class="menu__option-img">
+                                    <img src="img/icon-pet-gato.png" alt="">
+                                </div>
+                                <p class="menu__option-text">Gestionar Mascota</p>
+                            </a>
+                            <a class="menu__option">
+                                <div class="menu__option-img">
+                                    <img src="img/icon-geringa-white_rellena.png" alt="">
+                                </div>
+                                <p class="menu__option-text">Gestionar Vacunas</p>
+                            </a>
+                            <form class="menu__exit-form" method="post">
+                                <input id="button__exit" class="login__button-primario" name="exitSession" type="submit" value="Salir">
+                                <label for="button__exit">
+                                    <img tabindex="0" class="" src="img/icono-salida_mini.png" alt="button__exit">
+                                </label>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <section class="section__content">
+                <div class="table">
+                    <div class="table__title">
+                        <p class="table__title-text">Gestion De Vacunas</p>
+                    </div>
+                    <div class="table__container">
+                        <div class="table__header">
+
+                        </div>
+                        <div class="table__content">
+
+                        </div>
+                        <div class="table__footer">
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="js/main.js">
+
+    </script>
+</body>
+</html> */

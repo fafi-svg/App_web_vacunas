@@ -13,6 +13,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/header-style.css">
+    <link rel="stylesheet" href="css/table-style.css">
     <link rel="stylesheet" href="css/gestion-vacunas.css">
     <title>Gestion de Vacunas</title>
 </head>
@@ -68,23 +70,29 @@
                         <div class="table__title">
                             <p class="table__title-text">Gestion De Vacunas</p>
                                 <?php
-                                    if(isset($_POST['updateData'])){
+                                    if(isset($_POST['updateData'])  and !empty($_POST['aplicacion']) and !empty($_POST['tipomascota_id']) and !empty($_POST['nombre'])){
                                         if(!(empty($_POST['updateData']))){
                                             require_once(__DIR__."/processes/controlUpdateVacunas.php");
                                             (new ControlUpdateVacunas) ->updateVacunas();
                                         }
                                     }
-                                    if(isset(($_POST['deleteData']))){
+                                    if(isset($_POST['deleteData'])){
                                         require_once(__DIR__."/controller/vacuna.controller.php");
                                         (new controllerVacuna) ->delete($_POST['deleteData']);
                                     }
-                                    $vacunas = (new GestionVacunasConsultas)->readVacunas();
+                                    if(isset($_POST['addDataRow']) and !empty($_POST['aplicacion']) and !empty($_POST['tipomascota_id']) and !empty($_POST['nombre'])){
+                                        require_once(__DIR__."/controller/vacuna.controller.php");
+                                        require_once(__DIR__."/models/vacuna.model.php");
+                                        $modelVacuna = (new modelVacuna);
+                                        (new controllerVacuna) ->create($modelVacuna);
+                                    }
+                                    $vacunas = (new controllerVacuna)->read();
                                     $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
                                     $nombreColumnas = (new GestionVacunasConsultas)->nombreVacunas();
                                     $tiposMascotas = (new GestionMascotasConsultas)->tiposMascotas();
                                 ?>
                         </div>
-                            <div class="table__container">
+                        <div class="table__container">
                                 <div class="table__header">
                                         <?php
                                             foreach ($vacunas as $variable) {
@@ -100,7 +108,7 @@
                                                 break;
                                             }
                                         ?>
-                                        <div class="table__header-x">
+                                        <form method="post" class="table__header-x">
                                             <div class="table__header-container">
                                                 <div class="table__header-content">
                                                      <p class="table__header-rows">ID</p>
@@ -124,18 +132,18 @@
                                                 <div class="table__header-content">
                                                      <p class="table__header-rows">Vacunas Usadas</p>
                                                  </div>
-                                        </div>
+                                            </div>
                                             <?php 
                                             if($_SESSION['rol']=="2"){
                                             ?>
-                                                <div class="table__header-icon">
+                                            <div class="table__header-icon">
                                                     <img class="btnSubmit_img" src="img/icon-agregar-white.png" alt="">
                                                     <div class="table__header-input" id="table__header-input">
                                                         <img class="btnSubmit_img" src="img/icon-guardar.png" alt="">
-                                                        <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit">
+                                                        <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit" name="addDataRow">
                                                     </div>
                                                     
-                                                </div>
+                                            </div>
                                             <?php 
                                             } else {    
                                             ?>
@@ -145,8 +153,8 @@
                                             <?php 
                                             }    
                                             ?>
-                                        </div>
-                                    </div>
+                                        </form>
+                                </div>
                                     
                                 <div class="table__content">
                                     <div class="table__rows">
@@ -154,15 +162,15 @@
                                             $con = 1;
                                              foreach ($vacunas as $variable) {
                                         ?>
-                                        <form method="post" class="table__rows-content" id="row_<?php echo $con;?>">
+                                        <form method="post" class="table__rows-content" id="row_<?php echo $variable["id"];?>">
                                                 <?php
                                                     if($_SESSION['rol']=="2"){
                                                 ?>
-                                                    <div class="screenDelete screenDelete_row_<?php echo$con;?>" id="screenDelete_row_<?php echo$con;?>">
+                                                    <div class="screenDelete screenDelete_row_<?php echo $variable["id"];?>" id="screenDelete_row_<?php echo $variable["id"];?>">
                                                         <div class="screenDelete_btn">
                                                             <img class="btnDelete_img" src="img/icon-basurero-white.png" alt="icon-update">
                                                             <img class="btnExit_img" src="img/icon-cruz-white.png" alt="icon-update">
-                                                            <input class="btnDelete_input inputDelete_row_<?php echo $con;?>" id="row_<?php echo $con;?>" value="<?php echo $con;?>" type="submit" name="deleteData">
+                                                            <input class="btnDelete_input inputDelete_row_<?php echo $variable["id"];?>" id="row_<?php echo $variable["id"];?>" value="<?php echo $variable["id"];?>" type="submit" name="deleteData">
                                                         </div>
                                                         <p class="screenDelete_text">
                                                             Desea Eliminar El registro vacuna
@@ -210,7 +218,7 @@
                                                                     <?php
                                                                     if(array_keys($nameColumn)[$contador] == 'tipomascota_id'){
                                                                     ?>
-                                                                        <select class="inputUpdate inputUpdate_row_<?php echo$con;?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>" id="row_<?php echo$con;?>">
+                                                                        <select class="inputUpdate inputUpdate_row_<?php echo$con;?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>" id="row_<?php echo $variable["id"];?>">
                                                                                 <option value=""></option>
                                                                                 <option value="2">Perro</option>
                                                                                 <option value="1">Gato</option>
@@ -218,7 +226,7 @@
                                                                     <?php
                                                                     }else{
                                                                     ?>
-                                                                        <input class="inputUpdate inputUpdate_row_<?php echo $con;?>" id="row_<?php echo $con;?>"  type="<?php if(array_keys($nameColumn)[$contador] == 'nombre'){echo'text';}else{echo'number';}?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>">
+                                                                        <input class="inputUpdate inputUpdate_row_<?php echo $variable["id"];?>" id="row_<?php echo $variable["id"];?>"  type="<?php if(array_keys($nameColumn)[$contador] == 'nombre'){echo'text';}else{echo'number';}?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>">
                                                                     <?php
                                                                     }
                                                                     ?>
@@ -240,16 +248,16 @@
                                             <?php
                                                 if($_SESSION['rol']=="2"){
                                                     ?>
-                                                        <div class="table__rows-btn table__rows-btn_row_<?php echo $con;?>">
-                                                            <div id="btnUpdate" class="table__rows-btn-img row_<?php echo $con;?>">
+                                                        <div class="table__rows-btn table__rows-btn_row_<?php echo $variable["id"];?>">
+                                                            <div id="btnUpdate" class="table__rows-btn-img row_<?php echo $variable["id"];?>">
                                                                 <img src="img/icon-lapiz-white.png" alt="icon-lapiz">
                                                             </div>
-                                                            <div id="btnDelete" class="table__rows-btn-img row_<?php echo $con;?>">
+                                                            <div id="btnDelete" class="table__rows-btn-img row_<?php echo $variable["id"];?>">
                                                                 <img class="btnDelete-img" src="img/icon-basurero-white.png" alt="icon-basurero">
                                                             </div>
-                                                            <div class="labelSubmit labelSubmit_row_<?php echo $con;?>">
+                                                            <div class="labelSubmit labelSubmit_row_<?php echo $variable["id"];?>">
                                                                 <img class="btnSubmit-img" src="img/icon-update.png" alt="icon-update">
-                                                                <input class="btnSubmit inputSubmit_row_<?php echo $con;?>" id="row_<?php echo $con;?>" value="<?php echo $con;?>" type="submit" name="updateData">
+                                                                <input class="btnSubmit inputSubmit_row_<?php echo $variable["id"];?>" id="row_<?php echo $variable["id"];?>" value="<?php echo $variable["id"];?>" type="submit" name="updateData">
                                                             </div>
                                                             <div class="btnFlecha">
                                                                     <img class="btnFlecha-img" src="img/icon-flecha.png" alt="">
@@ -258,8 +266,8 @@
                                                 <?php 
                                                     } else {    
                                                 ?>      
-                                                    <div id="row_<?php echo $variable["ID"];?>" class="table__rows-icon-row">
-                                                        <input class="table__rows-img" type="checkbox" required name='<?php echo $variable["ID"]?>' >
+                                                    <div id="row_<?php echo $variable["id"];?>" class="table__rows-icon-row">
+                                                        <input class="table__rows-img" type="checkbox" required name='<?php echo $variable["id"]?>' >
                                                     </div>
                                                 <?php 
                                                     }
@@ -272,8 +280,7 @@
                                         ?>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="table__footer" style="align-items: center;">
+                                <div class="table__footer">
                                     <div class="table__footer-icon">
                                         <img src="img/icon-geringa-white_rellena.png" alt=""><?php $countVacunas = mysqli_fetch_array($numeroVacunas); echo $countVacunas['cound'];?>
                                     </div>
@@ -286,8 +293,9 @@
                                     <?php
                                         }
                                     ?>
-                            </div>
+                                </div>
                         </div>
+
                     </div>
                 </section>
            </div>
