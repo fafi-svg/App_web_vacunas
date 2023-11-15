@@ -1,6 +1,72 @@
 *{
     box-sizing: border-box;
 }
+/*___________________________ CLASS_JS ___________________________*/
+/*__ gestion-vacunas.php __ gestion-razas.php __ gestion-mascotas.php __*/
+.expan_row{
+    height: 7.5em !important;
+    transition: .2s ease-in;
+    transition-property: height;
+    background-color: #5c415d !important;
+}
+.expan_btn::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1em;
+    width: 200%;
+    margin: auto;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    background-color: #262626;
+    z-index: 1;
+    transform: scale(0);
+    animation: expan_btn-scale 1s forwards;
+}
+@keyframes expan_btn-scale {
+    0%{
+        transform: scale(0);
+    }
+    70%{
+        transform: scale(1.02);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+/*___________________________ CLASS_JS ___________________________*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*__________________________ STYLE_INPUT __________________________*/
+/*__ gestion-vacunas.php __ gestion-razas.php __ gestion-mascotas.php __ login.php __ register.php __*/
+input[type='text'], select,input[type='number']{
+    border: 0;
+    height: 5vh;
+    min-height: 1vh;
+    border-radius: 1vh;
+    width: 100%;
+    text-align: center;
+    outline: 0 solid;
+    transition: .3s ease-in-out;
+    transition-property: outline;
+    font-size: 1em;
+}
+input[type='text']:focus, select:focus,input[type='number']:focus{
+    outline: .5vh solid #32a1ce;
+    transition: .3s ease-in-out;
+    transition-property: outline;
+}
+select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+select::-ms-expand {
+    display: none;
+}
+/*__________________________ STYLE_INPUT __________________________*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*__________________________ LAYOUT_TABLE __________________________*/
 .section__content{
     background-color: #555555;
     height: 88.26vh;
@@ -39,49 +105,135 @@
     display: grid;
     grid-template-rows: max-content auto max-content;
 }
+/*__________________________ LAYOUT_TABLE __________________________*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*____________________________ HEADER_TABLE ____________________________*/
 .table__header{
     border-top-right-radius: .5em;
     border-top-left-radius: .5em;
     width: inherit;
     top: 0;
-    gap: 5em;
     overflow: hidden;
     background-color: #262626;
     min-height: 5vh;
     position: relative;
-    padding: .4em 1em;
+    padding: 0em 1.5em;
 }
-/*____________________________ ROWS_TABLE ____________________________*/
+.table__header-head:focus-within{
+    height: 7em;
+    transition: .2s ease-in-out;
+    transition-property: height;
+}
+.table__header-head, .table__rows-container{
+    display: flex;
+    height: 3em;
+    transition: .2s ease-in-out;
+    transition-property: height;
+}
 .table__rows-content{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.table__header-content, .table__rows-item-column{
+    display: grid;
+}
+.table__header-text{
+    display: grid;
+    text-align: center;
+    height: 2em;
+    font-size: 1.3em;
+    margin-top: 0;
+    align-items: center;
+}
+/* .table__rows-img{
+    height: 1.5em;
+} */
+/*____________________________ HEADER_TABLE ____________________________*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*____________________________ ROWS_CONTENT_TABLE ____________________________*/
+.table__rows-text{
+    display: grid;
+    text-align: center;
+    height: 2em;
+    font-size: 1em;
+    margin-top: 1em;
+}
+.table__rows-img{
+    display: grid;
+    height: 2em;
+    margin-top: .5em;
+}
+.table__rows{
+    min-height: 5.5vh;
+    display: grid;
+    align-items: center;
+    position: relative;
+}
+.table__rows-container{
+    overflow: hidden;
+    transition: .2s ease-in-out;
+    transition-property: height;
+    position: relative;
+}
+.table__rows-container:nth-child(even){
+    background-color: #808585;
+}
+.table__rows-btn-flecha img{
+    width: .7em;
+}
+.table__rows-btn-flecha{
+    display: none;
+}
+.table__rows-column-pets{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    position: relative;
+    /* overflow: hidden; */
+}
+
+.table__rows-text-img img{
+    width: 2em;
+    transform: rotatey(180deg);
+}
+.table__rows-text-img{
+    text-align: center;
+    height: .7em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+/*____________________________ ROWS_CONTENT_TABLE ____________________________*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*____________________________ ROWS_DISPLAY_TABLE ____________________________*/
+/*__ gestion-vacunas.php __ gestion-razas.php __ gestion-mascotas.php __*/
+/* .table__rows-content{
     display: flex;
     justify-content: space-between;
     padding: 0em 1em;
+    width: 100%;
     height: 3.5em;
     overflow: hidden;
     transition: .2s ease-in;
     transition-property: height;
     position: relative;
     gap: 1.2em;
-}
-.table__rows-column{
+} */
+/* .table__rows-column{
     width: 85.5%;
-}
-.table__header-container,.table__rows-column{
+} */
+.table__header-container,.table__rows-item{ /*__ GOLABLAS __*/
     display: grid;
-    justify-content: space-between;
     height: 100%;
+    width: 100%;
     position: relative;
     gap: 0.5em;
-    grid-template-columns: 8% 30% 20% 15% 14%;
-}
-.table__rows-column{
-    width: 87%;
-}
-.table__header-container{
-    width: 88.6%;
 }
 
-/*______________ SCREEB_DELETE_ROWS ______________*/
+/*_____________________ SCREEB_DELETE_ROWS _____________________*/
+/*__ gestion-vacunas.php __*/
 .screenDelete{
     overflow: hidden;
     display: none;
@@ -101,21 +253,12 @@
     margin: 0;
     font-size: 1.3em;
 }
-/*______________ SCREEB_DELETE_ROWS ______________*/
+/*_____________________ SCREEB_DELETE_ROWS _____________________*/
 
-/*____________________________ ROWS_TABLE ____________________________*/
-.table__header-head:focus-within{
-    height: 7em;
-    transition: .2s ease-in-out;
-    transition-property: height;
-}
-.table__header-head{
-    display: grid;
-    grid-template-columns: auto max-content;
-    height: 3.4em;
-    transition: .2s ease-in-out;
-    transition-property: height;
-}
+/*____________________________ ROWS_DISPLAY_TABLE ____________________________*/
+/*----------------------------------------------------------------------------------------------------------------------*/
+/*_____________________ LAYOUT_BUTON_SUBMIT _____________________*/
+/*__ gestion-vacunas.php __*/
 .table__header-input{
     position: relative;
     display: none;
@@ -133,65 +276,13 @@
     background-color: #5c415d;
     padding: .5vh;
 }
-.table__header-content{
-    display: grid;
-    gap: 1em;
-}
-
-.table__header-text{
-    display: grid;
-    text-align: center;
-}
-
+/*_____________________ LAYOUT_BUTON_SUBMIT _____________________*/
+/*----------------------------------------------------------------------------------------------------------------------*/
 .table__content{
     min-height: 5vh;
     overflow: auto;
 }
-.table__rows{
-    min-height: 5.5vh;
-    display: grid;
-    align-items: center;
-    position: relative;
-}
-.table__rows-content:nth-child(even){
-    background-color: #808585;
-}
-.table__rows-btn-flecha img{
-    width: .7em;
-}
-.table__rows-btn-flecha{
-    display: none;
-}
-.table__rows-column-container{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    /* align-items: center; */
-    /* justify-content: flex-start; */
-    /* width: inherit; */
-    position: relative;
-    /* overflow: hidden; */
-}
-.table__rows-text{
-    text-align: center;
-    height: .7em;
-}
-.table__rows-text-img img{
-    width: 2em;
-    transform: rotatey(180deg);
-}
-.table__rows-text-img{
-    text-align: center;
-    height: .7em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-.table__rows-img{
-    height: 100%;
-}
-.table__rows-img img{
-    width: inherit;
-}
+
 .inputUpdate__container{
     width: 100%;
     /* left:0;
@@ -222,30 +313,15 @@
     gap: 1.5vh;
     justify-items: center;
     align-content: start;
-    height: 7em;
-    margin-top: .5vh;
 }
 .table__rows-icon-row{
    display: flex;
    align-items: center;
    gap: 3vh;
 }
-.table__rows-btn{
-    display: flex;
-    gap: 1.5em;
-    align-items: center;
-    flex-direction: row-reverse;
-    position: relative;
-}
-.table__rows-btn-img{
-    display: flex;
-    align-items: center;
-}
-.table__rows-btn-img img{
-    position: relative;
-    z-index: 2;
-}
 
+/*____________________________ SCROLL_TABLE_CONTENT ____________________________*/
+/*__ gestion-vacunas.php __ gestion-razas.php __ gestion-mascotas.php __*/
 .table__content::-webkit-scrollbar {
     -webkit-appearance: none;
 }
@@ -266,6 +342,10 @@
 .table__content::-webkit-scrollbar-track {
    background-color: #262626;
 }
+/*_________________ SCROLL_SELECT _________________*/
+
+/*_________________ SCROLL_SELECT _________________*/
+/*____________________________ SCROLL_TABLE_CONTENT ____________________________*/
 .table__footer{
     background-color: #262626;
     min-height: 5vh;
@@ -280,54 +360,23 @@
 }
 
 @media  (max-width:768px){
-    .table__header{
-        padding: .4em 1em;
-    }
     .table{
         width: 100%;
-    }
-
-    /*____________________________ HEADER_TABLE ____________________________*/
-    .table__rows-column-container:last-child{
-        display: none;
-    }
-    .table__rows-column-container:first-child{
-        display: none;
-    }
-    .table__header-content:last-child{
-        display: none;
-    }
-    .table__header-content:first-child{
-        display: none;
-    }
-    /*____________________________ HEADER_TABLE ____________________________*/
-
-    .table__rows-column{
-        width: 90%;
-    }
-    .table__header-container{
-        width: 96.3%;
-    }
-
-    .table__rows-content{
-        padding: 0em 1em;
     }
     .table__title{
         gap: 0em;
     }
     /*____________________________ ROWS_COLOR_TABLE ____________________________*/
-    .table__rows-content:nth-child(even) > .table__rows-btn{
-        background-color: #555555;
-    }
-    .table__rows-content:nth-child(odd) > .table__rows-btn{
-        background-color: #808585;
-    }
+
     /*____________________________ ROWS_COLOR_TABLE ____________________________*/
-    .table__header-container, .table__rows-column{
-        grid-template-columns: 40% 30% 25%;
-    }
-    .table__rows-content{
-        height: 4em;
+        /* ____________________________ ROWS_WIDTHS_TABLE ____________________________*/
+        /* .table__header-container, .table__rows-column{
+            grid-template-columns: 40% 30% 25%;
+        } */
+        /*____________________________ ROWS_WIDTHS_TABLE ____________________________ */
+    
+    .table__rows-container{
+        height: 3em;
     }
     .table__rows-text{
         height: 1.5em;
@@ -337,5 +386,9 @@
     }
     .table__title-message{
         width: 100%;
+    }
+    .table__title-text {
+        font-size: 2em;
+        margin: 0.5em 0;
     }
 }

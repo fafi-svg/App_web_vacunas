@@ -6,7 +6,6 @@
     require_once(__DIR__."/controller/user.controller.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/gestionVacunas.php");
-    require_once(__DIR__."/consultas/gestionMascotas.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +19,7 @@
 </head>
 <body>
     <main class="main_gestion-vacuna">
-            <?php if(!empty($_SESSION['usuario'])){
-            ?>
+            <?php if(!empty($_SESSION['usuario'])){?>
            <div class="screen__gestion-vacuna">
                 <header class="header__gestion-vacuna">
                     <div class="header__logo user_select_none">
@@ -36,30 +34,39 @@
                         <img tabindex="0" class="button__menu" src="img/icon-menu-white.png" alt="">
                         <div class="menu__exit">
                             <div class="menu__exit-content">
-                                <a class="menu__option">
-                                    <div class="menu__option-img">
+                                <?php if($_SESSION['rol']=='2'){?>
+                                    <a href="gestion-razas.php" class="menu__option">
+                                        <div class="menu__option-img">
+                                            <img src="img/icon-animals.png" alt="">
+                                        </div>
+                                        <p class="menu__option-text"> Gestionar Razas</p>
+                                    </a>
+                                    <a href="gestion-mascotas.php" class="menu__option">
+                                        <div class="menu__option-img">
+                                            <img src="img/icon-pet-gato.png" alt="">
+                                        </div>
+                                        <p class="menu__option-text">Gestionar Mascota</p>
+                                    </a>
+                                    <a href="gestion-mis-mascotas.php" class="menu__option">
+                                        <div class="menu__option-img">
                                         <img src="img/icon-animals.png" alt="">
-                                    </div>
-                                    <p class="menu__option-text">Gestionar Razas</p>
-                                </a>
-                                <a class="menu__option">
-                                    <div class="menu__option-img">
-                                        <img src="img/icon-pet-gato.png" alt="">
-                                    </div>
-                                    <p class="menu__option-text">Gestionar Mascota</p>
-                                </a>
-                                <a class="menu__option">
-                                    <div class="menu__option-img">
-                                        <img src="img/icon-geringa-white_rellena.png" alt="">
-                                    </div>
-                                    <p class="menu__option-text">Gestionar Vacunas</p>
-                                </a>
+                                        </div>
+                                        <p class="menu__option-text">Mis Mascotas</p>
+                                    </a>
+                                <?php }?>
+                                <?php if($_SESSION['rol']=='1'){?>
+                                    <a href="gestion-mis-mascotas.php" class="menu__option">
+                                        <div class="menu__option-img">
+                                        <img src="img/icon-animals.png" alt="">
+                                        </div>
+                                        <p class="menu__option-text">Mis Mascotas</p>
+                                    </a>
+                                <?php }?>
                                 <form class="menu__exit-form" method="post">
                                     <input id="button__exit" class="login__button-primario" name="exitSession" type="submit" value="Salir">
                                     <label for="button__exit">
                                         <img tabindex="0" class="" src="img/icono-salida_mini.png" alt="button__exit">
                                     </label>
-                                    
                                 </form>
                             </div>
                         </div>
@@ -70,7 +77,7 @@
                         <div class="table__title">
                             <p class="table__title-text">Gestion De Vacunas</p>
                                 <?php
-                                    if(isset($_POST['updateData'])  and !empty($_POST['aplicacion']) and !empty($_POST['tipomascota_id']) and !empty($_POST['nombre'])){
+                                    if(isset($_POST['updateData'])  or !empty($_POST['aplicacion']) or !empty($_POST['tipomascota_id']) or !empty($_POST['nombre'])){
                                         if(!(empty($_POST['updateData']))){
                                             require_once(__DIR__."/processes/controlUpdateVacunas.php");
                                             (new ControlUpdateVacunas) ->updateVacunas();
@@ -80,16 +87,14 @@
                                         require_once(__DIR__."/controller/vacuna.controller.php");
                                         (new controllerVacuna) ->delete($_POST['deleteData']);
                                     }
-                                    if(isset($_POST['addDataRow']) and !empty($_POST['aplicacion']) and !empty($_POST['tipomascota_id']) and !empty($_POST['nombre'])){
+                                    if(isset($_POST['addDataRow']) or !empty($_POST['aplicacion']) or !empty($_POST['tipomascota_id']) or !empty($_POST['nombre'])){
                                         require_once(__DIR__."/controller/vacuna.controller.php");
                                         require_once(__DIR__."/models/vacuna.model.php");
                                         $modelVacuna = (new modelVacuna);
                                         (new controllerVacuna) ->create($modelVacuna);
                                     }
-                                    $vacunas = (new controllerVacuna)->read();
+                                    $vacunas = (new GestionVacunasConsultas)->readVacunas();
                                     $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
-                                    $nombreColumnas = (new GestionVacunasConsultas)->nombreVacunas();
-                                    $tiposMascotas = (new GestionMascotasConsultas)->tiposMascotas();
                                 ?>
                         </div>
                         <div class="table__container">
@@ -97,14 +102,6 @@
                                         <?php
                                             foreach ($vacunas as $variable) {
                                                 $long = sizeof($variable)-1;
-                                                break;
-                                            }
-                                            foreach ($nombreColumnas as $nameColumn) {
-                                                $longnameColumn = sizeof($nameColumn)-1;
-                                                break;
-                                            }
-                                            foreach ($tiposMascotas as $typePets) {
-                                                $longTypePets = sizeof($typePets)-1;
                                                 break;
                                             }
                                         ?>
@@ -115,19 +112,25 @@
                                                 </div>
                                                 <div class="table__header-content">
                                                      <p class="table__header-text">Nombre vacuna</p>
+                                                     <?php if($_SESSION['rol'] == "2"){?>
                                                      <input id="inputCreate" class="inputAgregar" type="text" name="nombre" require>
+                                                     <?php }?>
                                                 </div>
                                                 <div class="table__header-content">
                                                      <p class="table__header-text">Dias Aplicacion </p>
+                                                     <?php if($_SESSION['rol'] == "2"){?>
                                                      <input id="inputCreate" class="inputAgregar" type="text" name="aplicacion" require>
+                                                     <?php }?>
                                                 </div>
                                                 <div class="table__header-content">
                                                      <p class="table__header-text">Tipo Mascota</p>
+                                                     <?php if($_SESSION['rol'] == "2"){?>
                                                      <select class="inputAgregar" name="tipomascota_id" id="inputCreate" require>
                                                         <option value=""></option>
                                                         <option value="2">Perro</option>
                                                         <option value="1">Gato</option>
                                                      </select>
+                                                     <?php }?>
                                                 </div>
                                                 <div class="table__header-content">
                                                      <p class="table__header-text">Vacunas Usadas</p>
@@ -136,14 +139,14 @@
                                             <?php 
                                             if($_SESSION['rol']=="2"){
                                             ?>
-                                            <div class="table__header-icon">
-                                                    <img class="btnSubmit_img" src="img/icon-agregar-white.png" alt="">
-                                                    <div class="table__header-input" id="table__header-input">
-                                                        <img class="btnSubmit_img" src="img/icon-guardar.png" alt="">
-                                                        <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit" name="addDataRow">
-                                                    </div>
-                                                    
-                                            </div>
+                                                <div class="table__header-icon">
+                                                        <img class="btnSubmit_img" src="img/icon-agregar-white.png" alt="">
+                                                        <div class="table__header-input" id="table__header-input">
+                                                            <img class="btnSubmit_img" src="img/icon-guardar.png" alt="">
+                                                            <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit" name="addDataRow">
+                                                        </div>
+
+                                                </div>
                                             <?php 
                                             } else {    
                                             ?>
@@ -158,20 +161,16 @@
                                     
                                 <div class="table__content">
                                     <div class="table__rows">
-                                        <?php
-                                            $con = 1;
-                                            $row=1;
-                                             foreach ($vacunas as $variable) {
-                                        ?>
-                                        <form method="post" class="table__rows-content" id="row_<?php echo $variable["id"];?>">
+                                        <?php $con = 1; $row=1; foreach ($vacunas as $variable) {?>
+                                            <form method="post" class="table__rows-container" id="row_<?php echo$row;?>">
                                                 <?php
                                                     if($_SESSION['rol']=="2"){
                                                 ?>
-                                                    <div class="screenDelete screenDelete_row_<?php echo $variable["id"];?>" id="screenDelete_row_<?php echo $variable["id"];?>">
+                                                    <div class="screenDelete screenDelete_row_<?php echo  $row;?>" id="screenDelete_row_<?php echo  $row;?>">
                                                         <div class="screenDelete_btn">
                                                             <img class="btnDelete_img" src="img/icon-basurero-white.png" alt="icon-update">
-                                                            <img class="btnExit_img" src="img/icon-cruz-white.png" alt="icon-update">
-                                                            <input class="btnDelete_input inputDelete_row_<?php echo $variable["id"];?>" id="row_<?php echo $variable["id"];?>" value="<?php echo $variable["id"];?>" type="submit" name="deleteData">
+                                                            <img id="row_<?php echo  $row;?>" class="btnExit_img" src="img/icon-cruz-white.png" alt="icon-update">
+                                                            <input class="btnDelete_input inputDelete_row_<?php echo  $row;?>" id="row_<?php echo  $row;?>" value="<?php echo  $row;?>" type="submit" name="deleteData">
                                                         </div>
                                                         <p class="screenDelete_text">
                                                             Desea Eliminar El registro vacuna
@@ -180,109 +179,69 @@
                                                 <?php
                                                    }
                                                 ?>
-                                            <div class="table__rows-column">
-                                                <?php
-                                                $contador=0;
-                                                $contPetImg = 0;
-                                                foreach ($variable as $content) {
-                                                ?>
-                                                        <div class="table__rows-column-container">
-                                                                    <?php
-                                                                    if($contador == 3){
-                                                                        if(array_keys($nameColumn)[$contador] == 'tipomascota_id' ){
-                                                                    ?>
-                                                                            <?php if($content == 1){?>
-                                                                                <div class="table__rows-text-img">
-                                                                                    <img src="img/icon-pet-gato.png" alt="">
-                                                                                </div>
-                                                                            <?php }else if($content == 2){?>
-                                                                                <div class="table__rows-text-img">
-                                                                                    <img src="img/icon-pet-perro-pequeño.png" alt="">
-                                                                                </div>
-                                                                            <?php }else{?>
-                                                                                <div class="table__rows-text-img">
-                                                                                    <img src="img/icon-pet-perro-grande.png" alt="">
-                                                                                </div>
-                                                                            <?php } }?>
-                                                                    <?php 
-                                                                    }else if(array_keys($nameColumn)[$contador] == 'id' ){
-                                                                    ?>
-                                                                        <p class="table__rows-text">  <?php  echo $row; ?> </p>
-                                                                    <?php
-                                                                        }else{
-                                                                    ?>
-                                                                        <p class="table__rows-text">  <?php  echo $content; ?> </p>
-                                                                    <?php
-                                                                        }
-                                                                    ?>
-                                                            <?php
-                                                              if($_SESSION['rol']=="2" and $contador <= ($longnameColumn) and $contador > 0){
-                                                            ?>
-                                                                <div class="inputUpdate__container">
-                                                                    <?php
-                                                                    if(array_keys($nameColumn)[$contador] == 'tipomascota_id'){
-                                                                    ?>
-                                                                        <select class="inputUpdate inputUpdate_row_<?php echo $variable["id"];?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>" id="row_<?php echo $variable["id"];?>">
-                                                                                <option value=""></option>
-                                                                                <option value="2">Perro</option>
-                                                                                <option value="1">Gato</option>
-                                                                        </select>
-                                                                    <?php
-                                                                    }else{
-                                                                    ?>
-                                                                        <input class="inputUpdate inputUpdate_row_<?php echo $variable["id"];?>" id="row_<?php echo $variable["id"];?>"  type="<?php if(array_keys($nameColumn)[$contador] == 'nombre'){echo'text';}else{echo'number';}?>" name="<?php echo (array_keys($nameColumn)[$contador]);?>">
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                </div>
-                                                            <?php
-                                                              }  
-                                                            ?>
+                                                <div class="table__rows-content">
+                                                    <div class="table__rows-item">
+                                                        <div class="table__rows-item-column">
+                                                            <p class="table__rows-text"><?php echo $row ?></p>
                                                         </div>
-                                                    <?php
-                                                    $contador++; 
-                                                    if($contPetImg < 3){
-                                                        $contPetImg ++;
-                                                    }
-                                                    
-                                                }
-                                                $row++; 
-                                                $contador=0;
-                                                ?>
-                                            </div>
-                                            <?php
-                                                if($_SESSION['rol']=="2"){
-                                                    ?>
-                                                        <div class="table__rows-btn table__rows-btn_row_<?php echo $variable["id"];?>">
-                                                            <div id="btnUpdate" class="table__rows-btn-img row_<?php echo $variable["id"];?>">
-                                                                <img src="img/icon-lapiz-white.png" alt="icon-lapiz">
-                                                            </div>
-                                                            <div id="btnDelete" class="table__rows-btn-img row_<?php echo $variable["id"];?>">
-                                                                <img class="btnDelete-img" src="img/icon-basurero-white.png" alt="icon-basurero">
-                                                            </div>
-                                                            <div class="labelSubmit labelSubmit_row_<?php echo $variable["id"];?>">
-                                                                <img class="btnSubmit-img" src="img/icon-update.png" alt="icon-update">
-                                                                <input class="btnSubmit inputSubmit_row_<?php echo $variable["id"];?>" id="row_<?php echo $variable["id"];?>" value="<?php echo $variable["id"];?>" type="submit" name="updateData">
-                                                            </div>
-                                                            <div class="btnFlecha">
-                                                                    <img class="btnFlecha-img" src="img/icon-flecha.png" alt="">
-                                                            </div>
+                                                        <div class="table__rows-item-column">
+                                                            <p class="table__rows-text"><?php echo $variable['nombre'] ?></p>
+                                                            <?php if($_SESSION['rol']=="2"){ ?>
+                                                                <div class="inputUpdate__container">                                                        
+                                                                    <input class="inputUpdate inputUpdate_row_<?php echo $row;?>" id="row_<?php echo $row;?>" type="text">
+                                                                </div>    
+                                                             <?php } ?>                                                    
                                                         </div>
-                                                <?php 
-                                                    } else {    
-                                                ?>      
-                                                    <div id="row_<?php echo $variable["id"];?>" class="table__rows-icon-row">
-                                                        <input class="table__rows-img" type="checkbox" required name='<?php echo $variable["id"]?>' >
+                                                        <div class="table__rows-item-column">
+                                                        <p class="table__rows-text"><?php echo $variable['aplicacion'] ?></p>
+                                                        <?php if($_SESSION['rol']=="2"){ ?>
+                                                            <div class="inputUpdate__container">
+                                                                <input class="inputUpdate inputUpdate_row_<?php echo $row;?>" id="row_<?php echo  $row;?>" type="number"> 
+                                                            </div>    
+                                                        <?php } ?>                                                        
+                                                        </div>
+                                                        <div class="table__rows-item-column">
+                                                        <p class="table__rows-text"><?php echo $variable['tipomascota_id'] ?></p>
+                                                        <?php if($_SESSION['rol']=="2"){ ?>
+                                                            <div class="inputUpdate__container">
+                                                                <select class="inputUpdate inputUpdate_row_<?php echo $row;?>" name="tipomascota_id" id="row_<?php echo $row;?>">
+                                                                    <option value=""></option>
+                                                                    <option value="2">Perro</option>
+                                                                    <option value="1">Gato</option>
+                                                                </select>
+                                                            </div>
+                                                        <?php } ?>
+                                                        </div>
+                                                        <div class="table__rows-item-column">
+                                                            <p class="table__rows-text"><?php echo $variable['countVacuna'] ?></p>
+                                                        </div> 
                                                     </div>
-                                                <?php 
-                                                    }
-                                                    ?>
-                                        </form>
-                                            <?php
-                                            $con++;
-                                             }
-                                             $con=0;
-                                        ?>
+                                                    <?php if($_SESSION['rol']=="2"){ ?>
+                                                        <div class="table__rows-item-btn">
+                                                            <div class="table__rows-btn table__rows-btn_row_<?php echo  $row;?>">
+                                                                <div id="btnUpdate" class="table__rows-btn-img row_<?php echo  $row;?> table__rows-btn-edit_row_<?php echo  $row;?>">
+                                                                    <img src="img/icon-lapiz-white.png" alt="icon-lapiz">
+                                                                </div>
+                                                                <div id="btnDelete" class="table__rows-btn-img row_<?php echo  $row;?>">
+                                                                    <img id="row_<?php echo  $row;?>" class="btnDelete-img" src="img/icon-basurero-white.png" alt="icon-basurero">
+                                                                </div>
+                                                                <div class="labelSubmit labelSubmit_row_<?php echo  $row;?>">
+                                                                    <img class="btnSubmit-img" src="img/icon-update.png" alt="icon-update">
+                                                                    <input class="btnSubmit inputSubmit_row_<?php echo  $row;?>" id="row_<?php echo $row;?>" value="<?php echo  $variable['id'];?>" type="submit" name="updateData">
+                                                                </div>
+                                                                <div class="btnFlecha">
+                                                                        <img class="btnFlecha-img" src="img/icon-flecha.png" alt="">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php } else { ?>      
+                                                        <div class="table__rows-item table__rows-icon" id="row_<?php echo  $row;?>" class="">
+                                                            <input class="table__rows-img" type="checkbox" required name='<?php echo$row;?>' >
+                                                        </div>
+                                                    <?php }?>
+                                                </div>
+                                            </form>
+                                        <?php $con++; $row++;}?>
                                     </div>
                                 </div>
                                 <div class="table__footer">

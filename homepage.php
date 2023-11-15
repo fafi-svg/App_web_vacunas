@@ -40,42 +40,73 @@
             </header>
             <div class="content">
                 <div <?php if($_SESSION['rol']=="1"){echo "style='display:flex;'";} ?> class="box">
-                    <div <?php if($_SESSION['rol']=="1"){echo "style='height:30vh; background: linear-gradient(to bottom right, rgb(51, 33, 51), #5c415d);'";} ?> class="box__container box__container-user">
-                        <div class="box__icon">
-                            <img src="img/icon-user.png" alt="">
+                    <?php
+                        if($_SESSION['rol']=="1"){
+                    ?>
+                        <div style='height:30vh; background: linear-gradient(to bottom right, rgb(51, 33, 51), #5c415d);' class="box__container box__container-user">
+                            <div class="box__icon">
+                                <img src="img/icon-user.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name"><?php echo $_SESSION['usuario'];?></p>
+                                <p class="box__text-rol">Usuario</p>
+                            </div>
                         </div>
-                        <div class="box__text">
-                            <p class="box__text-name"><?php echo $_SESSION['usuario'];?></p>
-                            <p class="box__text-rol"><?php if($_SESSION['rol']=="1"){echo 'Usuario';}else{echo 'administrador';}?></p>
-                        </div>
-                    </div>
-                    <a href="gestion-vacunas.php" <?php if($_SESSION['rol']=="1"){echo "style='height:30vh;'";} ?> class="box__container"> 
-                        <div class="box__img">
-                            <img src="img/icon-geringa-white_rellena.png" alt="">
-                        </div>
-                        <div class="box__text">
-                            <p class="box__text-name"><?php if($_SESSION['rol']=="1"){echo 'Gestionar Vacunas';}else{echo 'Registro De Vacunas';}?></p>
-                        </div>
-                    </a>
-                    <a href="gestion-vacunas.php" <?php if($_SESSION['rol']=="1"){echo "style='height:30vh;'";} ?> class="box__container"> 
-                        <div class="box__img">
-                            <img src="img/icon-animals.png" alt="">
-                        </div>
-                        <div class="box__text">
-                            <p class="box__text-name"><?php if($_SESSION['rol']=="1"){echo 'Mis Mascotas';}else{echo 'Gestionar Razas';}?></p>
-                        </div>
-                    </a>
+                        <a href="gestion-mis-mascotas.php" style='height:30vh;' class="box__container"> 
+                            <div class="box__img">
+                                <img src="img/icon-animals.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name">Mis Mascotas</p>
+                            </div>
+                        </a>
+                        <a href="gestion-vacunas.php" class="box__container"> 
+                            <div class="box__img">
+                                <img src="img/icon-geringa-white_rellena.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name">Registro De Vacunas</p>
+                            </div>
+                        </a>
+                    <?php
+                        }
+                    ?>
                     <?php
                         if($_SESSION['rol']=="2"){
                     ?>
-                    <a href="gestion-vacunas.php" <?php if($_SESSION['rol']=="1"){echo "style='display:flex;'";} ?> class="box__container"> 
-                        <div class="box__img">
-                            <img src="img/icon-pet-gato.png" alt="">
+                        <div class="box__container box__container-user">
+                            <div class="box__icon">
+                                <img src="img/icon-user.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name"><?php echo $_SESSION['usuario'];?></p>
+                                <p class="box__text-rol">Usuario</p>
+                            </div>
                         </div>
-                        <div class="box__text">
-                            <p class="box__text-name">Gestionar Mascota</p>
-                        </div>
-                    </a>
+                        <a href="gestion-mascotas.php" class="box__container"> 
+                            <div class="box__img">
+                                <img src="img/icon-pet-gato.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name">Gestionar Mascota</p>
+                            </div>
+                        </a>
+                        <a href="gestion-vacunas.php" class="box__container"> 
+                            <div class="box__img">
+                                <img src="img/icon-geringa-white_rellena.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name">Registro De Vacunas</p>
+                            </div>
+                        </a>
+                        <a href="gestion-razas.php" class="box__container"> 
+                            <div class="box__img">
+                                <img src="img/icon-animals.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name">Gestionar Razas</p>
+                            </div>
+                        </a>
                     <?php
                         }
                     ?>

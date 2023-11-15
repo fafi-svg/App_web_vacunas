@@ -76,21 +76,7 @@ body{
     display: grid;
 }
 
-.expan_btn::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -1em;
-    width: 200%;
-    margin: auto;
-    border-radius: 50%;
-    aspect-ratio: 1/1;
-    background-color: #262626;
-    z-index: 1;
-    transform: scale(0);
-    animation: expan_btn-scale 1s forwards;
-}
+
 
 .btnExit_img, .btnDelete_img{
     margin: auto;
@@ -141,40 +127,33 @@ body{
     position: absolute;
     right: 3em;
 }
-
-.expan_row{
-    height: 7.5em !important;
-    transition: .2s ease-in;
-    transition-property: height;
-    background-color: #5c415d !important;
+.table__rows-item-btn{
+    height: 100%;
 }
-.inputUpdate, .inputAgregar{
-    border: 0;
-    height: 5vh;
-    min-height: 1vh;
-    border-radius: 1vh;
-    width: 100%;
-    text-align: center;
-    outline: 0 solid;
-    transition: .3s ease-in-out;
-    transition-property: outline;
-    font-size: 1em;
+.table__rows-item-btn img{
+    width: inherit;
 }
-/* .inputAgregar{
-    
-} */
-select{
-	appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
+.table__rows-img{
+    height: 100%;
 }
-select::-ms-expand {
-    display: none;
+.table__rows-img img{
+    width: inherit;
 }
-.inputUpdate:focus{
-    outline: .5vh solid #32a1ce;
-    transition: .3s ease-in-out;
-    transition-property: outline;
+.table__rows-btn{
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+    flex-direction: row-reverse;
+    position: relative;
+    height: 100%;
+}
+.table__rows-btn-img{
+    display: flex;
+    align-items: center;
+}
+.table__rows-btn-img img{
+    position: relative;
+    z-index: 2;
 }
 .table__rows-btn-img{
     user-select: none;
@@ -183,37 +162,78 @@ select::-ms-expand {
 .table__rows-btn-img img{
     width: 1.9em;
 }
+/* ____________________________ ROWS_WIDTHS_TABLE ____________________________*/
+.table__header-container,.table__rows-item{
+    grid-template-columns: 8% 30% 20% 15% 14%;
+}
 
+.table__rows-column{
+    width: 87%;
+}
+.table__header-container{
+    width: 88.6%;
+}
+/* ____________________________ ROWS_WIDTHS_TABLE ____________________________*/
 @media (max-width:768px){
+    .table__rows-column{
+        width: 90%;
+    }
+    .table__header-container{
+        width: 96.3%;
+    }
+    /*___________________________ CONTENT_TABLE_HIDE ___________________________*/
+    .table__rows-item-column:last-child{
+        display: none;
+    }
+    .table__rows-item-column:first-child{
+        display: none;
+    }
+    /*___________________________ CONTENT_TABLE_HIDE ___________________________*/
+    /*____________________________ HEADER_TABLE_HIDE ____________________________*/
+    .table__header-content:last-child{
+        display: none;
+    }
+    .table__header-content:first-child{
+        display: none;
+    }
+    /*____________________________ HEADER_TABLE_HIDE ____________________________*/
+    /*____________________________ ROWS_WIDTHS_TABLE ____________________________*/
+    .table__header-container, .table__rows-column{
+        grid-template-columns: 40% 30% 25%;
+    }
+    .table__rows-item{
+        grid-template-columns: 40% 30% 25%;
+    }
+    /*____________________________ ROWS_WIDTHS_TABLE ____________________________*/
     .table__rows-btn-flecha{
         display: grid;
     }
-    .table__rows-btn{
+    .table__header-text{
+        font-size: 1em;
+    }
+    .table__rows-item-btn{
         position: absolute;
-        right: -6.5em;
+        right: -8em;
         top: 0;
         bottom: 0;
         margin: auto;
-        background-color: brown;
-        padding: 0 1em 0 1em;
-        border-radius: 4em;
-        margin: auto;
-        height: 3.3em;
+        height: 2.7em;
         transition: .2s ease-in-out;
         transition-property: right;
         transition-delay: .5s;
     }
-    .table__rows-btn:hover{
-        right: 0em;
+    .table__rows-btn{
+        padding: 0 1em 0 1em;
+        border-radius: 4em;
+    }
+    .table__rows-item-btn:hover{
+        right: 1.5em;
         transition: .2s ease-in-out;
         transition-property: right;
     }
     .table__rows-btn_color{
-        background-color: #e94f37 !important;
-        right: -8em;
+        background-color: #d137e9 !important;
     }
-
-
     .btnFlecha{
         display: grid;
         position: relative;
@@ -221,16 +241,12 @@ select::-ms-expand {
         width: 1em;
     }
 
+    .table__rows-container:nth-child(even) > .table__rows-content > .table__rows-item-btn > .table__rows-btn{
+        background-color: #555555;
+    }
+    .table__rows-container:nth-child(odd) > .table__rows-content > .table__rows-item-btn .table__rows-btn{
+        background-color: #808585;
+    }
+
 }
 
-@keyframes expan_btn-scale {
-    0%{
-        transform: scale(0);
-    }
-    70%{
-        transform: scale(1.02);
-    }
-    100%{
-        transform: scale(1);
-    }
-}

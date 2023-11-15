@@ -8,7 +8,7 @@ class GestionVacunasConsultas extends ConexionDataBase{
     }
     public function readVacunas(){
         $mysqli = $this->conexion();
-        $sql = "SELECT v.id, v.nombre, v.aplicacion, v.tipomascota_id, count(c.vacuna_id) FROM vacunas as v left join controlvacunas as c on c.vacuna_id = v.id group by  v.id , v.nombre,  v.aplicacion , v.tipomascota_id";
+        $sql = "SELECT v.id, v.nombre, v.aplicacion, v.tipomascota_id, count(c.vacuna_id) as countVacuna FROM vacunas as v left join controlvacunas as c on c.vacuna_id = v.id group by  v.id , v.nombre,  v.aplicacion , v.tipomascota_id";
         $sqlQuery = $mysqli->query($sql);
         return $sqlQuery ;
     }
