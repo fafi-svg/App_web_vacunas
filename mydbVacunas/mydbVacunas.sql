@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `mydbvacunas`.`tipomascota` (
   `EdadEquivalenteInfante` INT NULL DEFAULT NULL,
   `EdadEquivalenteJoven` INT NULL DEFAULT NULL,
   `EdadEquivalenteAdolecente` INT NULL DEFAULT NULL,
-  `EdadAdulto` INT NULL DEFAULT NULL,
+  `EdadAdulto` INT NULL DEFAULT NULL,	
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
@@ -104,7 +104,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `mydbvacunas`.`mascota` (
   `id` INT NOT NULL auto_increment,
   `nombre` VARCHAR(150) NULL DEFAULT NULL,
-  `FechaNacimiento` DATETIME NULL DEFAULT NULL,
+  `FechaNacimiento` DATE NULL DEFAULT NULL,
   `foto` BLOB NULL DEFAULT NULL,
   `User_id` INT NOT NULL,
   `TipoMascota_id` INT NOT NULL,
@@ -205,13 +205,22 @@ insert into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) 
 -- -----------------------------------------------------------------------------##
 insert into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('luca','2015-05-15','4','2','5'),('donkan','2015-05-15','4','2','45'),('silvestre','2015-05-15','3','2','3'),('paco','2015-05-15','3','2','15'),('miguel','2015-05-15','3','2','89'),('firulais','2015-05-15','1','2','5'); 
 -- -----------------------------------------------------------------------------##
+-- Control Vacunas
+-- -----------------------------------------------------------------------------##
+insert into controlvacunas values ('1','2','2015-05-15');
+-- -----------------------------------------------------------------------------##
 -- CONSULTAS
 -- -----------------------------------------------------------------------------##
- select * from Vacunas ;
- select * from user;
- select * from raza;
- select * from mascota;
+  select count(m.Raza_id) as 'countRaza', tm.nombre as 'tm.nombre', r.nombre as 'r.nombre', t.tamano as "t.tamano", m.nombre as 'nombre mascota'  from mascota as m left join raza as r on m.Raza_id = r.id  left join TamanosMascota as t on t.id = r.TamanoMascota_id left join TipoMascota as tm on m.TipoMascota_id = tm.id group by  m.TipoMascota_id, r.nombre, t.tamano;
+-- SELECT  m.nombre, u.nombre, count(c.Mascota_id), m.TipoMascota_id,m.FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id left join controlvacunas as c on c.Mascota_id = m.id  group by   m.nombre, u.nombre, m.TipoMascota_id, m.FechaNacimiento;
+-- select * from Vacunas ;
+-- select * from user;
+-- select * from controlvacunas;
+-- select * from mascota;
+-- select * from raza;
+-- select * from TamanosMascota;
 -- select count(id) from Vacunas ;
+-- SELECT v.id, v.nombre, v.aplicacion, v.tipomascota_id, count(c.vacuna_id) as countVacuna FROM vacunas as v left join controlvacunas as c on c.vacuna_id = v.id group by  v.id , v.nombre,  v.aplicacion , v.tipomascota_id;
 -- SELECT v.id as ID, v.nombre as 'Nombre Vacuna', v.aplicacion as 'Dias Aplicacion', v.tipomascota_id as 'Tipo Mascota', count(c.vacuna_id) as count FROM vacunas as v left join controlvacunas as c on c.vacuna_id = v.id group by  v.id , v.nombre,  v.aplicacion , v.tipomascota_id;
 -- select t.nombre from tipomascota as t left join vacunas as v on v.tipomascota_id = t.id group by t.nombre;
 -- 	select t.nombre from tipomascota as t;
