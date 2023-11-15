@@ -4,28 +4,53 @@ var inputUpdate = document.querySelectorAll(".inputUpdate");
 var btnAgregar = document.querySelector('.btnSubmit_img');
 var inputAgregar = document.querySelectorAll("#inputCreate");
 var CancelarDelete = document.querySelectorAll(".btnExit_img");
+var tabIndexDesable = 
+document.querySelectorAll("select,input").forEach(element => {
+    element.onblur = function (){
+        if(document.querySelector("form#"+element.id).classList.contains("expan_row")){
+            console.log(element.id);
+            document.querySelector("form#"+element.id).classList.remove("expan_row");
+            document.querySelector('.table__rows-btn-edit_'+element.id).classList.remove("expan_btn");
+            document.querySelector("form#"+element.id).scroll(1,0);
+        }else{
+            document.querySelector("form#"+element.id).scroll(1,0);
+        }
+    };
+    element.onfocus = function (){
+        if(!document.querySelector("form#"+element.id).classList.contains("expan_row")){
+            document.querySelector("form#"+element.id).classList.add("expan_row");
+            document.querySelector('.table__rows-btn-edit_'+element.id).classList.add("expan_btn");
+        }
+    };
+});
 var rowActive = "";
 var cont = 0;
 var parent ="";
+var elementbtn;
 var expan_btn ="";
+
 btnUpdate.forEach(element => {
     element.addEventListener("click", () => {
-        element.parentNode.parentNode.classList.add("expan_row");
         element.classList.add("expan_btn");
-        // element.add("expan_btn");
         var x = (element.className.split(" ")[1]);
-        if(x != parent.id && cont==1){
-            parent.classList.remove("expan_row");
-            expan_btn.classList.remove("expan_btn");
-            cont=0;
+        document.querySelector("form#"+x).classList.add('expan_row')
+        console.log(element);
+        if(cont==1){
+            if(x != parent.id){
+                parent.classList.remove("expan_row");
+                elementbtn.classList.remove("expan_btn");
+                cont=0;
+            }
         }
         if(cont==0){
-            Parent(element)
+            Parent(element, x)
         }
     });
 });
-function Parent(element){
-    parent = element.parentNode.parentNode;
+function Parent(element, x){
+    parent = document.querySelector("form#"+x);
+    elementbtn = element
+    console.log(parent);
     expan_btn = element;
     cont=1;
 }
@@ -81,21 +106,22 @@ function activeBtnSubmit(arrayInput, btnElementRow, inputId, labelElementRow){
 var list = document.querySelectorAll("div#btnDelete");
 list.forEach(element => {
     element.addEventListener("click", function (ev){
-        console.log(ev.target.parentNode.parentNode.parentNode);
-        var parentRow = ev.target.parentNode.parentNode.parentNode.id; //classList.toggle("expan_delete")
-        var childId =  ".screenDelete_"+parentRow;
-        console.log(childId);
-        document.querySelector(childId).classList.toggle("expan_delete");
+        // ev.className.split(" ")[1]
+        console.log(document.querySelector(".screenDelete_"+ev.target.id));
+        var screen = ".screenDelete_"+(ev.target.id);
+        document.querySelector(screen).classList.toggle("expan_delete");
+        // var parentRow = ev.target.parentNode.parentNode.parentNode.id; //classList.toggle("expan_delete")
+        // var childId =  ".screenDelete_"+parentRow;
+        // console.log(childId);
+        // document.querySelector(childId).classList.toggle("expan_delete");
     });
 });
 CancelarDelete.forEach(element => {
     element.addEventListener("click", ()=>{
-        var parentClose = element.parentNode.parentNode.id;
-        // var parentClose = "."+parentClose;
-        console.log(parentClose);
-        document.querySelector("."+parentClose).classList.remove("expan_delete");
+        var Class = ".screenDelete_"+element.id;
+        console.log(Class);
+        document.querySelector(Class).classList.remove("expan_delete");
     })
-    
 }); 
 
 // var list = document.querySelector("ul.x");
