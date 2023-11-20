@@ -51,17 +51,17 @@
                         <div class="menu__exit">
                             <div class="menu__exit-content">
                                 <?php if($_SESSION['rol']=='2'){?>
-                                        <a href="gestion-razas.php" class="menu__option">
-                                            <div class="menu__option-img">
-                                                <img src="img/icon-animals.png" alt="">
-                                            </div>
-                                            <p class="menu__option-text"> Gestionar Razas</p>
-                                        </a>
                                         <a href="gestion-mis-mascotas.php" class="menu__option">
                                             <div class="menu__option-img">
                                             <img src="img/icon-animals.png" alt="">
                                             </div>
                                             <p class="menu__option-text">Mis Mascotas</p>
+                                        </a>
+                                        <a href="gestion-mascotas.php" class="menu__option">
+                                            <div class="menu__option-img">
+                                                <img src="img/icon-pet-gato.png" alt="">
+                                            </div>
+                                            <p class="menu__option-text">Gestionar Mascota</p>
                                         </a>
                                         <a href="gestion-vacunas.php" class="menu__option">
                                             <div class="menu__option-img">
@@ -70,7 +70,11 @@
                                             <p class="menu__option-text">Gestionar Vacunas</p>
                                         </a>
                                 <?php }?>
-
+                                <a href="homepage.php" class="button__home">
+                                    <div class="menu__option-img">
+                                        <img src="img/icon-home.png" alt="">
+                                    </div>
+                                </a> 
                                 <form class="menu__exit-form" method="post">
                                     <input id="button__exit" class="login__button-primario" name="exitSession" type="submit" value="Salir">
                                     <label for="button__exit">

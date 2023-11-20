@@ -65,7 +65,11 @@
                                             <p class="menu__option-text">Gestionar Vacunas</p>
                                         </a>
                                 <?php }?>
-
+                                <a href="homepage.php" class="button__home">
+                                    <div class="menu__option-img">
+                                        <img src="img/icon-home.png" alt="">
+                                    </div>
+                                </a> 
                                 <form class="menu__exit-form" method="post">
                                     <input id="button__exit" class="login__button-primario" name="exitSession" type="submit" value="Salir">
                                     <label for="button__exit">

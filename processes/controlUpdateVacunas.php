@@ -6,7 +6,7 @@
     class ControlUpdateVacunas extends ConexionDataBase{
 
         public function updateVacunas(){
-            if(isset($_POST['updateData']) and !empty($_POST['updateData'])){
+            if(isset($_POST['updateData']) and $_POST['updateData'] != '-1'){
                 (new controllerVacuna) ->update($_POST['updateData']);
             }
             

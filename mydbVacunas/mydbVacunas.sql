@@ -211,7 +211,7 @@ insert into controlvacunas values ('1','2','2015-05-15');
 -- -----------------------------------------------------------------------------##
 -- CONSULTAS
 -- -----------------------------------------------------------------------------##
-  select count(m.Raza_id) as 'countRaza', tm.nombre as 'tm.nombre', r.nombre as 'r.nombre', t.tamano as "t.tamano", m.nombre as 'nombre mascota'  from mascota as m left join raza as r on m.Raza_id = r.id  left join TamanosMascota as t on t.id = r.TamanoMascota_id left join TipoMascota as tm on m.TipoMascota_id = tm.id group by  m.TipoMascota_id, r.nombre, t.tamano;
+--  select count(m.Raza_id) as 'countRaza', tm.nombre as 'tm.nombre', r.nombre as 'r.nombre', t.tamano as "t.tamano", m.nombre as 'nombre mascota'  from mascota as m left join raza as r on m.Raza_id = r.id  left join TamanosMascota as t on t.id = r.TamanoMascota_id left join TipoMascota as tm on m.TipoMascota_id = tm.id group by  m.TipoMascota_id, r.nombre, t.tamano;
 -- SELECT  m.nombre, u.nombre, count(c.Mascota_id), m.TipoMascota_id,m.FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id left join controlvacunas as c on c.Mascota_id = m.id  group by   m.nombre, u.nombre, m.TipoMascota_id, m.FechaNacimiento;
 -- select * from Vacunas ;
 -- select * from user;

@@ -2,7 +2,7 @@
 class GestionVacunasConsultas extends ConexionDataBase{
     public function contarVacunas(){
         $mysqli = $this->conexion();
-        $sql = "select count(id) as cound from Vacunas" ;
+        $sql = "SELECT count(id) as cound FROM Vacunas" ;
         $sqlQuery = $mysqli->query($sql);
         return $sqlQuery ;
     }

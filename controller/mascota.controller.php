@@ -1,19 +1,25 @@
 <?php
     require_once("././conexion.php");
     require_once(__DIR__."/../models/vacuna.model.php");
-    class controllerVacuna extends ConexionDataBase{
-        public function create(modelVacuna $modelVacuna){
+    require_once(__DIR__."/../user.Controller.php");
+    class controllerMascotas extends ConexionDataBase{
+        public function create(modelMascotas $modelMascotas){
             $mysqli = $this->conexion();
-            $nombre = $modelVacuna->nombre = $mysqli -> real_escape_string($_POST['nombre']);
-            $aplicacion = $modelVacuna->aplicacion = $mysqli -> real_escape_string($_POST['aplicacion']);
-            $tipoMascotaId = $modelVacuna->tipoMascotaId = $mysqli -> real_escape_string($_POST['tipomascota_id']);
-            $sql ="INSERT into vacunas (nombre, aplicacion, tipoMascota_Id) values('$nombre', '$aplicacion', '$tipoMascotaId')";
-            $result = $mysqli->query($sql);
+            $userNameAccount = "%".$_SESSION['usuario']."%";
+            $sql ="SELECT * FROM User where username like binary '$userNameAccount'";
+            $sqlUser=$mysqli->query($sql);
+            $resultQuery = mysqli_fetch_array($sqlUser);
+            $idUser = $resultQuery["id"]; 
+            $nombre = $modelMascotas->nombre = $mysqli -> real_escape_string($_POST['nombre']);
+            $FechaNacimiento = $modelMascotas->FechaNacimiento = $mysqli -> real_escape_string($_POST['fechaNacimiento']);
+            $TipoMascota_id = $modelMascotas->TipoMascota_id = $mysqli -> real_escape_string($_POST['tipoMascota']);
+            $Raza_id = $modelMascotas->Raza_id = $mysqli -> real_escape_string($_POST['raza']);
+            $sql ="INSERT into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('$nombre', '$FechaNacimiento', '$idUser', '$TipoMascota_id', '$Raza_id')";
             $mysqli->close();
         }
         public function read(){
             $mysqli = $this->conexion();
-            $sql = "SELECT * FROM vacunas as v";
+            $sql = "SELECT * FROM mascota as m";
             $result = $mysqli->query($sql);
             $users = [];
             if ($result->num_rows > 0) {
@@ -26,10 +32,10 @@
         }
         public function delete($id){
             $mysqli = $this->conexion();
-            $sql = "DELETE FROM v acunas WHERE id = $id";
+            $sql = "DELETE FROM mascota WHERE id = $id";
             $mysqli->query($sql);
             if ($mysqli) {
-                echo "<div class='table__title-message'>Registro eliminado con éxito.</div>";
+                echo "<div class='table__title-message'>Registro Mascota eliminado con éxito.</div>";
             } else {
                 echo "Error al eliminar el registro: " . $mysqli->error;
             }
@@ -49,16 +55,15 @@
                         if($i < $longPost and $con >=2){
                             $stringQuery = $stringQuery.",";
                         }
-                        $stringQuery = $stringQuery." ".$nameColumn."="."'".$mysqli -> real_escape_string($_POST[$nameColumn])."'";
+                        $stringQuery = $stringQuery." ".$nameColumn."="."'".$_POST[$nameColumn]."'";
                     }
                 }
-                $_POST['updateData']='-1';
-                echo($_POST['updateData']);
-                $sql = "update vacunas set $stringQuery where id = $id";
+                $sql ="UPDATE mascota set $stringQuery where id = $id";
                 $resultado = $mysqli->query($sql);
                 if($resultado){
                     echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
                 }
+                $_POST['updateData']='-1';
                 $mysqli -> close();
             }
         }

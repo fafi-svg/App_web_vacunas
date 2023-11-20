@@ -3,7 +3,7 @@
         public $id;
         public $nombre;
         public $FechaNacimiento;
-        public $email;
+        public $foto;
         public $User_id;
         public $TipoMascota_id;
         public $Raza_id;

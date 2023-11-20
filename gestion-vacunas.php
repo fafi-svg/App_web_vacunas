@@ -19,7 +19,7 @@
 </head>
 <body>
     <main class="main_gestion-vacuna">
-            <?php if(!empty($_SESSION['usuario'])){?>
+        <?php if(!empty($_SESSION['usuario'])){?>
            <div class="screen__gestion-vacuna">
                 <header class="header__gestion-vacuna">
                     <div class="header__logo user_select_none">
@@ -62,11 +62,17 @@
                                         <p class="menu__option-text">Mis Mascotas</p>
                                     </a>
                                 <?php }?>
+                                <a href="homepage.php" class="button__home">
+                                    <div class="menu__option-img">
+                                        <img src="img/icon-home.png" alt="">
+                                    </div>
+                                </a> 
                                 <form class="menu__exit-form" method="post">
                                     <input id="button__exit" class="login__button-primario" name="exitSession" type="submit" value="Salir">
                                     <label for="button__exit">
                                         <img tabindex="0" class="" src="img/icono-salida_mini.png" alt="button__exit">
                                     </label>
+   
                                 </form>
                             </div>
                         </div>
@@ -88,6 +94,7 @@
                                         (new controllerVacuna) ->delete($_POST['deleteData']);
                                     }
                                     if(isset($_POST['addDataRow']) or !empty($_POST['aplicacion']) or !empty($_POST['tipomascota_id']) or !empty($_POST['nombre'])){
+                                        echo($_POST['addDataRow']);
                                         require_once(__DIR__."/controller/vacuna.controller.php");
                                         require_once(__DIR__."/models/vacuna.model.php");
                                         $modelVacuna = (new modelVacuna);
@@ -170,7 +177,7 @@
                                                         <div class="screenDelete_btn">
                                                             <img class="btnDelete_img" src="img/icon-basurero-white.png" alt="icon-update">
                                                             <img id="row_<?php echo  $row;?>" class="btnExit_img" src="img/icon-cruz-white.png" alt="icon-update">
-                                                            <input class="btnDelete_input inputDelete_row_<?php echo  $row;?>" id="row_<?php echo  $row;?>" value="<?php echo  $row;?>" type="submit" name="deleteData">
+                                                            <input class="btnDelete_input inputDelete_row_<?php echo  $row;?>" id="row_<?php echo $row;?>" value="<?php echo  $row;?>" type="submit" name="deleteData">
                                                         </div>
                                                         <p class="screenDelete_text">
                                                             Desea Eliminar El registro vacuna
@@ -188,7 +195,7 @@
                                                             <p class="table__rows-text"><?php echo $variable['nombre'] ?></p>
                                                             <?php if($_SESSION['rol']=="2"){ ?>
                                                                 <div class="inputUpdate__container">                                                        
-                                                                    <input class="inputUpdate inputUpdate_row_<?php echo $row;?>" id="row_<?php echo $row;?>" type="text">
+                                                                    <input class="inputUpdate inputUpdate_row_<?php echo $row;?>" id="row_<?php echo $row;?>" type="text" name="nombre">
                                                                 </div>    
                                                              <?php } ?>                                                    
                                                         </div>
@@ -196,7 +203,7 @@
                                                         <p class="table__rows-text"><?php echo $variable['aplicacion'] ?></p>
                                                         <?php if($_SESSION['rol']=="2"){ ?>
                                                             <div class="inputUpdate__container">
-                                                                <input class="inputUpdate inputUpdate_row_<?php echo $row;?>" id="row_<?php echo  $row;?>" type="number"> 
+                                                                <input class="inputUpdate inputUpdate_row_<?php echo $row;?>" id="row_<?php echo  $row;?>" type="number" name="aplicacion"> 
                                                             </div>    
                                                         <?php } ?>                                                        
                                                         </div>
