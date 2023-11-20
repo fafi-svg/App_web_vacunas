@@ -4,7 +4,7 @@ var inputUpdate = document.querySelectorAll(".inputUpdate");
 var btnAgregar = document.querySelector('.btnSubmit_img');
 var inputAgregar = document.querySelectorAll("#inputCreate");
 var CancelarDelete = document.querySelectorAll(".btnExit_img");
-var tabIndexDesable = 
+// var tabIndexDesable = 
 document.querySelectorAll("select,input").forEach(element => {
     element.onblur = function (){
         if(document.querySelector("form#"+element.id).classList.contains("expan_row")){
@@ -123,13 +123,14 @@ CancelarDelete.forEach(element => {
         document.querySelector(Class).classList.remove("expan_delete");
     })
 }); 
-
-// var list = document.querySelector("ul.x");
-// list.addEventListener(
+var box__container = document.querySelector('.box__container');
+// box__container.addEventListener(
 //   "click",
 //   function (ev) {
-//     if (ev.target.tagName === "P") {
-//       ev.target.classList.toggle("done");
+//     if (ev.target.className === "box__pet") {
+//         var element =ev.target;
+//        console.log(element)
+//     //   ev.target.classList.toggle("done");
 //     }
 //   },
 //   false,
@@ -152,7 +153,6 @@ inputAgregar.forEach(btnAgregarS => {
             }
         });
         if(inputConValue > 0){
-            
             document.querySelector("#table__header-input").classList.add("inputUpdateView");
             document.querySelector("#btnAgregarSubmit").classList.add("inputUpdateView");
             inputConValue = 0;
@@ -164,3 +164,4 @@ inputAgregar.forEach(btnAgregarS => {
         }
     });
 });
+
