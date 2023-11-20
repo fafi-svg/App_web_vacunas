@@ -1,6 +1,9 @@
 *{
     box-sizing: border-box;
 }
+body{
+    background-color: #555555;
+}
 /*___________________________ CLASS_JS ___________________________*/
 /*__ gestion-vacunas.php __ gestion-razas.php __ gestion-mascotas.php __*/
 .expan_row{
@@ -39,7 +42,7 @@
 /*----------------------------------------------------------------------------------------------------------------------*/
 /*__________________________ STYLE_INPUT __________________________*/
 /*__ gestion-vacunas.php __ gestion-razas.php __ gestion-mascotas.php __ login.php __ register.php __*/
-input[type='text'], select,input[type='number']{
+input[type='text'], select,input[type='number'],input[type='date']{
     border: 0;
     height: 5vh;
     min-height: 1vh;
@@ -51,7 +54,7 @@ input[type='text'], select,input[type='number']{
     transition-property: outline;
     font-size: 1em;
 }
-input[type='text']:focus, select:focus,input[type='number']:focus{
+input[type='text']:focus, select:focus,input[type='number']:focus,input[type='date']:focus{
     outline: .5vh solid #32a1ce;
     transition: .3s ease-in-out;
     transition-property: outline;
@@ -69,7 +72,7 @@ select::-ms-expand {
 /*__________________________ LAYOUT_TABLE __________________________*/
 .section__content{
     background-color: #555555;
-    height: 88.26vh;
+    height: 85.26vh;
 }
 .table{
     width: 85vw;
@@ -94,6 +97,8 @@ select::-ms-expand {
     display: flex;
     gap: 2em;
     flex-wrap: wrap;
+    position: relative;
+    align-items: center;
 }
 .table__content{
     background-color: #555555;

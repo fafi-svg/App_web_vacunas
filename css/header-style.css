@@ -18,7 +18,7 @@ a{
     gap: 2em;
 }
 .header__icon-img img{
-    width: 2.5em;
+    width: 3em;
 }
 .header__logo-img img{
     width: 5em;
@@ -28,7 +28,7 @@ a{
 }
 /* .screen__gestion-vacuna::before{
     content: "";
-    background-image: url(../img/Diseños_pagina/diseño-gestion_vacuna.png);
+    background-image: url(../img/DiseÃ±os_pagina/diseÃ±o-gestion_vacuna.png);
     background-repeat: no-repeat;
     height: 100vh;
     width: 88vw;
@@ -43,16 +43,21 @@ a{
 } */
 .button__menu:focus-within ~ .menu__exit{
     height: 25em;
-    transition: height .5s ease-in-out;
+    transition-duration: .5s;
+    transition-property: height;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0ms;
 }
 /* .menu__exit-form{
 
 } */
 .menu__exit-form{
-    width: max-content;
+    width: 3em;
+    height: 3em;
     position: absolute;
     bottom: 2em;
     right: 2em;
+    /* display: flex; */
 }
 .menu__option{
     display: flex;
@@ -71,19 +76,34 @@ a{
     transition: .2s ease-in;
     transition-property: background-color;
 }
+.menu__exit-form label {
+    height: 100%;
+    display: flex;
+}
 #button__exit{
     position: absolute;
-    /* z-index: -1; */
+    z-index: 0;
     height: 0;
     width: 100%;
     opacity: 0;
+    right: 0em;
     height: 100%;
+    cursor: pointer;
 }
 .menu__option-img img{
     width: 2em;
 }
 .menu__option-text{
     font-size: 1.5em;
+}
+.button__home .menu__option-img img {
+    width: 3em;
+    filter: drop-shadow(0px 0px 0px white);
+}
+.button__home {
+    position: absolute;
+    left: 2em;
+    bottom: 2em;
 }
 .menu__exit-content{
     margin: 2em;
@@ -97,13 +117,15 @@ a{
     right: 0%;
     top: 10%;
     text-align: center;
-    transition: height .5s ease-in-out;
     position: absolute;
     height: 0em;
-    transition: height .5s ease-in-out;
     overflow: hidden;
     background-color: #262626;
     z-index: 5;
+    transition-delay: 700ms;
+    transition-duration: .5s;
+    transition-property: height;
+    transition-timing-function: ease-in-out;
 }
 /*______________________________ HEADER ______________________________*/
 @media (max-width: 768px){
@@ -115,7 +137,7 @@ a{
     }
 
 }
-/*______________________________ Diseño Base Tabla ______________________________*/
+/*______________________________ DiseÃ±o Base header ______________________________*/
 /* <!DOCTYPE html>
 <html lang="en">
 <head>
