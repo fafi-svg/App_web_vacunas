@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
     require_once __DIR__."/processes/signOff.php";
     if(isset($_POST['exitSession'])){
         (new SignOff)->exitSession();
@@ -7,7 +7,7 @@
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/consultas-gestion-Razas.php");
     require_once(__DIR__."/consultas/gestionMascotas.php");
-?> -->
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,22 +20,22 @@
 </head>
 <body onload="box__icon__color()" class="body__gestion__mis__mascota">
     <main class="main__gestion__mis__mascota">
-        <!-- <?php if(!empty($_SESSION['usuario'])){?>
-            <?php if($_SESSION['rol'] == '2'){?>
-                <?php 
-                    $petsRazaData = (new GestionRazasConsultas) -> petsRazaData(); 
-                    $petsRazaName = (new GestionRazasConsultas)  ->petsRazaName()  
-                ?>
-                <?php
-                foreach ($petsRazaData as $petsRazaData_Row) {
-                    $longPetsRazaData = sizeof($petsRazaData_Row)-1;
-                    break;
-                }
-                foreach ($petsRazaName as $petsRazaName_Row) {
-                    $longPetsRazaName = sizeof($petsRazaName_Row)-1;
-                    break;
-                }
-            ?> -->
+            <?php if(!empty($_SESSION['usuario'])){?>
+                <?php if($_SESSION['rol'] == '2'){?>
+                    <?php 
+                        $petsRazaData = (new GestionRazasConsultas) -> petsRazaData(); 
+                        $petsRazaName = (new GestionRazasConsultas)  ->petsRazaName()  
+                    ?>
+                    <?php
+                    foreach ($petsRazaData as $petsRazaData_Row) {
+                        $longPetsRazaData = sizeof($petsRazaData_Row)-1;
+                        break;
+                    }
+                    foreach ($petsRazaName as $petsRazaName_Row) {
+                        $longPetsRazaName = sizeof($petsRazaName_Row)-1;
+                        break;
+                    }
+            ?> 
             <div class="screen__gestion__mascota">
                 <header class="header__gestion-vacuna">
                     <div class="header__logo user_select_none">

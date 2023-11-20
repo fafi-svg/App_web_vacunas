@@ -93,7 +93,7 @@
                                         require_once(__DIR__."/controller/vacuna.controller.php");
                                         (new controllerVacuna) ->delete($_POST['deleteData']);
                                     }
-                                    if(isset($_POST['addDataRow']) or !empty($_POST['aplicacion']) or !empty($_POST['tipomascota_id']) or !empty($_POST['nombre'])){
+                                    if(isset($_POST['addDataRow']) and $_POST['addDataRow'] != -'1'){
                                         echo($_POST['addDataRow']);
                                         require_once(__DIR__."/controller/vacuna.controller.php");
                                         require_once(__DIR__."/models/vacuna.model.php");
