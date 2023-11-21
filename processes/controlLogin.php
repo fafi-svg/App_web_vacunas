@@ -22,7 +22,8 @@
                                     echo (new setMessageLogin) -> messageStartSession();                                                                     
                                     session_start();
                                     $_SESSION['usuario'] = $_POST['userNameAccount'];
-                                    $_SESSION['rol'] = $resultQuery["Role_id"];                             
+                                    $_SESSION['rol'] = $resultQuery["Role_id"];
+                                    $_SESSION['id'] = $resultQuery["id"];                              
                                     mysqli_free_result( $sql );   
                                     $mysqli -> close();                        
                                 }else{

@@ -5,8 +5,8 @@
     } else{session_start();} 
     require_once(__DIR__."/controller/user.controller.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
-    require_once(__DIR__."/consultas/consultas-gestion-Razas.php");
-    require_once(__DIR__."/consultas/gestionMascotas.php");
+    require_once(__DIR__."/consultas/consultas-Vacunas.php");
+    require_once(__DIR__."/consultas/consultas-Mascotas.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,19 +20,14 @@
 </head>
 <body onload="box__icon__color()" class="body__gestion__mis__mascota">
     <main class="main__gestion__mis__mascota">
-            <?php if(!empty($_SESSION['usuario'])){?>
-                <?php if($_SESSION['rol'] == '2'){?>
+        <?php if(!empty($_SESSION['usuario'])){?>
                     <?php 
-                        $petsRazaData = (new GestionRazasConsultas) -> petsRazaData(); 
-                        $petsRazaName = (new GestionRazasConsultas)  ->petsRazaName()  
+                        $PetsUser = (new GestionMascotaConsultas) -> petsUser($_SESSION['id']); 
+                        
                     ?>
                     <?php
-                    foreach ($petsRazaData as $petsRazaData_Row) {
-                        $longPetsRazaData = sizeof($petsRazaData_Row)-1;
-                        break;
-                    }
-                    foreach ($petsRazaName as $petsRazaName_Row) {
-                        $longPetsRazaName = sizeof($petsRazaName_Row)-1;
+                    foreach ($PetsUser as $Pet) {
+                        $longPetsUser = sizeof($Pet)-1;
                         break;
                     }
             ?> 
@@ -57,12 +52,6 @@
                                             </div>
                                             <p class="menu__option-text"> Gestionar Razas</p>
                                         </a>
-                                        <a href="gestion-mis-mascotas.php" class="menu__option">
-                                            <div class="menu__option-img">
-                                            <img src="img/icon-animals.png" alt="">
-                                            </div>
-                                            <p class="menu__option-text">Mis Mascotas</p>
-                                        </a>
                                         <a href="gestion-vacunas.php" class="menu__option">
                                             <div class="menu__option-img">
                                                 <img src="img/icon-geringa-white_rellena.png" alt="">
@@ -70,7 +59,19 @@
                                             <p class="menu__option-text">Gestionar Vacunas</p>
                                         </a>
                                 <?php }?>
-
+                                <?php if($_SESSION['rol']=='1'){?>
+                                        <a href="gestion-vacunas.php" class="menu__option">
+                                            <div class="menu__option-img">
+                                                <img src="img/icon-geringa-white_rellena.png" alt="">
+                                            </div>
+                                            <p class="menu__option-text">Gestionar Vacunas</p>
+                                        </a>
+                                <?php }?>
+                                <a href="homepage.php" class="button__home">
+                                    <div class="menu__option-img">
+                                        <img src="img/icon-home.png" alt="">
+                                    </div>
+                                </a> 
                                 <form class="menu__exit-form" method="post">
                                     <input id="button__exit" class="login__button-primario" name="exitSession" type="submit" value="Salir">
                                     <label for="button__exit">
@@ -91,167 +92,60 @@
                         </div> 
                     </div>
                     <div class="box__container">
-                        <div class="box__pet">
-                            <div tabindex="0" class="box__pet-container" id="box__pet-1">
-                                <form class="box__info" id="box__info-1">
-                                    <div class="box__icon box__icon-pet user_select_none" id="box__icon_1">
-                                        <img class="" src="img/icon-pet-gato.png" alt="icon-pet">
-                                    </div>
-                                    <div class="box__text box__text-pet">
-                                        <div class="box__text-name">
-                                            <p class="box__text-title">Nombre Mascota 1</p>
-                                            <input class="box__text-input" id="input_1" type="text" name="nombre">
-                                            <p class="box__text-date">02/nov/219</p>
-                                            <input class="box__text-input" id="input_1" type="date" name="FechaNacimiento">
-                                        </div>     
-                                    </div>
-                                    <div class="box__icon-btn-container">
-                                        <div class="box__icon-btn user_select_none cursor_pointer" id="1">
-                                            <img class="box__icon-btn-img" src="img/icon-lapiz-white.png" alt="icon-lapiz">
+                        <?php $numBox = 1; foreach($PetsUser as $Pet){ ?>
+                            <div class="box__pet">
+                                <div tabindex="0" class="box__pet-container" id="box__pet-<?php echo $numBox; ?>">
+                                    <form class="box__info" id="box__info-<?php echo $numBox; ?>">
+                                        <div class="box__icon box__icon-pet user_select_none" id="box__icon_<?php echo $numBox; ?>">
+                                            <img class="" src="<?php if($Pet['foto'] != null){echo $Pet['foto'];}else{ if($Pet['TipoMascota_id'] == 1){echo 'img/icon-pet-gato.png';}else if($Pet['TipoMascota_id'] == 2){echo 'img/icon-pet-perro-mediano.png';}}?>" alt="icon-pet">
                                         </div>
-                                        <div class="box__info-input" id="box__info-input_1">
-                                            <img class="btnSubmit_img" src="img/icon-guardar.png" alt="">
-                                            <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit" name="addDataRow">
+                                        <div class="box__text box__text-pet">
+                                            <div class="box__text-name">
+                                                <p class="box__text-title"><?php echo $Pet['nombre']?></p>
+                                                <input class="box__text-input" id="input_<?php echo $numBox; ?>" type="text" name="nombre">
+                                                <p class="box__text-date"><?php echo $Pet['FechaNacimiento']?></p>
+                                                <input class="box__text-input" id="input_<?php echo $numBox; ?>" type="date" name="FechaNacimiento">
+                                            </div>     
                                         </div>
-                                    </div>
-                                </form>
-                                <div class="box__vacunas Scroll__container">
-                                    <div class="box__vacunas-container">
-                                        <div class="box__content">
-                                            <div class="box__item">
-                                                <div class="box__item-icon box__icon user_select_none">
-                                                    <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
-                                                </div>
-                                                <div class="box__text">
-                                                    <p class="box__text-title">Nombre Vacuna</p>          
-                                                    <p class="box__text-date">02/nov/219</p>
-                                                </div>
+                                        <div class="box__icon-btn-container">
+                                            <div class="box__icon-btn user_select_none cursor_pointer" id="<?php echo $numBox; ?>">
+                                                <img class="box__icon-btn-img" src="img/icon-lapiz-white.png" alt="icon-lapiz">
+                                            </div>
+                                            <div class="box__info-input" id="box__info-input_<?php echo $numBox; ?>">
+                                                <img class="btnSubmit_img" src="img/icon-guardar.png" alt="">
+                                                <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit" name="addDataRow">
                                             </div>
                                         </div>
-                                        <div class="box__content">
-                                            <div class="box__item">
-                                                <div class="box__item-icon box__icon user_select_none">
-                                                    <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
-                                                </div>
-                                                <div class="box__text">
-                                                    <p class="box__text-title">Nombre Vacuna</p>
-                                                    <p class="box__text-date">02/nov/219</p>
-                                                </div>
-                                            </div>
+                                    </form>
+                                    <div class="box__vacunas Scroll__container">
+                                        <div class="box__vacunas-container">
+                                            <?php $VacunasPet = (new GestionVacunasConsultas) -> petVacuna($Pet['id']); 
+                                                if(mysqli_num_rows($VacunasPet) > 0){
+                                                    foreach($VacunasPet as $Vacuna){ ?>
+                                                    <div class="box__content">
+                                                        <div class="box__item">
+                                                            <div class="box__item-icon box__icon user_select_none">
+                                                                <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
+                                                            </div>
+                                                            <div class="box__text">
+                                                                <p class="box__text-title"><?php $Vacuna['nombre']?></p>          
+                                                                <p class="box__text-date"><?php $Vacuna['fecha']?></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <?php } }?>
                                         </div>
-                                        <div class="box__content">
-                                            <div class="box__item">
-                                                <div class="box__item-icon box__icon user_select_none">
-                                                    <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
-                                                </div>
-                                                <div class="box__text">
-                                                    <p class="box__text-title">Nombre Vacuna</p>
-                                                    <p class="box__text-date">02/nov/219</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="box__content">
-                                            <div class="box__item">
-                                                <div class="box__item-icon box__icon user_select_none">
-                                                    <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
-                                                </div>
-                                                <div class="box__text">
-                                                    <p class="box__text-title">Nombre Vacuna</p>
-                                                    <p class="box__text-date">02/nov/219</p>
-                                                </div>
-                                            </div>
+                                        <div class="box__icon-default box__icon">
+                                            <img class="box__icon-created user_select_none" src="img/icon-agregar-white.png" alt="">
+                                            <p class="box__text-title"> Agregar Vacina</p>
                                         </div>
                                     </div>
-
-                                    <div class="box__icon-default box__icon">
-                                        <img class="box__icon-created user_select_none" src="img/icon-agregar-white.png" alt="">
-                                        <p class="box__text-title"> Agregar Vacina</p>
-                                    </div>
+                                    <div class="btn__expan" id="<?php echo $numBox; ?>"><img src="img/icon-flecha.png" alt=""></div>  
                                 </div>
-                                <div class="btn__expan" id="1"><img src="img/icon-flecha.png" alt=""></div>  
                             </div>
-                        </div>
-                        <div class="box__pet">
-                            <div tabindex="0" class="box__pet-container" id="box__pet-2">
-                                <form class="box__info" id="box__info-2">
-                                    <div class="box__icon box__icon-pet user_select_none" id="box__icon_2">
-                                        <img class="" src="img/icon-pet-gato.png" alt="icon-pet">
-                                    </div>
-                                    <div class="box__text box__text-pet">
-                                        <div class="box__text-name">
-                                            <p class="box__text-title">Nombre Mascota 1</p>
-                                            <input class="box__text-input" id="input_2" type="text" name="nombre">
-                                            <p class="box__text-date">02/nov/219</p>
-                                            <input class="box__text-input" id="input_2" type="date" name="nombre">
-                                        </div>     
-                                    </div>
-                                    <div class="box__icon-btn-container">
-                                        <div class="box__icon-btn user_select_none cursor_pointer" id="2">
-                                            <img class="box__icon-btn-img" src="img/icon-lapiz-white.png" alt="icon-lapiz">
-                                        </div>
-                                        <div class="box__info-input" id="box__info-input_2">
-                                            <img class="btnSubmit_img" src="img/icon-guardar.png" alt="">
-                                            <input class="btnSubmitAgregar" id="btnUpdateSubmit" type="submit" name="addDataRow">
-                                        </div>
-                                    </div>
-                                </form>
-                                <div class="box__vacunas Scroll__container">
-                                    <div class="box__vacunas-container">
-                                        <div class="box__content">
-                                            <div class="box__item">
-                                                <div class="box__item-icon box__icon user_select_none">
-                                                    <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
-                                                </div>
-                                                <div class="box__text">
-                                                    <p class="box__text-title">Nombre Vacuna</p>          
-                                                    <p class="box__text-date">02/nov/219</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="box__content">
-                                            <div class="box__item">
-                                                <div class="box__item-icon box__icon user_select_none">
-                                                    <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
-                                                </div>
-                                                <div class="box__text">
-                                                    <p class="box__text-title">Nombre Vacuna</p>
-                                                    <p class="box__text-date">02/nov/219</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="box__content">
-                                            <div class="box__item">
-                                                <div class="box__item-icon box__icon user_select_none">
-                                                    <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
-                                                </div>
-                                                <div class="box__text">
-                                                    <p class="box__text-title">Nombre Vacuna</p>
-                                                    <p class="box__text-date">02/nov/219</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="box__content">
-                                            <div class="box__item">
-                                                <div class="box__item-icon box__icon user_select_none">
-                                                    <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
-                                                </div>
-                                                <div class="box__text">
-                                                    <p class="box__text-title">Nombre Vacuna</p>
-                                                    <p class="box__text-date">02/nov/219</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="box__icon-default box__icon">
-                                        <img class="box__icon-created user_select_none" src="img/icon-agregar-white.png" alt="">
-                                        <p class="box__text-title"> Agregar Vacina</p>
-                                    </div>
-                                </div>
-                                <div class="btn__expan" id="2"><img src="img/icon-flecha.png" alt=""></div>  
-                            </div>
-                        </div>
+                        <?php $numBox++; }   ?>
                     </div>
+                    
                     <div class="modal__container">
                         <div class="modal__created">
                             <header class="modal__header">
@@ -296,15 +190,10 @@
                     </div>
                 </section>
             </div>
-            <!-- <?php
-                } else{header("location: error-not-session.php");}
-            ?>
         <?php
         } else{header("location: error-not-session.php");}
-        ?> -->
+        ?>
     </main>
-    <script src="js/main_mascotas.js">
-
-    </script>
+    <script src="js/main_mascotas.js"></script>
 </body>
 </html>
