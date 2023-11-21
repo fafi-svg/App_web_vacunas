@@ -321,6 +321,22 @@ img{
     margin: 1em;
     margin-bottom: 0;
 }
+.messageError::before{
+    content: attr(title);
+    position: absolute;
+    z-index: 10;
+    background-color: red;
+    width: 90%;
+    height: 6vh;
+    bottom: 6em;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    margin: auto;
+}
 /*____________________________ SCROLL_CONTENT ____________________________*/
 /*__ gestion-vacunas.php __ gestion-razas.php __ gestion-mascotas.php __*/
 .Scroll__container::-webkit-scrollbar {

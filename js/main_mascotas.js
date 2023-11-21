@@ -4,31 +4,49 @@ var box__info__input = document.querySelectorAll('.box__text-input');
 box__info__input.forEach(element => {
     element.addEventListener('change', ()=>{
         console.log(element);
+        console.log(document.querySelectorAll('#'+element.id));
         document.querySelectorAll('#'+element.id).forEach(inputEmpyChange => {
-            if((/\s/.test(inputEmpyChange.value))){
-                inputEmpyChange.value="";
-            }
-            if(!(/\s/.test(inputEmpyChange.value)) && inputEmpyChange.value != ""){
-                console.log(inputConValue);
+            // if((/\s/.test(inputEmpyChange.value))){
+            //     inputEmpyChange.value="";
+            // }
+            console.log(inputEmpyChange);
+            if((validarNamePet(inputEmpyChange.value)) && inputEmpyChange.value != ""){
                 inputConValue++;
                 console.log(inputConValue);
+                if(element.parentNode.parentNode.parentNode.classList.contains("messageError")){
+                    element.parentNode.parentNode.parentNode.classList.remove("messageError");
+                }
+            }
+            if(!(validarNamePet(inputEmpyChange.value))){
+                console.log('Activo messageError');
+                element.parentNode.parentNode.parentNode.classList.add("messageError");
+                console.log(element.parentNode.parentNode.parentNode);
             }
         });
+
         if(inputConValue > 0){
             document.querySelector("#box__info-"+element.id).style.display="flex";
             inputConValue = 0;
             // console.log(inputConValue);
         }
         else if(inputConValue == 0){
-            console.log("#box__info-input_"+element.id);
-            console.log(document.querySelector("#box__info-"+element.id));
+            // console.log("#box__info-input_"+element.id);
+            // console.log(document.querySelector("#box__info-"+element.id));
             document.querySelector("#box__info-"+element.id).style.display="none";
             // document.querySelector("#table__header-input").classList.remove("inputUpdateView");
             // document.querySelector("#btnAgregarSubmit").classList.remove("inputUpdateView");
         }
     })
 });
-
+function validarNamePet(inputValue){
+    if(/^[a-z]+$/.test(inputValue) || /^[A-Z]+$/.test(inputValue)){
+        console.log('True');
+        return true;
+    }else{
+        console.log('false');
+        return false;
+    }
+}
 // UPDATE NAME MASCOTA
 var btn_name = document.querySelectorAll('.box__icon-btn');
 btn_name.forEach(element => {
@@ -54,10 +72,8 @@ btn_name.forEach(element => {
 // GESTION-MIS-MASCOTAS
 document.querySelectorAll(".box__pet-container").forEach(element => {
     element.onblur = function (){
-        // console.log(element.childNodes[3]);
         element.childNodes[3].scroll(1,0);
         element.classList.remove('box__pet-focus');
-        console.log(element.childNodes[5]);
         element.childNodes[5].firstChild.classList.remove("btn__expan-btn-rotate");
     };
 });
@@ -77,27 +93,21 @@ function focusElement(element) {
 const box__incon = document.querySelectorAll(".box__icon-pet");
 function box__icon__color() {
     const getRandomNumber = (maxNum) => {
-        console.log('getRandomNumber')
         return Math.floor((Math.random() *  (maxNum - 20)) + 20);
     };
     const getRandomColor = () => {
-        console.log('getRandomColor')
         const h = getRandomNumber(360);
         const s = getRandomNumber(100);
         const l = getRandomNumber(100);
         return `hsl(${h}deg, ${s}%, 20%)`;
     };
     var setBackgroundColor = (element) => {
-        console.log('setBackgroundColor');
         const randomColor = getRandomColor();
-        console.log(randomColor);
-        console.log(element.id);
         var elementId = element.id;
         document.getElementById(elementId).style.backgroundColor = randomColor;
         //background.style.color = randomColor;
     };
     box__incon.forEach(element => {
-        console.log(element.id);
         setBackgroundColor(element);
     });
 }

@@ -3,7 +3,8 @@
     if(isset($_POST['exitSession'])){
         (new SignOff)->exitSession();
     } else{session_start();} 
-    require_once(__DIR__."/controller/user.controller.php");
+    require_once(__DIR__."/controller/control.vacuna.controller.php");
+    require_once(__DIR__."/processes/controlRegistroVacunas.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/consultas-Vacunas.php");
     require_once(__DIR__."/consultas/consultas-Mascotas.php");
@@ -23,7 +24,9 @@
         <?php if(!empty($_SESSION['usuario'])){?>
                     <?php 
                         $PetsUser = (new GestionMascotaConsultas) -> petsUser($_SESSION['id']); 
-                        
+                        // if(){
+
+                        // }
                     ?>
                     <?php
                     foreach ($PetsUser as $Pet) {

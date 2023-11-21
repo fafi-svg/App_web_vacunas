@@ -207,17 +207,20 @@ insert into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) 
 -- -----------------------------------------------------------------------------##
 -- Control Vacunas
 -- -----------------------------------------------------------------------------##
-insert into controlvacunas values ('1','2','2015-05-15');
+insert into controlvacunas (Mascota_id, Vacuna_id, fecha) 
+values ('1','8','2015-11-15'),('1','9','2016-03-15'),('1','10','2015-05-15'),('1','12','2016-04-15'),
+('3','8','2015-05-15'),('3','9','2013-03-15'),('3','10','2015-05-15'),('4','12','2013-03-15');
 -- -----------------------------------------------------------------------------##
 -- CONSULTAS
 -- -----------------------------------------------------------------------------##
 --  select count(m.Raza_id) as 'countRaza', tm.nombre as 'tm.nombre', r.nombre as 'r.nombre', t.tamano as "t.tamano", m.nombre as 'nombre mascota'  from mascota as m left join raza as r on m.Raza_id = r.id  left join TamanosMascota as t on t.id = r.TamanoMascota_id left join TipoMascota as tm on m.TipoMascota_id = tm.id group by  m.TipoMascota_id, r.nombre, t.tamano;
 -- SELECT  m.nombre, u.nombre, count(c.Mascota_id), m.TipoMascota_id,m.FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id left join controlvacunas as c on c.Mascota_id = m.id  group by   m.nombre, u.nombre, m.TipoMascota_id, m.FechaNacimiento;
 -- SELECT  u.username as username, m.nombre as nombre, m.TipoMascota_id as TipoMascota_id ,m.FechaNacimiento as FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id where u.username = 'UseR-1';
--- select * from Vacunas ;
+select * from Vacunas ;
+select * from mascota;
 -- select * from user;
 -- select * from controlvacunas;
--- select * from mascota;
+
 -- select * from raza;
 -- select * from TamanosMascota;
 -- select count(id) from Vacunas ;
