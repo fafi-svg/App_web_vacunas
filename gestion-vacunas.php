@@ -5,7 +5,7 @@
     } else{session_start();} 
     require_once(__DIR__."/controller/user.controller.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
-    require_once(__DIR__."/consultas/gestionVacunas.php");
+    require_once(__DIR__."/consultas/consultas-Vacunas.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -242,8 +242,8 @@
                                                             </div>
                                                         </div>
                                                     <?php } else { ?>      
-                                                        <div class="table__rows-item table__rows-icon" id="row_<?php echo  $row;?>" class="">
-                                                            <input class="table__rows-img" type="checkbox" required name='<?php echo$row;?>' >
+                                                        <div class="table__rows-item table__rows-icon" id="row_<?php echo  $row;?>">
+                                                            <input class="" type="checkbox" value="<?php echo$variable['id'];?>" name='<?php echo$row;?>' >
                                                         </div>
                                                     <?php }?>
                                                 </div>

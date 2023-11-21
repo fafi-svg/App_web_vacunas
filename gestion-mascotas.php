@@ -5,7 +5,7 @@
     } else{session_start();} 
     require_once(__DIR__."/controller/user.controller.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
-    require_once(__DIR__."/consultas/consultas-gestion-mascotas.php");
+    require_once(__DIR__."/consultas/consultas-Mascotas.php");
     require_once(__DIR__."/consultas/gestionMascotas.php");
 ?>
 <!DOCTYPE html>
