@@ -152,7 +152,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `mydbvacunas`.`controlvacunas` (
   `Mascota_id` INT NOT NULL,
   `Vacuna_id` INT NOT NULL,
-  `fecha` DATETIME NULL DEFAULT NULL,
+  `fecha` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`Mascota_id`, `Vacuna_id`),
   INDEX `fk_Mascota_has_Vacuna_Vacuna1_idx` (`Vacuna_id` ASC) VISIBLE,
   INDEX `fk_Mascota_has_Vacuna_Mascota1_idx` (`Mascota_id` ASC) VISIBLE,
@@ -213,6 +213,7 @@ insert into controlvacunas values ('1','2','2015-05-15');
 -- -----------------------------------------------------------------------------##
 --  select count(m.Raza_id) as 'countRaza', tm.nombre as 'tm.nombre', r.nombre as 'r.nombre', t.tamano as "t.tamano", m.nombre as 'nombre mascota'  from mascota as m left join raza as r on m.Raza_id = r.id  left join TamanosMascota as t on t.id = r.TamanoMascota_id left join TipoMascota as tm on m.TipoMascota_id = tm.id group by  m.TipoMascota_id, r.nombre, t.tamano;
 -- SELECT  m.nombre, u.nombre, count(c.Mascota_id), m.TipoMascota_id,m.FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id left join controlvacunas as c on c.Mascota_id = m.id  group by   m.nombre, u.nombre, m.TipoMascota_id, m.FechaNacimiento;
+-- SELECT  u.username as username, m.nombre as nombre, m.TipoMascota_id as TipoMascota_id ,m.FechaNacimiento as FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id where u.username = 'UseR-1';
 -- select * from Vacunas ;
 -- select * from user;
 -- select * from controlvacunas;
@@ -220,6 +221,7 @@ insert into controlvacunas values ('1','2','2015-05-15');
 -- select * from raza;
 -- select * from TamanosMascota;
 -- select count(id) from Vacunas ;
+-- SELECT c.fecha as fecha, v.nombre , m.nombre FROM controlvacunas as c left join vacunas as v on c.vacuna_id = v.id left join mascota as m on c.Mascota_id = m.id  where m.id = 2;
 -- SELECT v.id, v.nombre, v.aplicacion, v.tipomascota_id, count(c.vacuna_id) as countVacuna FROM vacunas as v left join controlvacunas as c on c.vacuna_id = v.id group by  v.id , v.nombre,  v.aplicacion , v.tipomascota_id;
 -- SELECT v.id as ID, v.nombre as 'Nombre Vacuna', v.aplicacion as 'Dias Aplicacion', v.tipomascota_id as 'Tipo Mascota', count(c.vacuna_id) as count FROM vacunas as v left join controlvacunas as c on c.vacuna_id = v.id group by  v.id , v.nombre,  v.aplicacion , v.tipomascota_id;
 -- select t.nombre from tipomascota as t left join vacunas as v on v.tipomascota_id = t.id group by t.nombre;

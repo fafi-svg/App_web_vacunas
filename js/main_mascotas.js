@@ -74,8 +74,8 @@ function focusElement(element) {
 }
 
 // GESTION-MIS-MASCOTAS RANDOM COLOR
+const box__incon = document.querySelectorAll(".box__icon-pet");
 function box__icon__color() {
-    
     const getRandomNumber = (maxNum) => {
         console.log('getRandomNumber')
         return Math.floor((Math.random() *  (maxNum - 20)) + 20);
@@ -96,7 +96,6 @@ function box__icon__color() {
         document.getElementById(elementId).style.backgroundColor = randomColor;
         //background.style.color = randomColor;
     };
-    const box__incon = document.querySelectorAll(".box__icon-pet");
     box__incon.forEach(element => {
         console.log(element.id);
         setBackgroundColor(element);
