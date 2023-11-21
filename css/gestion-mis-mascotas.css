@@ -482,7 +482,7 @@ img{
     .modal__close{
         background-color: red;
     }
-    /* .modal__header{
-        grid-template-columns: 70% max-content;
-    } */
+    .section__content {
+        padding: 0 1em;
+    }
 }
