@@ -41,10 +41,8 @@
                 </div>
             </header>
             <div class="content">
-                <div <?php if($_SESSION['rol']=="1"){} ?> class="box">
-                    <?php
-                        if($_SESSION['rol']=="1"){
-                    ?>
+                <div class="box">
+                    <?php if($_SESSION['rol']=="1"){?>
                         <div class="box__container box__container-user">
                             <div class="box__icon">
                                 <img src="img/icon-user.png" alt="">
@@ -70,19 +68,15 @@
                                 <p class="box__text-name">Registro De Vacunas</p>
                             </div>
                         </a>
-                    <?php
-                        }
-                    ?>
-                    <?php
-                        if($_SESSION['rol']=="2"){
-                    ?>
+                    <?php }?>
+                    <?php if($_SESSION['rol']=="2"){?>
                         <div class="box__container box__container-user">
                             <div class="box__icon">
                                 <img src="img/icon-user.png" alt="">
                             </div>
                             <div class="box__text">
                                 <p class="box__text-name"><?php echo $_SESSION['usuario'];?></p>
-                                <p class="box__text-rol">Usuario</p>
+                                <p class="box__text-rol">administrador</p>
                             </div>
                         </div>
                         <a href="gestion-mascotas.php" class="box__container"> 
@@ -109,15 +103,10 @@
                                 <p class="box__text-name">Gestionar Razas</p>
                             </div>
                         </a>
-                    <?php
-                        }
-                    ?>
-
+                    <?php }?>
                 </div>
             </div>
-        <?php
-            } else{header("location: error-not-session");}
-        ?>
+        <?php } else{header("location: error-not-session");}?>
     </main>
 </body>
 </html>

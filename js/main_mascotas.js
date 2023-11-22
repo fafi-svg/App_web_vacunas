@@ -15,6 +15,7 @@ box__info__input.forEach(element => {
                     element.style.backgroundColor="rgb(209 253 209)";
                     element.style.border=".1em solid";
                     element.style.borderColor="green";
+                    console.log(element.getAttribute("style"));
                     // element.style.outline = ".5em solid green";
                 }
                 else if(!validarNamePet(inputEmpyChange.value)){
@@ -47,11 +48,14 @@ var btn_name = document.querySelectorAll('.box__icon-btn');
 btn_name.forEach(element => {
     element.addEventListener('click', ()=>{
         var img = element.childNodes[1];
-        
         console.log(img);
         if(element.childNodes[1].classList.contains('cruz')){
             img.src="img/icon-lapiz-white.png";
             img.classList.remove('cruz');
+            document.querySelectorAll('#input_'+element.id).forEach(input =>{
+                input.removeAttribute("style");
+                input.value="";
+            })
             document.querySelector('form#'+element.parentNode.parentNode.id).classList.add('UpdatePetInfo_Out');
             document.querySelector('form#'+element.parentNode.parentNode.id).classList.remove('UpdatePetInfo');
             
