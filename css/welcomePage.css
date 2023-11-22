@@ -183,6 +183,9 @@ body{
         transform: scale(1);
     }
 }
+.login__button #btnEnterPage{
+    width: 80%;
+}
 /* @keyframes displayNone {
     0%{
         top: 0%;
@@ -192,3 +195,9 @@ body{
         display: none;
     }
 } */
+@media screen and (max-width: 1110px) {
+    .screen__welcome{
+        margin: 0;
+    }
+    .welcome__content{width: auto;}
+}

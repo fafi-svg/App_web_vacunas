@@ -8,10 +8,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/homepage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
    
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/homepage.css"> 
+    <?php if($_SESSION['rol']=="1"){echo '<link rel="stylesheet" href="css/box.css">';} ?>
+
     <title>Hame Page</title>
 </head>
 <body>
@@ -39,11 +41,11 @@
                 </div>
             </header>
             <div class="content">
-                <div <?php if($_SESSION['rol']=="1"){echo "style='display:flex;'";} ?> class="box">
+                <div <?php if($_SESSION['rol']=="1"){} ?> class="box">
                     <?php
                         if($_SESSION['rol']=="1"){
                     ?>
-                        <div style='height:30vh; background: linear-gradient(to bottom right, rgb(51, 33, 51), #5c415d);' class="box__container box__container-user">
+                        <div class="box__container box__container-user">
                             <div class="box__icon">
                                 <img src="img/icon-user.png" alt="">
                             </div>
@@ -52,7 +54,7 @@
                                 <p class="box__text-rol">Usuario</p>
                             </div>
                         </div>
-                        <a href="gestion-mis-mascotas.php" style='height:30vh;' class="box__container"> 
+                        <a href="gestion-mis-mascotas.php" class="box__container"> 
                             <div class="box__img">
                                 <img src="img/icon-animals.png" alt="">
                             </div>

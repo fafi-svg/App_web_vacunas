@@ -131,6 +131,14 @@ body{
     transition: height .5s ease-in-out;
     overflow: hidden;
     background-color: #393e41;
+    transition-delay: 700ms;
+    transition-duration: .5s;
+    transition-property: height;
+    transition-timing-function: ease-in-out;
+    z-index: 5;
+}
+.menu__exit-form, .menu__exit-content p{
+    margin: 1em;
 }
 .login__button-primario{
     background: linear-gradient(to top left, rgb(51, 33, 51), #5c415d);
@@ -140,12 +148,14 @@ body{
     padding: 1em;
     width: 100%;
 }
-@media (max-width: 600px){
+@media (max-width: 764px){
     .box__container{
         width: 100%;
         aspect-ratio: 100/45;
+        
     }
     .box{
         display: flex;
+        flex-direction: column;
     }
 }

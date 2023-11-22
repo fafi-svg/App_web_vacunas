@@ -1,0 +1,6 @@
+.box__container{
+    height:30vh; 
+}
+.box__container-user{
+    background: linear-gradient(to bottom right, rgb(51, 33, 51), #5c415d)!important;
+}

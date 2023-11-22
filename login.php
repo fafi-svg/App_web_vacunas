@@ -91,7 +91,8 @@
             <?php
                 if(isset($_POST['btnLogin'])){
                     if(isset($_SESSION['usuario']) and $_SESSION['usuario'] != ""){
-            ?>      
+            ?>              
+                        <style>body, main{overflow-y: hidden;}</style>
                         <div class="screen__welcome elemtAnimation">
                                 <div class="welcome__header">
                                         <h2 class="welcome__header-text elemtAnimation-1">WELCOME TO</h2>

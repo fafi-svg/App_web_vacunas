@@ -9,7 +9,8 @@ body{
     margin: 0;
     font-size: 2vh;
     position: relative;
-    background-color: black;
+    /* background-color: black; */
+    background: linear-gradient(#262626,rgb(51, 33, 51));
 }
 /* body::before{
     content: "";
@@ -25,7 +26,7 @@ body{
 .main_login-register{
     display: grid;
     grid-template-columns: 39% 61%;
-    grid-template-rows: 99vh;
+    grid-template-rows: 100vh;
     position: relative;
 }
 /*___________________________ section__Login ___________________________*/
@@ -55,7 +56,7 @@ body{
 }
 .login__input input{
     padding: .25em .51em;
-    width: 27em;
+    width: 100%;
     height: 2.7em;
     border-radius: .5em;
     border: 0;
@@ -96,7 +97,7 @@ body{
     border: 0;
     text-align: center;
     font-size: 1.25em;
-    width: 50%;
+    width: max-content;
     cursor: pointer;
 }
 .login__button-primario{
@@ -131,7 +132,7 @@ body{
     filter: drop-shadow(.75em -0.1em .5em rgba(255, 255, 255, .1));
 }
 .section__info{
-    background: linear-gradient(rgb(51, 33, 51), #5c415d);
+    /* background: linear-gradient(rgb(51, 33, 51), #5c415d); */
     padding-top: 3.5%;
     display: flex;
     flex-direction: column;
@@ -190,10 +191,10 @@ body{
 }
 .slider__img{
     position: absolute;
-    bottom: 0;
     height: 40%;
     width: 100%;
     text-align: center;
+    bottom: 0;
 }
 .slider__img img{
     height: 100%;
@@ -209,15 +210,21 @@ body{
     font-size: 1em;
 }
 /*___________________________ section__info ___________________________*/
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1110px) {
     .main_login-register{
         display: grid;
         grid-template-columns: 100%;
         grid-template-rows: 100vh 100vh;
     }
     .section__Login{
-        background: linear-gradient(#262626,rgb(51, 33, 51));
-        background-color: #262626;
+        /* background: linear-gradient(#262626,rgb(51, 33, 51)); */
+        background-color: #26262600;
         filter: drop-shadow(.75em -0.1em 1em rgba(255, 255, 255, .1));
+    }
+    body{
+        background: linear-gradient(#262626 10%,rgb(51, 33, 51));
+    }
+    .screen__welcome{
+        margin: 0 !important;
     }
 }

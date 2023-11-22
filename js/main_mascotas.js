@@ -3,49 +3,44 @@ var inputConValue=0;
 var box__info__input = document.querySelectorAll('.box__text-input');
 box__info__input.forEach(element => {
     element.addEventListener('change', ()=>{
-        console.log(element);
-        console.log(document.querySelectorAll('#'+element.id));
+        
         document.querySelectorAll('#'+element.id).forEach(inputEmpyChange => {
             // if((/\s/.test(inputEmpyChange.value))){
             //     inputEmpyChange.value="";
             // }
-            console.log(inputEmpyChange);
-            if((validarNamePet(inputEmpyChange.value)) && inputEmpyChange.value != ""){
-                inputConValue++;
-                console.log(inputConValue);
-                if(element.parentNode.parentNode.parentNode.classList.contains("messageError")){
-                    element.parentNode.parentNode.parentNode.classList.remove("messageError");
+            if((/\s/.test(inputEmpyChange.value)) || inputEmpyChange.value != ""){
+                if(validarNamePet(inputEmpyChange.value)){
+                    inputConValue++;
+                    console.log("validarNamePet-TRUE");
+                    element.style.backgroundColor="rgb(209 253 209)";
+                    element.style.border=".1em solid";
+                    element.style.borderColor="green";
+                    // element.style.outline = ".5em solid green";
+                }
+                else if(!validarNamePet(inputEmpyChange.value)){
+                    console.log("validarNamePet-false");
+                    element.style.backgroundColor="rgb(227 169 169)";
+                    element.style.border=".1em solid";
+                    element.style.borderColor="red";
                 }
             }
-            if(!(validarNamePet(inputEmpyChange.value))){
-                console.log('Activo messageError');
-                element.parentNode.parentNode.parentNode.classList.add("messageError");
-                console.log(element.parentNode.parentNode.parentNode);
-            }
-        });
 
+        });
+        console.log(document.querySelectorAll('#'+element.id));
+        console.log(inputConValue);
         if(inputConValue > 0){
             document.querySelector("#box__info-"+element.id).style.display="flex";
             inputConValue = 0;
-            // console.log(inputConValue);
         }
         else if(inputConValue == 0){
-            // console.log("#box__info-input_"+element.id);
-            // console.log(document.querySelector("#box__info-"+element.id));
             document.querySelector("#box__info-"+element.id).style.display="none";
-            // document.querySelector("#table__header-input").classList.remove("inputUpdateView");
-            // document.querySelector("#btnAgregarSubmit").classList.remove("inputUpdateView");
         }
     })
 });
 function validarNamePet(inputValue){
-    if(/^[a-z]+$/.test(inputValue) || /^[A-Z]+$/.test(inputValue)){
-        console.log('True');
-        return true;
-    }else{
-        console.log('false');
-        return false;
-    }
+    if(/^[a-z]/.test(inputValue) || /^[A-Z]/.test(inputValue) || /^[0-9]/.test(inputValue)){console.log('True');return true;}else{ console.log('false'); return false;
+}
+
 }
 // UPDATE NAME MASCOTA
 var btn_name = document.querySelectorAll('.box__icon-btn');
