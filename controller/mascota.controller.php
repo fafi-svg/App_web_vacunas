@@ -5,16 +5,17 @@
     class controllerMascotas extends ConexionDataBase{
         public function create(modelMascotas $modelMascotas){
             $mysqli = $this->conexion();
-            $userNameAccount = "%".$_SESSION['usuario']."%";
-            $sql ="SELECT * FROM User where username like binary '$userNameAccount'";
-            $sqlUser=$mysqli->query($sql);
-            $resultQuery = mysqli_fetch_array($sqlUser);
-            $idUser = $resultQuery["id"]; 
+            $idUser = $_SESSION['id'];
+            $id = $modelMascotas->id =  $idUser;
             $nombre = $modelMascotas->nombre = $mysqli -> real_escape_string($_POST['nombre']);
             $FechaNacimiento = $modelMascotas->FechaNacimiento = $mysqli -> real_escape_string($_POST['fechaNacimiento']);
             $TipoMascota_id = $modelMascotas->TipoMascota_id = $mysqli -> real_escape_string($_POST['tipoMascota']);
             $Raza_id = $modelMascotas->Raza_id = $mysqli -> real_escape_string($_POST['raza']);
             $sql ="INSERT into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('$nombre', '$FechaNacimiento', '$idUser', '$TipoMascota_id', '$Raza_id')";
+            $result = $mysqli->query($sql);
+            var_dump ($_POST);
+            unset($_POST);
+     
             $mysqli->close();
         }
         public function read(){
@@ -43,29 +44,27 @@
             $mysqli->close();
         }
         public function update($id){
-            if(!empty($_POST['updateData']) or $_POST['updateData'] !="-1"){
-                $mysqli = $this->conexion();
-                $longPost = sizeof($_POST)-1;
-                $con=0;
-                $stringQuery="";
-                for ($i= 0; $i<=$longPost; $i++) {
-                    $nameColumn =array_keys($_POST)[$i];
-                    if($nameColumn != 'updateData' and !(empty($_POST[$nameColumn]))){
-                        $con++;
-                        if($i < $longPost and $con >=2){
-                            $stringQuery = $stringQuery.",";
-                        }
-                        $stringQuery = $stringQuery." ".$nameColumn."="."'".$_POST[$nameColumn]."'";
+            $mysqli = $this->conexion();
+            $longPost = sizeof($_POST)-1;
+            $con=0;
+            $stringQuery="";
+            for ($i= 0; $i<=$longPost; $i++) {
+                $nameColumn =array_keys($_POST)[$i];
+                if($nameColumn != 'btn_update_mascota' and !(empty($_POST[$nameColumn]))){
+                    $con++;
+                    if($i < $longPost and $con >=2){
+                        $stringQuery = $stringQuery.",";
                     }
+                    $stringQuery = $stringQuery." ".$nameColumn."="."'".$_POST[$nameColumn]."'";
                 }
-                $sql ="UPDATE mascota set $stringQuery where id = $id";
-                $resultado = $mysqli->query($sql);
-                if($resultado){
-                    echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
-                }
-                $_POST['updateData']='-1';
-                $mysqli -> close();
             }
+            $sql ="UPDATE mascota set $stringQuery where id = $id";
+            $resultado = $mysqli->query($sql);
+            // if($resultado){
+            //     echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
+            // }
+            
+            $mysqli -> close();
         }
     }
 ?>

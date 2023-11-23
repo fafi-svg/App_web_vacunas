@@ -131,13 +131,13 @@ var contInput = 0;
 modalInput.forEach(element => {
     element.addEventListener('change', ()=>{
         if(lenModalInput === contValueInput()){
-            document.querySelector('.modalSubmit').setAttribute('disabled', 'true');
+            document.querySelector('.modalSubmit').removeAttribute('disabled');
             document.querySelector('.modalSubmit').style.color = "white";
             document.querySelector('.modalSubmit').style.opacity = "1";
             document.querySelector('.modalSubmit').style.transformScale = "1.1";
         }
         else{
-            document.querySelector('.modalSubmit').removeAttribute('disabled');
+            document.querySelector('.modalSubmit').setAttribute('disabled', true);
             document.querySelector('.modalSubmit').style.color = "#4f4f4f";
             document.querySelector('.modalSubmit').style.opacity = ".8";
             document.querySelector('.modalSubmit').style.transformScale = "1";
@@ -159,6 +159,7 @@ var selectPets = document.querySelector('select#tipoMascota');
 selectPets.addEventListener('change', ()=>{
     if(selectPets.value != ""){
         document.querySelector('select#raza').disabled = false;
+        document.querySelector('select#raza').value = '';
         filterRaza(selectPets.value);
     }
     else{

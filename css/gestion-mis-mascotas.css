@@ -52,8 +52,9 @@ img{
     right: 0%;
 }
 .box__icon-btn-add{
-    position: relative;
+    position: absolute;
     cursor: pointer;
+    
 }
 .box__icon-btn-add img{
     background-color: #555555;
@@ -206,6 +207,7 @@ img{
     transition-property: margin-bottom;
     transition-duration: 200ms;
     transition-delay: 100ms;
+    position: relative;
 }
 .box__icon-btn:hover{
     margin-bottom: .4em;
@@ -291,13 +293,18 @@ img{
     position: relative;
     width: 2.4em;
 }
-.btnSubmitAgregar {
+.btnSubmitAgregar , .btnAgregarVacuna{
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     opacity: 0;
+}
+.btnAgregarVacuna {
+    opacity: 0;
+    z-index: 4;
+    cursor: pointer;
 }
 .UpdatePetInfo{
     z-index: 5;

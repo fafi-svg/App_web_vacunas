@@ -27,14 +27,16 @@
     <main class="main__gestion__mis__mascota">
         <?php if(!empty($_SESSION['usuario'])){?>
                 <?php 
-                    if(isset($_POST['create'])){
-                        $modelControlVacuas = (new modelControlVacuas);
-                        (new controllerControlVacuna) -> create($modelControlVacuas);
+                    if(isset($_POST['btn_update_mascota'])){
+                        (new controllerMascotas) -> update($_POST['btn_update_mascota']);
+                        header('location:gestion-mis-mascotas.php');
                     }
-                    if(isset($_POST['btn_created'])){
-                        $modelControlVacuas = (new modelControlVacuas);
-                        (new controllerMascotas) -> create($modelControlVacuas);
+                    if(isset($_POST['btn_created_mascota'])){
+                        $modelControlMascots = (new modelMascotas);
+                        (new controllerMascotas) -> create($modelControlMascots);
+                        header('location:gestion-mis-mascotas.php');
                     }
+                    
                     $PetsRaza = (new GestionRazasConsultas) -> petsRazaName();
                     $PetsUser = (new GestionMascotaConsultas) -> petsUser($_SESSION['id']); 
                 ?>
@@ -105,7 +107,7 @@
                         <?php $numBox = 1; foreach($PetsUser as $Pet){ ?>
                             <div class="box__pet">
                                 <div tabindex="0" class="box__pet-container" id="box__pet-<?php echo $numBox; ?>">
-                                    <form class="box__info" id="box__info-<?php echo $numBox; ?>">
+                                    <form method="post" class="box__info" id="box__info-<?php echo $numBox; ?>">
                                         <div class="box__icon box__icon-pet user_select_none" id="box__icon_<?php echo $numBox; ?>">
                                             <img class="" src="<?php if($Pet['foto'] != null){echo $Pet['foto'];}else{ if($Pet['TipoMascota_id'] == 1){echo 'img/icon-pet-gato.png';}else if($Pet['TipoMascota_id'] == 2){echo 'img/icon-pet-perro-mediano.png';}}?>" alt="icon-pet">
                                         </div>
@@ -123,7 +125,7 @@
                                             </div>
                                             <div class="box__info-input" id="box__info-input_<?php echo $numBox; ?>">
                                                 <img class="btnSubmit_img" src="img/icon-guardar.png" alt="">
-                                                <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit" name="addDataRow">
+                                                <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit" name="btn_update_mascota" value="<?php echo $Pet['id']?>">
                                             </div>
                                         </div>
                                     </form>
@@ -147,6 +149,7 @@
                                         </div>
                                         <div class="box__icon-default box__icon">
                                             <img class="box__icon-created user_select_none" src="img/icon-agregar-white.png" alt="">
+                                            <input class="btnAgregarVacuna" id="btnAgregarSubmit" type="submit" name="btn_update_mascota" value="<?php echo $Pet['id']?>">
                                             <p class="box__text-title"> Agregar Vacina</p>
                                         </div>
                                     </div>
@@ -163,8 +166,8 @@
                         <h2 class="modal__title"> Agregar Datos De Mascota</h2>
                         <div class="modal__close">✕</div>
                     </header>
-                    <section  method="get" class="modal__content">
-                        <form class="modal__form">
+                    <section class="modal__content">
+                        <form method="post" class="modal__form">
                             <div class="form__item">
                                 <label for="tipoMascota">Tipo Mascota</label>
                                 <select class="modalInput Scroll__container" id="tipoMascota" name="tipoMascota" >
@@ -191,7 +194,7 @@
                                 <input class="modalInput" id="fechaNacimiento" type="date" name="fechaNacimiento">
                             </div>
                             <div class="form__item__btn">
-                                <input class="modalSubmit" type="submmit" name="btn_created" value="ENVIAR" disabled>                                       
+                                <input class="modalSubmit" type="submit" name="btn_created_mascota" value="ENVIAR" disabled>                                    
                             </div>
                         </form>
                     </section>

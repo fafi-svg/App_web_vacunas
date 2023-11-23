@@ -218,6 +218,7 @@ values ('1','8','2015-11-15'),('1','9','2016-03-15'),('1','10','2015-05-15'),('1
 -- SELECT  u.username as username, m.nombre as nombre, m.TipoMascota_id as TipoMascota_id ,m.FechaNacimiento as FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id where u.username = 'UseR-1';
 select * from Vacunas ;
 select * from mascota;
+-- delete from mascota where id = 18 or id = 19 or id = 20 or id = 21;
 -- select * from user;
 -- select * from controlvacunas;
 
