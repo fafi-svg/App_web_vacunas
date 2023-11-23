@@ -1,7 +1,7 @@
 <?php
     require_once("././conexion.php");
-    require_once(__DIR__."/../models/vacuna.model.php");
-    require_once(__DIR__."/../user.Controller.php");
+    require_once(__DIR__."/../models/mascota.model.php");
+    // require_once(__DIR__."/../user.Controller.php");
     class controllerMascotas extends ConexionDataBase{
         public function create(modelMascotas $modelMascotas){
             $mysqli = $this->conexion();

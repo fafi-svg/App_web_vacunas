@@ -53,6 +53,7 @@ img{
 }
 .box__icon-btn-add{
     position: relative;
+    cursor: pointer;
 }
 .box__icon-btn-add img{
     background-color: #555555;
@@ -71,7 +72,7 @@ img{
     transition-duration: 400ms;
     background-color: #262626;
     padding: 0;
-    border-radius: 1em;
+    border-radius: .8em;
     transition-property: opacity;
     content: "Agregar Mascotas";
     overflow: hidden;
@@ -82,7 +83,7 @@ img{
     opacity: 1;
     z-index: 4;
     right: 3em;
-    padding: 1em 1em;
+    padding: .75em 1em;
     width: 10em;
     transition-timing-function: ease-in-out;
     transition-property: right , opacity;
@@ -144,6 +145,7 @@ img{
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
+    width: 100%;
 }
 .box__item{
     justify-content: start;
@@ -170,9 +172,9 @@ img{
     overflow: hidden;
     border: 0.3em solid #555555;
 }
-.box__text{
+/* .box__text{
     height: inherit;
-}
+} */
 .box__text-title{
     font-size: 1.2em;
     margin: 0.5vh 0;
@@ -322,10 +324,13 @@ img{
 .UpdatePetInfo_Out{
     animation-name: UpdatePetInfoOut;
     animation-delay: 100ms;
-    animation-duration: 1s;
+    animation-duration: 500ms;
     animation-fill-mode: forwards;
     overflow: hidden;
     animation-timing-function: ease-in-out;
+    & .box__text-name > p.box__text-title, .box__text-name > p.box__text-date{
+        margin: 0 0 0.3em 0;
+    }
 }
 .UpdatePetText{
     margin: 1em;
@@ -371,6 +376,38 @@ img{
    border-top-right-radius: 5em;
    border-bottom-right-radius: 5em;
 }
+
+/*_________________ SCROLL_SELECT _________________*/
+
+/*_________________ SCROLL_SELECT _________________*/
+/*____________________________ SCROLL_TABLE_CONTENT ____________________________*/
+/*____________________________ ROW_WIDTH_TABLE-CONTENT ____________________________*/
+
+/*____________________________ ROW_WIDTH_TABLE-CONTENT ____________________________*/
+input.modalSubmit {
+    background: linear-gradient(to top left, rgb(51, 33, 51), #5c415d);
+    border-radius: 0.5em;
+    border: 0;
+    padding: 1em;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in-out;
+    width: 15em;
+    color: #4f4f4f;
+    opacity: .8;
+    cursor: pointer;
+    text-align: center;
+}
+/* .modalInput{
+    appearance: none;
+} */
+.modalInput::-webkit-scrollbar-track {
+    background-color: #55555500;
+ }
+#optionRaza:hover::before{
+    content: "hola";
+    background-color: #5c415d;
+    padding: 1em;
+}
 .modal__container{
     display: none;
     position: absolute;
@@ -378,9 +415,10 @@ img{
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: rgba(0, 0, 0, .6);
     z-index: 10;
     margin: auto;
+   
 }
 .modal__created{
     width: 50%;
@@ -440,16 +478,9 @@ img{
 .form__item__btn{
     margin: auto;
 }
-/*_________________ SCROLL_SELECT _________________*/
-
-/*_________________ SCROLL_SELECT _________________*/
-/*____________________________ SCROLL_TABLE_CONTENT ____________________________*/
-/*____________________________ ROW_WIDTH_TABLE-CONTENT ____________________________*/
-
-/*____________________________ ROW_WIDTH_TABLE-CONTENT ____________________________*/
 @keyframes UpdatePetInfo {
     0%{
-        height: 17vh;
+        height: 12vh;
         padding: 0.5em 1em;
     }
     50%{
@@ -471,11 +502,14 @@ img{
 @keyframes UpdatePetInfoOut {
     100%{
         padding: 0.5em 1em;
+        height: 12vh;
     }
     75%{
-        padding: 0em 1em;
-        height: 0vh;
+        padding: 0em 0em;
     }
+    /* 55%{
+        flex-direction: row;
+    } */
     50%{
         position: absolute;
         transform: scale(0);

@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta charset="utf-8" />
+ <style type="text/css">
+body {background-color:white; font-family: sans-serif;}
+p {font-size: 24px; color: maroon; float: left; margin:10px; border: solid black; padding:10px;}
+.boton{padding:15px; width: 330px;  text-align:center; clear:both;
+color: white; border-radius: 40px; background: rgb(202, 60, 60);}
+.boton:hover {background: rgb(66, 184, 221);}
+</style>
+<script type="text/javascript">
+function filtrar (classRecibida) {
+nodosAfiltrar = document.querySelectorAll('.'+classRecibida);
+console.log(nodosAfiltrar);
+console.log(nodosAfiltrar[1].childNodes[3].childNodes[1]);
+//alert ('Tenemos '+nodosAfiltrar.length)
+        for (var i=0; i<nodosAfiltrar.length; i++) {
+		//alert ('Tenemos ahora'+nodosAfiltrar[i].childNodes[3].childNodes[1].childNodes[1].innerHTML)
+				if (nodosAfiltrar[i].childNodes[3].childNodes[1].childNodes[1].innerHTML =='Martes'
+				|| nodosAfiltrar[i].childNodes[3].childNodes[1].childNodes[1].innerHTML =='Miércoles') {
+                nodosAfiltrar[i].style.backgroundColor = "yellow";
+                nodosAfiltrar[i].style.color = "black";
+                nodosAfiltrar[i].style.border = "solid 1px";}
+				else {nodosAfiltrar[i].style ='display:none';}
+                }
+}
+
+</script>
+</head>
+<body>
+
+<div id="commentaryContent" class="scrolling">
+ <div class="comment">
+                  <div class="commentMinute">01'03"</div>
+                  <div class="commentContent">
+                    <div class="ASI statImage">
+                      <div class="statCommentEntry">Lunes</div>
+                    </div>
+                  </div>
+                </div>
+ <div class="comment">
+                  <div class="commentMinute">12'17"</div>
+                  <div class="commentContent">
+                    <div class="ASI statImage">
+                      <div class="statCommentEntry">Martes</div>
+                    </div>
+                  </div>
+                </div>
+ <div class="comment">
+                  <div class="commentMinute">22'11"</div>
+                  <div class="commentContent">
+                    <div class="ASI statImage">
+                      <div class="statCommentEntry">Miércoles</div>
+                    </div>
+                  </div>
+                </div>
+ <div class="comment">
+                  <div class="commentMinute">09'23"</div>
+                  <div class="commentContent">
+                    <div class="ASI statImage">
+                      <div class="statCommentEntry">Jueves</div>
+                    </div>
+                  </div>
+                </div>
+ <div class="comment">
+                  <div class="commentMinute">10'08"</div>
+                  <div class="commentContent">
+                    <div class="ASI statImage">
+                      <div class="statCommentEntry">Viernes</div>
+                    </div>
+                  </div>
+                </div>
+</div>
+<h3 class="boton" onclick="filtrar('comment')">Pulse aquí para filtrar días que empiezan por m</h3>
+
+</body>
+</html>

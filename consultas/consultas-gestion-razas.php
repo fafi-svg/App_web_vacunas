@@ -8,7 +8,7 @@ class GestionRazasConsultas extends ConexionDataBase{
     }
     public function petsRazaName(){
         $mysqli = $this->conexion();
-        $sql = "select nombre from raza;";
+        $sql = "select nombre, TipoMascota_id, id from raza;";
         $sqlQuery = $mysqli->query($sql);
         return $sqlQuery ;
     }

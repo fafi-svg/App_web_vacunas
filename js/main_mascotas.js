@@ -15,7 +15,6 @@ box__info__input.forEach(element => {
                     element.style.backgroundColor="rgb(209 253 209)";
                     element.style.border=".1em solid";
                     element.style.borderColor="green";
-                    console.log(element.getAttribute("style"));
                     // element.style.outline = ".5em solid green";
                 }
                 else if(!validarNamePet(inputEmpyChange.value)){
@@ -109,4 +108,75 @@ function box__icon__color() {
     box__incon.forEach(element => {
         setBackgroundColor(element);
     });
+}
+
+// MODAL CONTRROL VACUNA
+// var btnAddPet = document.querySelector('.box__icon-btn-add');
+document.querySelector('.box__icon-btn-add').addEventListener('click', ()=>{
+    document.querySelector('.modal__container').style.display="flex";
+    document.querySelector('.screen__gestion__mascota').style.filter = "blur(1vh)";
+})
+// CLOSE MODAL
+// var btnModalClose = document.querySelector('.modal__close');
+document.querySelector('.modal__close').addEventListener('click', ()=>{
+    document.querySelector('.modal__container').removeAttribute('style');
+    document.querySelector('.screen__gestion__mascota').removeAttribute('style');
+})
+// ACTIVAR MODAL INPUT
+const modalInput = document.querySelectorAll('.modalInput');
+console.log(modalInput);
+var lenModalInput = modalInput.length;
+console.log(lenModalInput);
+var contInput = 0;
+modalInput.forEach(element => {
+    element.addEventListener('change', ()=>{
+        if(lenModalInput === contValueInput()){
+            document.querySelector('.modalSubmit').setAttribute('disabled', 'true');
+            document.querySelector('.modalSubmit').style.color = "white";
+            document.querySelector('.modalSubmit').style.opacity = "1";
+            document.querySelector('.modalSubmit').style.transformScale = "1.1";
+        }
+        else{
+            document.querySelector('.modalSubmit').removeAttribute('disabled');
+            document.querySelector('.modalSubmit').style.color = "#4f4f4f";
+            document.querySelector('.modalSubmit').style.opacity = ".8";
+            document.querySelector('.modalSubmit').style.transformScale = "1";
+        }
+        contInput = 0;
+    })  
+});
+function contValueInput(){
+    modalInput.forEach(element => {
+        if(element.value != ''){
+            contInput++;
+        }
+    });
+    return contInput;
+}
+// SELECT TYPE PETS
+var optionRaza = document.querySelectorAll('option#optionRaza');
+var selectPets = document.querySelector('select#tipoMascota');
+selectPets.addEventListener('change', ()=>{
+    if(selectPets.value != ""){
+        document.querySelector('select#raza').disabled = false;
+        filterRaza(selectPets.value);
+    }
+    else{
+        document.querySelector('select#raza').disabled = true;
+    }
+})
+function filterRaza(raza){
+    invertFilter()
+    optionRaza.forEach(element =>{
+        if(!(element.textContent == raza)){
+            element.style.display="none";
+        }
+    })
+}
+function invertFilter(){
+    optionRaza.forEach(element =>{
+        if(element.getAttribute("style")){
+            element.removeAttribute("style");
+        }
+    })
 }

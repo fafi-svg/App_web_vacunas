@@ -125,7 +125,8 @@ body{
     gap: 3em;
     align-items: center;
     position: absolute;
-    right: 3em;
+    right: 0em;
+    height: 100%;
 }
 .table__rows-item-btn{
     height: 100%;
@@ -171,7 +172,7 @@ body{
     width: 87%;
 }
 .table__header-container{
-    width: 88.6%;
+    width: 100%;
 }
 /* ____________________________ ROWS_WIDTHS_TABLE ____________________________*/
 @media (max-width:768px){
@@ -208,9 +209,9 @@ body{
     .table__rows-btn-flecha{
         display: grid;
     }
-    .table__header-text{
+    /* .table__header-text{
         font-size: 1em;
-    }
+    } */
     .table__rows-item-btn{
         position: absolute;
         right: -8em;

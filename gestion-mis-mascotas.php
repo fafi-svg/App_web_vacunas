@@ -3,11 +3,15 @@
     if(isset($_POST['exitSession'])){
         (new SignOff)->exitSession();
     } else{session_start();} 
-    require_once(__DIR__."/controller/control.vacuna.controller.php");
     require_once(__DIR__."/processes/controlRegistroVacunas.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/consultas-Vacunas.php");
     require_once(__DIR__."/consultas/consultas-Mascotas.php");
+    require_once(__DIR__."/consultas/consultas-gestion-Razas.php");
+    require_once(__DIR__."/models/controlvacuna.model.php");
+    require_once(__DIR__."/controller/control.vacuna.controller.php");
+    require_once(__DIR__."/controller/mascota.controller.php");
+    require_once(__DIR__."/models/mascota.model.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,18 +26,20 @@
 <body onload="box__icon__color()" class="body__gestion__mis__mascota">
     <main class="main__gestion__mis__mascota">
         <?php if(!empty($_SESSION['usuario'])){?>
-                    <?php 
-                        $PetsUser = (new GestionMascotaConsultas) -> petsUser($_SESSION['id']); 
-                        // if(){
-
-                        // }
-                    ?>
-                    <?php
-                    foreach ($PetsUser as $Pet) {
-                        $longPetsUser = sizeof($Pet)-1;
-                        break;
+                <?php 
+                    if(isset($_POST['create'])){
+                        $modelControlVacuas = (new modelControlVacuas);
+                        (new controllerControlVacuna) -> create($modelControlVacuas);
                     }
-            ?> 
+                    if(isset($_POST['btn_created'])){
+                        $modelControlVacuas = (new modelControlVacuas);
+                        (new controllerMascotas) -> create($modelControlVacuas);
+                    }
+                    $PetsRaza = (new GestionRazasConsultas) -> petsRazaName();
+                    $PetsUser = (new GestionMascotaConsultas) -> petsUser($_SESSION['id']); 
+                ?>
+                <?php foreach ($PetsUser as $Pet) {$longPetsUser = sizeof($Pet)-1; break; }?> 
+                <?php foreach ($PetsRaza as $Raza) {$longPetsRaza = sizeof($Raza)-1; break; }?> 
             <div class="screen__gestion__mascota">
                 <header class="header__gestion-vacuna">
                     <div class="header__logo user_select_none">
@@ -91,6 +97,7 @@
                         <div class="box__icon-btn-add-container box__icon">
                             <div class="box__icon-btn-add">
                                 <img style="width: 3em;" class="box__icon-created user_select_none" src="img/icon-agregar-white.png" alt="">
+                                <!-- <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit" name="create"> -->
                             </div>
                         </div> 
                     </div>
@@ -148,50 +155,49 @@
                             </div>
                         <?php $numBox++; }   ?>
                     </div>
-                    
-                    <div class="modal__container">
-                        <div class="modal__created">
-                            <header class="modal__header">
-                                <h2 class="modal__title"> Agregar Datos De Mascota</h2>
-                                <div class="modal__close">✕</div>
-                            </header>
-                            <section class="modal__content">
-                                <form class="modal__form" method="post" >
-                                    <div class="form__item">
-                                        <label for="raza">Razas Mascotas</label>
-                                        <select id="raza" name="raza">
-                                            <option value=""></option>
-                                            <option value="1">Gato</option>
-                                            <option value="2">Perro</option>
-                                        </select>  
-                                    </div>
-                                    <div class="form__item">
-                                        <label for="tipoMascota">Tipo Mascota</label>
-                                        <select id="tipoMascota" name="tipoMascota">
-                                            <option value=""></option>
-                                            <option value="1">Gato</option>
-                                            <option value="2">Perro</option>
-                                        </select>                                        
-                                    </div>
-                                    <div class="form__item">
-                                        <label for="nombre">Nombre Mascota</label>
-                                        <input id="nombre" type="text" name="nombre">
-                                    </div>
-                                    <div class="form__item">
-                                        <label for="fechaNacimiento">Fecha Nacimiento</label>
-                                        <input id="fechaNacimiento" type="date" name="fechaNacimiento">
-                                    </div>
-                                    <div class="form__item__btn">
-                                        <input type="submit" name="btn_created" value="AGREGAR" disabled>                                       
-                                    </div>
-                                </form>
-                            </section>
-                            <footer class="modal__footer">
-
-                            </footer>
-                        </div>
-                    </div>
                 </section>
+            </div>
+            <div class="modal__container">
+                <div class="modal__created">
+                    <header class="modal__header">
+                        <h2 class="modal__title"> Agregar Datos De Mascota</h2>
+                        <div class="modal__close">✕</div>
+                    </header>
+                    <section  method="get" class="modal__content">
+                        <form class="modal__form">
+                            <div class="form__item">
+                                <label for="tipoMascota">Tipo Mascota</label>
+                                <select class="modalInput Scroll__container" id="tipoMascota" name="tipoMascota" >
+                                    <option value=""></option>
+                                    <option value="1">Gato</option>
+                                    <option value="2">Perro</option>
+                                </select>                                        
+                            </div>
+                            <div class="form__item">
+                                <label for="raza">Razas Mascotas</label>
+                                <select class="modalInput Scroll__container" id="raza" name="raza"  disabled>
+                                    <option  value=""></option>
+                                    <?php foreach ($PetsRaza as $Raza) {?> 
+                                        <option id="optionRaza" label="<?php echo$Raza['nombre']?>" value="<?php echo$Raza['id']?>"><?php echo$Raza['TipoMascota_id']?></option>
+                                    <?php }?> 
+                                </select>  
+                            </div>
+                            <div class="form__item">
+                                <label for="nombre">Nombre Mascota</label>
+                                <input class="modalInput" id="nombre" type="text" name="nombre" >
+                            </div>
+                            <div class="form__item">
+                                <label for="fechaNacimiento">Fecha Nacimiento</label>
+                                <input class="modalInput" id="fechaNacimiento" type="date" name="fechaNacimiento">
+                            </div>
+                            <div class="form__item__btn">
+                                <input class="modalSubmit" type="submmit" name="btn_created" value="ENVIAR" disabled>                                       
+                            </div>
+                        </form>
+                    </section>
+                    <footer class="modal__footer">
+                    </footer>
+                </div>
             </div>
         <?php
         } else{header("location: error-not-session.php");}

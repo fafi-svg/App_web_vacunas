@@ -118,26 +118,22 @@
                                                      <p class="table__header-text">Fila</p>
                                                 </div>
                                                 <div class="table__header-content">
-                                                     <p class="table__header-text">Nombre vacuna</p>
-                                                     <?php if($_SESSION['rol'] == "2"){?>
+                                                     <p class="table__header-text">Nombre vacuna</p>                                    
                                                      <input id="inputCreate" class="inputAgregar" type="text" name="nombre" require>
-                                                     <?php }?>
                                                 </div>
                                                 <div class="table__header-content">
                                                      <p class="table__header-text">Dias Aplicacion </p>
-                                                     <?php if($_SESSION['rol'] == "2"){?>
                                                      <input id="inputCreate" class="inputAgregar" type="text" name="aplicacion" require>
-                                                     <?php }?>
                                                 </div>
                                                 <div class="table__header-content">
                                                      <p class="table__header-text">Tipo Mascota</p>
-                                                     <?php if($_SESSION['rol'] == "2"){?>
+                                                     
                                                      <select class="inputAgregar" name="tipomascota_id" id="inputCreate" require>
                                                         <option value=""></option>
                                                         <option value="2">Perro</option>
                                                         <option value="1">Gato</option>
                                                      </select>
-                                                     <?php }?>
+                                                    
                                                 </div>
                                                 <div class="table__header-content">
                                                      <p class="table__header-text">Vacunas Usadas</p>
@@ -169,7 +165,7 @@
                                 <div class="table__content">
                                     <div class="table__rows">
                                         <?php $con = 1; $row=1; foreach ($vacunas as $variable) {?>
-                                            <form method="post" class="table__rows-container" id="row_<?php echo$row;?>">
+                                            <form method="post" class="table__rows-container" id="row_<?php echo$row;?>" style="<?php echo $_SESSION['rol'] == "1" ? 'height:4em;': '' ?>">
                                                 <?php
                                                     if($_SESSION['rol']=="2"){
                                                 ?>
@@ -242,7 +238,7 @@
                                                             </div>
                                                         </div>
                                                     <?php } else { ?>      
-                                                        <div class="table__rows-item table__rows-icon" id="row_<?php echo  $row;?>">
+                                                        <div class="table__rows-icon" id="row_<?php echo  $row;?>">
                                                             <input class="" type="checkbox" value="<?php echo$variable['id'];?>" name='<?php echo$row;?>' >
                                                         </div>
                                                     <?php }?>
