@@ -135,11 +135,7 @@ var box__container = document.querySelector('.box__container');
 //   },
 //   false,
 // );
-btnAgregar.addEventListener("click", ()=>{
-    var parenbtn = btnAgregar.parentNode;
-    parenbtn.tabIndex=0;
-    parenbtn.focus();
-})
+
 inputAgregar.forEach(btnAgregarS => {
     btnAgregarS.addEventListener("change", ()=>{
         inputAgregar.forEach(inputEmpyChange => {
@@ -165,3 +161,71 @@ inputAgregar.forEach(btnAgregarS => {
     });
 });
 
+var inputSearch = document.querySelectorAll('.inputSearch');
+var itemsNombre = document.querySelectorAll('div#nombre');
+var itemsAplicacion = document.querySelectorAll('div#aplicacion');
+var itemsTipoMascota = document.querySelectorAll('div#tipomascota');
+var parenElement = document.querySelectorAll('form.table__rows-container');
+inputSearch.forEach(element => {
+    element.addEventListener('keyup', ()=>{
+        invertFilterContent();
+        if(element.id == 'nombre'){
+            itemsNombre.forEach(elementN => {
+                // console.log(elementN.childNodes[1]);
+                if(!(elementN.childNodes[1].textContent.toLowerCase().includes(element.value.toLowerCase()))){
+                    var parenHiden = elementN.parentNode.parentNode.parentNode;
+                    filtercontent(parenHiden)
+                }
+            });
+        }
+        if(element.id == 'aplicacion'){
+            itemsAplicacion.forEach(elementA => {
+                if(!(elementA.childNodes[1].textContent.toLowerCase().includes(element.value.toLowerCase()))){
+                    var parenHiden = elementA.parentNode.parentNode.parentNode;
+                    filtercontent(parenHiden)
+                }
+            });
+        }
+        if(element.id == 'tipomascota'){
+            itemsTipoMascota.forEach(elementT => {
+                if(!(elementT.childNodes[1].textContent.toLowerCase().includes(element.value.toLowerCase()))){
+                    var parenHiden = elementT.parentNode.parentNode.parentNode;
+                    filtercontent(parenHiden)
+                }
+            });
+        }
+    })
+});
+function filtercontent(parenHiden){
+    parenHiden.style.display="none";
+}
+function invertFilterContent(){
+    parenElement.forEach(element =>{
+        if(element.getAttribute("style")){
+            element.removeAttribute("style");
+        }
+    })
+}
+
+var filterContent = document.querySelector('#filterContent');
+var btnFilter = document.querySelector('#btnFilter_row');
+btnFilter.addEventListener('click', ()=>{
+    if(filterContent.classList.contains('showfilter')){
+        if(filterContent.classList.contains('showfilter')){
+            filterContent.classList.remove('showfilter');
+        }
+        filterContent.classList.add('hidenfilter');
+    }
+    else{
+        if(filterContent.classList.contains('hidenfilter')){
+            filterContent.classList.remove('hidenfilter');
+        }
+        filterContent.classList.add('showfilter');
+    }
+    
+})
+btnAgregar.addEventListener("click", ()=>{
+    var parenbtn = btnAgregar.parentNode;
+    parenbtn.tabIndex=0;
+    parenbtn.focus();
+})

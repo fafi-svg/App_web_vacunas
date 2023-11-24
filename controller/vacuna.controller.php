@@ -4,63 +4,32 @@
     class controllerVacuna extends ConexionDataBase{
         public function create(modelVacuna $modelVacuna){
             $mysqli = $this->conexion();
-            $nombre = $modelVacuna->nombre = $mysqli -> real_escape_string($_POST['nombre']);
-            $aplicacion = $modelVacuna->aplicacion = $mysqli -> real_escape_string($_POST['aplicacion']);
-            $tipoMascotaId = $modelVacuna->tipoMascotaId = $mysqli -> real_escape_string($_POST['tipomascota_id']);
-            $sql ="INSERT into vacunas (nombre, aplicacion, tipoMascota_Id) values('$nombre', '$aplicacion', '$tipoMascotaId')";
-            $result = $mysqli->query($sql);
+            $sql ="INSERT INTO vacunas (nombre, aplicacion, tipoMascota_Id) VALUES('$modelVacuna->nombre', '$modelVacuna->aplicacion', '$modelVacuna->tipoMascotaId');";
+            $mysqli->query($sql);
             $mysqli->close();
         }
         public function read(){
             $mysqli = $this->conexion();
             $sql = "SELECT * FROM vacunas as v";
             $result = $mysqli->query($sql);
-            $users = [];
-            if ($result->num_rows > 0) {
-                while ($row = mysqli_fetch_array($result)) {
-                    $users[] = $row;
-                }
-            }
             $mysqli->close();
             return $result;
         }
-        public function delete($id){
+        public function delete(modelVacuna $modelVacuna){
             $mysqli = $this->conexion();
-            $sql = "DELETE FROM v acunas WHERE id = $id";
+            $sql = "DELETE FROM vacunas WHERE id = $modelVacuna->id";
             $mysqli->query($sql);
             if ($mysqli) {
                 echo "<div class='table__title-message'>Registro eliminado con éxito.</div>";
             } else {
                 echo "Error al eliminar el registro: " . $mysqli->error;
             }
-
             $mysqli->close();
         }
-        public function update($id){
-            if(!empty($_POST['updateData']) or $_POST['updateData'] !="-1"){
-                $mysqli = $this->conexion();
-                $longPost = sizeof($_POST)-1;
-                $con=0;
-                $stringQuery="";
-                for ($i= 0; $i<=$longPost; $i++) {
-                    $nameColumn =array_keys($_POST)[$i];
-                    if($nameColumn != 'updateData' and !(empty($_POST[$nameColumn]))){
-                        $con++;
-                        if($i < $longPost and $con >=2){
-                            $stringQuery = $stringQuery.",";
-                        }
-                        $stringQuery = $stringQuery." ".$nameColumn."="."'".$mysqli -> real_escape_string($_POST[$nameColumn])."'";
-                    }
-                }
-                $_POST['updateData']='-1';
-                echo($_POST['updateData']);
-                $sql = "update vacunas set $stringQuery where id = $id";
-                $resultado = $mysqli->query($sql);
-                if($resultado){
-                    echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
-                }
-                $mysqli -> close();
-            }
+        public function update($stringQuery){
+            $mysqli = $this->conexion();
+            $sql = "UPDATE vacunas SET $stringQuery;";
+            $mysqli->query($sql);
         }
     }
 ?>

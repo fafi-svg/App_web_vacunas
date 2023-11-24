@@ -5,17 +5,8 @@
     class controllerMascotas extends ConexionDataBase{
         public function create(modelMascotas $modelMascotas){
             $mysqli = $this->conexion();
-            $idUser = $_SESSION['id'];
-            $id = $modelMascotas->id =  $idUser;
-            $nombre = $modelMascotas->nombre = $mysqli -> real_escape_string($_POST['nombre']);
-            $FechaNacimiento = $modelMascotas->FechaNacimiento = $mysqli -> real_escape_string($_POST['fechaNacimiento']);
-            $TipoMascota_id = $modelMascotas->TipoMascota_id = $mysqli -> real_escape_string($_POST['tipoMascota']);
-            $Raza_id = $modelMascotas->Raza_id = $mysqli -> real_escape_string($_POST['raza']);
-            $sql ="INSERT into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('$nombre', '$FechaNacimiento', '$idUser', '$TipoMascota_id', '$Raza_id')";
-            $result = $mysqli->query($sql);
-            var_dump ($_POST);
-            unset($_POST);
-     
+            $sql ="INSERT into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('$modelMascotas->nombre', '$modelMascotas->FechaNacimiento', '$modelMascotas->User_id', '$modelMascotas->TipoMascota_id', '$modelMascotas->Raza_id')";
+            $mysqli->query($sql);
             $mysqli->close();
         }
         public function read(){
@@ -43,28 +34,10 @@
 
             $mysqli->close();
         }
-        public function update($id){
+        public function update($stringQuery){
             $mysqli = $this->conexion();
-            $longPost = sizeof($_POST)-1;
-            $con=0;
-            $stringQuery="";
-            for ($i= 0; $i<=$longPost; $i++) {
-                $nameColumn =array_keys($_POST)[$i];
-                if($nameColumn != 'btn_update_mascota' and !(empty($_POST[$nameColumn]))){
-                    $con++;
-                    if($i < $longPost and $con >=2){
-                        $stringQuery = $stringQuery.",";
-                    }
-                    $stringQuery = $stringQuery." ".$nameColumn."="."'".$_POST[$nameColumn]."'";
-                }
-            }
-            $sql ="UPDATE mascota set $stringQuery where id = $id";
-            $resultado = $mysqli->query($sql);
-            // if($resultado){
-            //     echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
-            // }
-            
-            $mysqli -> close();
+            $sql = "UPDATE vacunas SET $stringQuery;";
+            $mysqli->query($sql);
         }
     }
 ?>

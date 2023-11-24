@@ -6,6 +6,8 @@
     require_once(__DIR__."/controller/user.controller.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/consultas-Vacunas.php");
+    include_once(__DIR__."/models/vacuna.model.php");
+    require_once(__DIR__."/processes/set.model.vacuna.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -83,22 +85,18 @@
                         <div class="table__title">
                             <p class="table__title-text">Gestion De Vacunas</p>
                                 <?php
-                                    if(isset($_POST['updateData'])  or !empty($_POST['aplicacion']) or !empty($_POST['tipomascota_id']) or !empty($_POST['nombre'])){
-                                        if(!(empty($_POST['updateData']))){
-                                            require_once(__DIR__."/processes/controlUpdateVacunas.php");
-                                            (new ControlUpdateVacunas) ->updateVacunas();
-                                        }
+                                    if(isset($_POST['updateData'])){                                        
+                                        (new SetModelVacuna) ->update($_POST['updateData']);
+                                        header('location:gestion-vacunas');
                                     }
                                     if(isset($_POST['deleteData'])){
-                                        require_once(__DIR__."/controller/vacuna.controller.php");
-                                        (new controllerVacuna) ->delete($_POST['deleteData']);
+                                        (new SetModelVacuna) ->delete($_POST['deleteData']);
+                                        header('location:gestion-vacunas');
                                     }
-                                    if(isset($_POST['addDataRow']) and $_POST['addDataRow'] != -'1'){
-                                        echo($_POST['addDataRow']);
-                                        require_once(__DIR__."/controller/vacuna.controller.php");
-                                        require_once(__DIR__."/models/vacuna.model.php");
+                                    if(isset($_POST['addDataRow'])){                                                                                                           
                                         $modelVacuna = (new modelVacuna);
-                                        (new controllerVacuna) ->create($modelVacuna);
+                                        (new SetModelVacuna) ->create();    
+                                        header('location:gestion-vacunas');
                                     }
                                     $vacunas = (new GestionVacunasConsultas)->readVacunas();
                                     $numeroVacunas = (new GestionVacunasConsultas)->contarVacunas();
@@ -118,54 +116,55 @@
                                                      <p class="table__header-text">Fila</p>
                                                 </div>
                                                 <div class="table__header-content">
-                                                     <p class="table__header-text">Nombre vacuna</p>                                    
-                                                     <input id="inputCreate" class="inputAgregar" type="text" name="nombre" require>
-                                                </div>
-                                                <div class="table__header-content">
-                                                     <p class="table__header-text">Dias Aplicacion </p>
-                                                     <input id="inputCreate" class="inputAgregar" type="text" name="aplicacion" require>
-                                                </div>
-                                                <div class="table__header-content">
-                                                     <p class="table__header-text">Tipo Mascota</p>
+                                                    <p class="table__header-text">Nombre <span class="textExtra">vacuna</span></p>
+                                                    <?php if($_SESSION['rol']=="2"){?>
+                                                        <input id="inputCreate" class="inputAgregar" type="text" name="nombre" require>
+                                                    <?php }?>                                    
                                                      
-                                                     <select class="inputAgregar" name="tipomascota_id" id="inputCreate" require>
-                                                        <option value=""></option>
-                                                        <option value="2">Perro</option>
-                                                        <option value="1">Gato</option>
-                                                     </select>
+                                                </div>
+                                                <div class="table__header-content">
+                                                    <p class="table__header-text">Dias <span class="textExtra">Aplicacion</span> </p>
+                                                    <?php if($_SESSION['rol']=="2"){?>
+                                                        <input id="inputCreate" class="inputAgregar" type="text" name="aplicacion" require>
+                                                    <?php }?>  
+                                                     
+                                                </div>
+                                                <div class="table__header-content">
+                                                    <p class="table__header-text">Tipo <span class="textExtra">Mascota</span> </p>
+                                                    <?php if($_SESSION['rol']=="2"){?>
+                                                        <select class="inputAgregar" name="tipomascota_id" id="inputCreate" require>
+                                                            <option value=""></option>
+                                                            <option value="2">Perro</option>
+                                                            <option value="1">Gato</option>
+                                                        </select>
+                                                    <?php }?>  
+
                                                     
                                                 </div>
                                                 <div class="table__header-content">
                                                      <p class="table__header-text">Vacunas Usadas</p>
                                                  </div>
                                             </div>
-                                            <?php 
-                                            if($_SESSION['rol']=="2"){
-                                            ?>
+                                            <?php if($_SESSION['rol']=="2"){?>
                                                 <div class="table__header-icon">
                                                         <img class="btnSubmit_img" src="img/icon-agregar-white.png" alt="">
                                                         <div class="table__header-input" id="table__header-input">
                                                             <img class="btnSubmit_img" src="img/icon-guardar.png" alt="">
                                                             <input class="btnSubmitAgregar" id="btnAgregarSubmit" type="submit" name="addDataRow">
                                                         </div>
-
                                                 </div>
-                                            <?php 
-                                            } else {    
-                                            ?>
+                                            <?php } else { ?>
                                                 <div class="table__header-icon">
-                                                    <img src="img/icon-pet-gato.png" alt="">
+                                                    <img class="btnSetVacunas" src="img/icon-agregar-white.png" alt="">
                                                 </div>
-                                            <?php 
-                                            }    
-                                            ?>
+                                            <?php } ?>
                                         </form>
                                 </div>
                                     
                                 <div class="table__content">
                                     <div class="table__rows">
                                         <?php $con = 1; $row=1; foreach ($vacunas as $variable) {?>
-                                            <form method="post" class="table__rows-container" id="row_<?php echo$row;?>" style="<?php echo $_SESSION['rol'] == "1" ? 'height:4em;': '' ?>">
+                                            <form method="post" class="table__rows-container" id="row_<?php echo$row;?>">
                                                 <?php
                                                     if($_SESSION['rol']=="2"){
                                                 ?>
@@ -187,7 +186,7 @@
                                                         <div class="table__rows-item-column">
                                                             <p class="table__rows-text"><?php echo $row ?></p>
                                                         </div>
-                                                        <div class="table__rows-item-column">
+                                                        <div class="table__rows-item-column" id="nombre">
                                                             <p class="table__rows-text"><?php echo $variable['nombre'] ?></p>
                                                             <?php if($_SESSION['rol']=="2"){ ?>
                                                                 <div class="inputUpdate__container">                                                        
@@ -195,7 +194,7 @@
                                                                 </div>    
                                                              <?php } ?>                                                    
                                                         </div>
-                                                        <div class="table__rows-item-column">
+                                                        <div class="table__rows-item-column" id="aplicacion">
                                                         <p class="table__rows-text"><?php echo $variable['aplicacion'] ?></p>
                                                         <?php if($_SESSION['rol']=="2"){ ?>
                                                             <div class="inputUpdate__container">
@@ -203,7 +202,7 @@
                                                             </div>    
                                                         <?php } ?>                                                        
                                                         </div>
-                                                        <div class="table__rows-item-column">
+                                                        <div class="table__rows-item-column" id="tipomascota">
                                                         <p class="table__rows-text"><?php echo $variable['tipomascota_id'] ?></p>
                                                         <?php if($_SESSION['rol']=="2"){ ?>
                                                             <div class="inputUpdate__container">
@@ -230,7 +229,7 @@
                                                                 </div>
                                                                 <div class="labelSubmit labelSubmit_row_<?php echo  $row;?>">
                                                                     <img class="btnSubmit-img" src="img/icon-update.png" alt="icon-update">
-                                                                    <input class="btnSubmit inputSubmit_row_<?php echo  $row;?>" id="row_<?php echo $row;?>" value="<?php echo  $variable['id'];?>" type="submit" name="updateData">
+                                                                    <input class="btnSubmit inputSubmit_row_<?php echo  $row;?>" id="row_<?php echo $row;?>" value="<?php echo $variable['id'];?>" type="submit" name="updateData">
                                                                 </div>
                                                                 <div class="btnFlecha">
                                                                         <img class="btnFlecha-img" src="img/icon-flecha.png" alt="">
@@ -248,18 +247,40 @@
                                     </div>
                                 </div>
                                 <div class="table__footer">
-                                    <div class="table__footer-icon">
-                                        <img src="img/icon-geringa-white_rellena.png" alt=""><?php $countVacunas = mysqli_fetch_array($numeroVacunas); echo $countVacunas['cound'];?>
-                                    </div>
-                                    <?php
-                                          if($_SESSION['rol']=="2"){
-                                    ?>
-                                        <div id="btnFilter_row" class="table__footer-filter table__footer-icon">
-                                            <img src="img/icon-filtro.png" alt="">
+                                    <div class="table__footer-content">
+                                        <div class="table__footer-icon">
+                                            <img src="img/icon-geringa-white_rellena.png" alt=""><?php $countVacunas = mysqli_fetch_array($numeroVacunas); echo $countVacunas['cound'];?>
                                         </div>
-                                    <?php
-                                        }
-                                    ?>
+                                        <div class="btn__footer">
+                                            <div class="filter__container">
+                                                <div class="filter__content" id="filterContent">
+                                                    <div class="inputUpdate__container">                                                        
+                                                        <input class="inputSearch"  type="text" id="nombre">
+                                                    </div>  
+                                                    <div class="inputUpdate__container">
+                                                        <input class="inputSearch" type="number" id="aplicacion"> 
+                                                    </div>   
+                                                    <div class="inputUpdate__container">
+                                                        <input list="datalist" class="inputSearch" type="text" id="tipomascota"> 
+                                                        <datalist id="datalist">
+                                                            <option value="perro"></option>
+                                                            <option value="gato"></option>
+                                                        </datalist>
+                                                    </div>
+                                                </div>
+                                                <div id="btnFilter_row" class="table__footer-filter table__footer-icon">
+                                                    <img src="img/icon-filtro.png" alt="">
+                                                </div>
+                                            </div>
+
+                                            <?php if($_SESSION['rol']=="2"){?>
+                                                    <div class="table__footer-icon table__footer-margin">
+                                                        <img class="" id="btnSetVacunas" src="img/icon-agregar-white.png" alt="">
+                                                    </div>
+                                            <?php }?>
+                                        </div>
+
+                                    </div>
                                 </div>
                         </div>
 

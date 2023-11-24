@@ -3,7 +3,7 @@
     if(isset($_POST['exitSession'])){
         (new SignOff)->exitSession();
     } else{session_start();} 
-    require_once(__DIR__."/processes/controlRegistroVacunas.php");
+    require_once(__DIR__."/processes/set.model.mascota.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/consultas-Vacunas.php");
     require_once(__DIR__."/consultas/consultas-Mascotas.php");
@@ -28,12 +28,12 @@
         <?php if(!empty($_SESSION['usuario'])){?>
                 <?php 
                     if(isset($_POST['btn_update_mascota'])){
-                        (new controllerMascotas) -> update($_POST['btn_update_mascota']);
+                        (new SetModelMascota) -> update($_POST['btn_update_mascota']);
                         header('location:gestion-mis-mascotas.php');
                     }
                     if(isset($_POST['btn_created_mascota'])){
-                        $modelControlMascots = (new modelMascotas);
-                        (new controllerMascotas) -> create($modelControlMascots);
+                        $modelMascotas = (new modelMascotas);
+                        (new SetModelMascota) -> create($modelMascotas);
                         header('location:gestion-mis-mascotas.php');
                     }
                     
@@ -140,8 +140,8 @@
                                                                 <img src="img/icon-geringa-white_rellena.png" alt="icon-geringa">
                                                             </div>
                                                             <div class="box__text">
-                                                                <p class="box__text-title"><?php $Vacuna['nombre']?></p>          
-                                                                <p class="box__text-date"><?php $Vacuna['fecha']?></p>
+                                                                <p class="box__text-title"><?php echo $Vacuna['nombre']?></p>          
+                                                                <p class="box__text-date"><?php echo $Vacuna['fecha']?></p>
                                                             </div>
                                                         </div>
                                                     </div>

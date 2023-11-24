@@ -6,7 +6,7 @@
     require_once(__DIR__."/controller/user.controller.php");
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/consultas-gestion-Razas.php");
-    require_once(__DIR__."/consultas/gestionMascotas.php");
+    require_once(__DIR__."/consultas/consultas-gestion-Razas.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,19 +136,13 @@
                                             <?php }?>
                                         </div>
                                     </div>
-                                    <?php 
-                                    if($_SESSION['rol']=="2"){
-                                    ?>
+                                    <?php if($_SESSION['rol']=="2"){ ?>
 
-                                    <?php 
-                                    } else {    
-                                    ?>
+                                    <?php } else { ?>
                                         <div class="table__header-icon">
-                                            <img src="img/icon-pet-gato.png" alt="">
+                                            <img class="btnSubmit_img" src="img/icon-agregar-white.png" alt="">
                                         </div>
-                                    <?php 
-                                    }    
-                                    ?>
+                                    <?php }?>
                                 </form>
                             </div>
                             <div class="table__content">
@@ -168,7 +162,7 @@
                                                             src=" <?php 
                                                                     if($petsRazaData_Row['tm.nombre']=='gato'){
                                                                         if($petsRazaData_Row['t.tamano']=='grande'){
-                                                                            echo 'img/icon-pet-gato-grande-2.png';
+                                                                            echo 'img/icon-pet-gato.png';
                                                                         }else{
                                                                             echo 'img/icon-pet-gato.png';
                                                                         }
@@ -209,7 +203,10 @@
                             </div>
                             <div class="table__footer">
                                 <div class="table__footer-content">
-                                    <div class="table__footer-icon ">
+                                    <div class="table__footer-icon">
+                                        <img src="img/icon-geringa-white_rellena.png" alt="">
+                                    </div>
+                                    <div id="btnFilter_row" class="table__footer-filter table__footer-icon">
                                         <img src="img/icon-filtro.png" alt="">
                                     </div>
                                 </div>

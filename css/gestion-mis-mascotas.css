@@ -52,9 +52,8 @@ img{
     right: 0%;
 }
 .box__icon-btn-add{
-    position: absolute;
+    /* position: absolute; */
     cursor: pointer;
-    
 }
 .box__icon-btn-add img{
     background-color: #555555;
@@ -191,6 +190,9 @@ img{
 .box__item > .box__text p{
     margin: 0 0 .3em 0;
 }
+p.box__text-date{
+    color: gray;
+}
 .box__text-name > p.box__text-title, .box__text-name > p.box__text-date{
     margin: 0 0 .3em 0;
     position: relative;
@@ -200,6 +202,7 @@ img{
 .box__icon-default{
     margin: auto;
     text-align: center;
+    position: relative;
 }
 .box__icon, .box__icon-pet, .box__icon-btn{
     user-select: none;
@@ -207,7 +210,6 @@ img{
     transition-property: margin-bottom;
     transition-duration: 200ms;
     transition-delay: 100ms;
-    position: relative;
 }
 .box__icon-btn:hover{
     margin-bottom: .4em;
