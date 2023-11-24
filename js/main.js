@@ -84,9 +84,9 @@ function activeBtnSubmit(arrayInput, btnElementRow, inputId, labelElementRow){
             inputConValue++;
             console.log(inputConValue);
         }
-        if((/\s/.test(inputEmpyChange.value))){
-            inputEmpyChange.value="";
-        }
+        // if((/\s/.test(inputEmpyChange.value))){
+        //     inputEmpyChange.value="";
+        // }
     }); 
     console.log(inputId);
     var inputIdCantainer = ".table__rows-btn_"+inputId; 
@@ -101,6 +101,9 @@ function activeBtnSubmit(arrayInput, btnElementRow, inputId, labelElementRow){
         document.querySelector(btnElementRow).classList.remove("inputUpdateView");
         document.querySelector(labelElementRow).classList.remove("inputUpdateView");
     }
+}
+function validarVacuna(inputValue){
+    if(/^[a-z]/.test(inputValue) || /^[A-Z]/.test(inputValue) || /^[0-9]/.test(inputValue)){console.log('True');return true;}else{ console.log('false'); return false;}
 }
 
 var list = document.querySelectorAll("div#btnDelete");
@@ -166,36 +169,62 @@ var itemsNombre = document.querySelectorAll('div#nombre');
 var itemsAplicacion = document.querySelectorAll('div#aplicacion');
 var itemsTipoMascota = document.querySelectorAll('div#tipomascota');
 var parenElement = document.querySelectorAll('form.table__rows-container');
+var counInputV = 0;
 inputSearch.forEach(element => {
     element.addEventListener('keyup', ()=>{
-        invertFilterContent();
-        if(element.id == 'nombre'){
-            itemsNombre.forEach(elementN => {
-                // console.log(elementN.childNodes[1]);
-                if(!(elementN.childNodes[1].textContent.toLowerCase().includes(element.value.toLowerCase()))){
-                    var parenHiden = elementN.parentNode.parentNode.parentNode;
-                    filtercontent(parenHiden)
+        invertFilterContent();        
+        if(element.id == 'nombre'){elementsN(element.value);}
+        if(element.id == 'aplicacion'){elementsA(element.value);}
+        if(element.id == 'tipomascota'){elementsT(element.value);}
+        if(counInputValue() >= 1){
+            inputSearch.forEach(element => {
+                if(element.value != "" && validarVacuna(element.value)){
+                    if(element.id == 'nombre'){elementsN(element.value);}
+                    if(element.id == 'aplicacion'){elementsA(element.value);}
+                    if(element.id == 'tipomascota'){elementsT(element.value);}
                 }
-            });
+            })
+            counInputV = 0;
         }
-        if(element.id == 'aplicacion'){
-            itemsAplicacion.forEach(elementA => {
-                if(!(elementA.childNodes[1].textContent.toLowerCase().includes(element.value.toLowerCase()))){
-                    var parenHiden = elementA.parentNode.parentNode.parentNode;
-                    filtercontent(parenHiden)
-                }
-            });
-        }
-        if(element.id == 'tipomascota'){
-            itemsTipoMascota.forEach(elementT => {
-                if(!(elementT.childNodes[1].textContent.toLowerCase().includes(element.value.toLowerCase()))){
-                    var parenHiden = elementT.parentNode.parentNode.parentNode;
-                    filtercontent(parenHiden)
-                }
-            });
-        }
+
+
     })
 });
+function elementsN(value) {
+    itemsNombre.forEach(elementN => {
+        // console.log(elementN.childNodes[1]);
+        if(!(elementN.childNodes[1].textContent.toLowerCase().includes(value.toLowerCase())) &&  validarVacuna(value)){
+            var parenHiden = elementN.parentNode.parentNode.parentNode;
+            filtercontent(parenHiden)
+        }
+    });
+}
+function elementsA(value) {
+    itemsAplicacion.forEach(elementN => {
+        // console.log(elementN.childNodes[1]);
+        if(!(elementN.childNodes[1].textContent.toLowerCase().includes(value.toLowerCase())) &&  validarVacuna(value)){
+            var parenHiden = elementN.parentNode.parentNode.parentNode;
+            filtercontent(parenHiden)
+        }
+    });
+}
+function elementsT(value) {
+    itemsTipoMascota.forEach(elementN => {
+        // console.log(elementN.childNodes[1]);
+        if(!(elementN.childNodes[1].textContent.toLowerCase().includes(value.toLowerCase())) &&  validarVacuna(value)){
+            var parenHiden = elementN.parentNode.parentNode.parentNode;
+            filtercontent(parenHiden)
+        }
+    });
+}
+function counInputValue(){
+    inputSearch.forEach(element => {
+        if(element.value != "" && validarVacuna(element.value)){
+            counInputV++;
+        }
+    })
+    return counInputV;
+}
 function filtercontent(parenHiden){
     parenHiden.style.display="none";
 }
@@ -206,6 +235,7 @@ function invertFilterContent(){
         }
     })
 }
+
 
 var filterContent = document.querySelector('#filterContent');
 var btnFilter = document.querySelector('#btnFilter_row');

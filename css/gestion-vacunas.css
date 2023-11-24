@@ -233,7 +233,7 @@ body{
 }
 /* ____________________________ ROWS_WIDTHS_TABLE ____________________________*/
 .table__header-container,.table__rows-item{
-    grid-template-columns: clamp(60px,5vw,10vw) clamp(100px,15vw,30vw) clamp(130px,15vw,20vw) auto auto;
+    grid-template-columns: clamp(60px,5vw,10vw) clamp(100px,15vw,30vw) clamp(130px,15vw,20vw) clamp(103px, 15vw, 20vw) clamp(103px, 15vw, 20vw);
 }
 
 .table__rows-column{

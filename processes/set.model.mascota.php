@@ -8,7 +8,7 @@
             $mysqli = $this -> conexion();
             $modelMascotas -> nombre = $mysqli -> real_escape_string($_POST['nombre']);
             $modelMascotas -> FechaNacimiento = $mysqli -> real_escape_string($_POST['fechaNacimiento']);
-            $modelMascotas -> User_id = $mysqli -> $_SESSION['id'];
+            $modelMascotas -> User_id = $mysqli -> real_escape_string($_SESSION['id']);
             $modelMascotas -> TipoMascota_id = $mysqli -> real_escape_string($_POST['tipoMascota']);
             $modelMascotas -> Raza_id = $mysqli -> real_escape_string($_POST['raza']);
             (new controllerMascotas) -> create($modelMascotas);

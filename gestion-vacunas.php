@@ -95,7 +95,7 @@
                                     }
                                     if(isset($_POST['addDataRow'])){                                                                                                           
                                         $modelVacuna = (new modelVacuna);
-                                        (new SetModelVacuna) ->create();    
+                                        (new SetModelVacuna) ->create($modelVacuna);    
                                         header('location:gestion-vacunas');
                                     }
                                     $vacunas = (new GestionVacunasConsultas)->readVacunas();
@@ -142,7 +142,7 @@
                                                     
                                                 </div>
                                                 <div class="table__header-content">
-                                                     <p class="table__header-text">Vacunas Usadas</p>
+                                                     <p class="table__header-text">Vacunas <span class="textExtra"> Usadas</span></p>
                                                  </div>
                                             </div>
                                             <?php if($_SESSION['rol']=="2"){?>
@@ -172,7 +172,7 @@
                                                         <div class="screenDelete_btn">
                                                             <img class="btnDelete_img" src="img/icon-basurero-white.png" alt="icon-update">
                                                             <img id="row_<?php echo  $row;?>" class="btnExit_img" src="img/icon-cruz-white.png" alt="icon-update">
-                                                            <input class="btnDelete_input inputDelete_row_<?php echo  $row;?>" id="row_<?php echo $row;?>" value="<?php echo  $row;?>" type="submit" name="deleteData">
+                                                            <input class="btnDelete_input inputDelete_row_<?php echo  $row;?>" id="row_<?php echo $row;?>" value="<?php echo$variable['id'];?>" type="submit" name="deleteData">
                                                         </div>
                                                         <p class="screenDelete_text">
                                                             Desea Eliminar El registro vacuna
