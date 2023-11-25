@@ -171,7 +171,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 insert into Role values('2','admin'), ('1','user');
-insert into User values('2','fafi','user','examle2@correo.com','$2y$10$ekpW/Y2KnXXMwaVUXveU3.HyV1m.VhT/KD6mDgYzKX2Pw1OAEZ4MG','1','null'),('1','rafael','admin','examle3@correo.com','$2y$10$2GKBB5QXkAypiof4drhwpOJ.zur4njTdpq01Iq0Soec7dP7A5MAQW','2','null'),('3', 'Ricardo', 'UseR-1', 'example4@correo.com', '$2y$10$INUrk34z0.OzzwAu25XvceLGwXw0q3ORKH4WBss9kXfF.W2O8rDpm', '1', 'null'),('4', 'Ricardo', 'admin-2', 'example5@correo.com', '$2y$10$INUrk34z0.OzzwAu25XvceLGwXw0q3ORKH4WBss9kXfF.W2O8rDpm', '2', 'null');
+-- insert into User values('1', 'Ricardo', 'UseR-1', 'example4@correo.com', '$2y$10$INUrk34z0.OzzwAu25XvceLGwXw0q3ORKH4WBss9kXfF.W2O8rDpm', '1', 'null'),('2', 'Ricardo', 'admin-2', 'example5@correo.com', '$2y$10$INUrk34z0.OzzwAu25XvceLGwXw0q3ORKH4WBss9kXfF.W2O8rDpm', '2', 'null');
 insert into TipoMascota (id,nombre, EdadEquivalenteInfante, EdadEquivalenteJoven, EdadEquivalenteAdolecente, EdadAdulto) value('1','gato','2','5','8','10'), ('2','perro','3','6','12','18');
 insert into TamanosMascota value('1','mini'),('2','pequeno'),('3','mediano'),('4','grande'),('5','gigante');
 -- -----------------------------------------------------------------------------##
@@ -199,17 +199,15 @@ insert into raza (nombre, TipoMascota_id, TamanoMascota_id) values ('Ragdoll','1
 -- -----------------------------------------------------------------------------##
 -- Mascotas Gatos
 -- -----------------------------------------------------------------------------##
-insert into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('tula','2015-05-15','4','1','50'),('peka','2015-05-15','4','1','67'),('luis','2015-05-15','3','1','93'),('nacho','2015-05-15','3','1','55'),('pepa','2015-05-15','3','1','85'),('michulais','2015-05-15','1','1','73'); 
+-- insert into mascota (id, nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('1',tula','2015-05-15','1','1','50'),('2','peka','2015-05-15','1','1','67'),('3','luis','2015-05-15','1','1','93'),('4','nacho','2015-05-15','1','1','55'),('5','pepa','2015-05-15','1','1','85'),('6','michulais','2015-05-15','1','1','73'); 
 -- -----------------------------------------------------------------------------##
 -- Mascotas perros
 -- -----------------------------------------------------------------------------##
-insert into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('luca','2015-05-15','4','2','5'),('donkan','2015-05-15','4','2','45'),('silvestre','2015-05-15','3','2','3'),('paco','2015-05-15','3','2','15'),('miguel','2015-05-15','3','2','89'),('firulais','2015-05-15','1','2','5'); 
+-- insert into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('7','luca','2015-05-15','3','2','5'),('8','donkan','2015-05-15','3','2','45'),('9','silvestre','2015-05-15','3','2','3'),('10','paco','2015-05-15','3','2','15'),('11','miguel','2015-05-15','3','2','89'),('12','firulais','2015-05-15','3','2','5'); 
 -- -----------------------------------------------------------------------------##
 -- Control Vacunas
 -- -----------------------------------------------------------------------------##
-insert into controlvacunas (Mascota_id, Vacuna_id, fecha) 
-values ('1','8','2015-11-15'),('1','9','2016-03-15'),('1','10','2015-05-15'),('1','12','2016-04-15'),
-('3','8','2015-05-15'),('3','9','2013-03-15'),('3','10','2015-05-15'),('4','12','2013-03-15');
+-- insert into controlvacunas (Mascota_id, Vacuna_id, fecha) values ('1','8','2015-11-15'),('1','9','2016-03-15'),('1','10','2015-05-15'),('1','12','2016-04-15'), ('3','8','2015-05-15'),('3','9','2013-03-15'),('3','10','2015-05-15'),('4','12','2013-03-15');
 -- -----------------------------------------------------------------------------##
 -- CONSULTAS
 -- -----------------------------------------------------------------------------##
