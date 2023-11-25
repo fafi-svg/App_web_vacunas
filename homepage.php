@@ -68,6 +68,14 @@
                                 <p class="box__text-name">Registro De Vacunas</p>
                             </div>
                         </a>
+                        <a href="gestion-vacunas.php" class="box__container"> 
+                            <div class="box__img">
+                                <img src="img/icon-geringa-white_rellena.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name">Asignar Vacunas</p>
+                            </div>
+                        </a>
                     <?php }?>
                     <?php if($_SESSION['rol']=="2"){?>
                         <div class="box__container box__container-user">
@@ -79,14 +87,14 @@
                                 <p class="box__text-rol">administrador</p>
                             </div>
                         </div>
-                        <a href="gestion-mascotas.php" class="box__container"> 
+                        <!-- <a href="gestion-mascotas.php" class="box__container"> 
                             <div class="box__img">
                                 <img src="img/icon-pet-gato.png" alt="">
                             </div>
                             <div class="box__text">
                                 <p class="box__text-name">Gestionar Mascota</p>
                             </div>
-                        </a>
+                        </a> -->
                         <a href="gestion-vacunas.php" class="box__container"> 
                             <div class="box__img">
                                 <img src="img/icon-geringa-white_rellena.png" alt="">
@@ -95,12 +103,28 @@
                                 <p class="box__text-name">Registro De Vacunas</p>
                             </div>
                         </a>
-                        <a href="gestion-razas.php" class="box__container"> 
+                        <!-- <a href="gestion-razas.php" class="box__container"> 
                             <div class="box__img">
                                 <img src="img/icon-animals.png" alt="">
                             </div>
                             <div class="box__text">
                                 <p class="box__text-name">Gestionar Razas</p>
+                            </div>
+                        </a> -->
+                        <a href="gestion-mis-mascotas.php" class="box__container"> 
+                            <div class="box__img">
+                                <img src="img/icon-animals.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name">Mis Mascotas</p>
+                            </div>
+                        </a>
+                        <a href="gestion-vacunas.php" class="box__container"> 
+                            <div class="box__img">
+                                <img src="img/icon-geringa-white_rellena.png" alt="">
+                            </div>
+                            <div class="box__text">
+                                <p class="box__text-name">Asignar Vacunas</p>
                             </div>
                         </a>
                     <?php }?>

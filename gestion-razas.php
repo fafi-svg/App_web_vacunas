@@ -7,6 +7,7 @@
     require_once(__DIR__."/controller/vacuna.controller.php");
     require_once(__DIR__."/consultas/consultas-gestion-Razas.php");
     require_once(__DIR__."/consultas/consultas-gestion-Razas.php");
+    require_once(__DIR__."/controller/tipomascota.controller.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/header-style.css">
     <link rel="stylesheet" href="css/table-style.css">
+    <link rel="stylesheet" href="css/btn-created.css">
+    <link rel="stylesheet" href="css/modal-style.css">
     <link rel="stylesheet" href="css/gestion-razas.css">
     <title>Gestion Razas</title>
 </head>
@@ -24,19 +27,15 @@
             <?php if($_SESSION['rol'] == '2'){?>
                 <?php 
                     $petsRazaData = (new GestionRazasConsultas) -> petsRazaData(); 
-                    $petsRazaName = (new GestionRazasConsultas)  ->petsRazaName()  
+                    $PetsRaza = (new GestionRazasConsultas)  ->petsRazaName()  
                 ?>
                 <?php
                 foreach ($petsRazaData as $petsRazaData_Row) {
                     $longPetsRazaData = sizeof($petsRazaData_Row)-1;
                     break;
                 }
-                foreach ($petsRazaName as $petsRazaName_Row) {
-                    $longPetsRazaName = sizeof($petsRazaName_Row)-1;
-                    break;
-                }
-            ?>
-            <div class="screen__gestion__mascota">
+                foreach ($PetsRaza as $Raza) {$longPetsRaza = sizeof($Raza)-1; break; }?> 
+            <div class="screen__gestion__razas screen__gestion">
                 <header class="header__gestion-vacuna">
                     <div class="header__logo user_select_none">
                         <div class="header__logo-img">
@@ -89,6 +88,11 @@
                     <div class="table">
                         <div class="table__title">
                             <p class="table__title-text">Gestion De Mascotas</p>
+                            <div class="box__icon-btn-add-container box__icon">
+                                <div class="box__icon-btn-add">
+                                    <img style="width: 3em;" class="box__icon-created user_select_none" src="img/icon-agregar-white.png" alt="">
+                                </div>
+                            </div> 
                         </div>
                         <div class="table__container">
                             <div class="table__header">
@@ -97,42 +101,43 @@
                                         <div class="table__header-content">
                                             <p class="table__header-text">Nº Mascotas</p>
                                             <?php if($_SESSION['rol'] == "2"){?>
-                                                <input id="inputSearch" class="inputBuscar" type="text" name="m.nombre" require>
+                                                <input class="inputSearch"  type="number" name="m.nombre" min="0" id="countRaza">
                                             <?php }?>
                                         </div>
                                         <div class="table__header-content">
                                             <p class="table__header-text">Tipo</p>
                                             <?php if($_SESSION['rol'] == "2"){?>
-                                                <select class="inputBuscar" name="m.TipoMascota_id" id="inputSearch" require>
-                                                    <option value=""></option>
-                                                    <option value="2">Perro</option>
-                                                    <option value="1">Gato</option>
-                                                </select>
+                                                <input list="TipoMascota" type="text" name="TipoMascota_id" class="inputSearch" id="tipomascota">
+                                                <datalist id="TipoMascota">
+                                                    <option ></option>
+                                                    <option >Perro</option>
+                                                    <option >Gato</option>
+                                                </datalist>
+
                                             <?php }?>
                                         </div>
                                         <div class="table__header-content">
                                             <p class="table__header-text">Raza</p>
                                             <?php if($_SESSION['rol'] == "2"){?>
-                                                <select class="inputBuscar" name="m.TipoMascota_id" id="inputSearch" require>
-                                                    <option value=""></option>
-                                                    <?php foreach ($petsRazaName as $nameRaza) {
-                                                    ?>  
-                                                        <option value="<?php $nameRaza['nombre']?>"> <?php echo $nameRaza['nombre']; ?></option>
+                                                <input list="raza" type="text" name="raza" class="inputSearch" id="nombreRaza">
+                                                <datalist id="raza" class="datalist__Raza">
+                                                    <?php foreach ($PetsRaza as $Raza) {?>  
+                                                        <option > <span style="background-color:red;"><?php echo ((new controllerTipoMascota) -> readName($Raza['TipoMascota_id']))[0].' '?></span><?php echo  $Raza['nombre']?> </option>
                                                     <?php }?>
-                                                </select>
+                                                </datalist>
                                             <?php }?>
                                         </div>
                                         <div class="table__header-content">
                                             <p class="table__header-text">Tamaño</p>
                                             <?php if($_SESSION['rol'] == "2"){?>
-                                                <select class="inputBuscar" name="m.TipoMascota_id" id="inputSearch" require>
-                                                    <option value=""></option>
-                                                    <option value="mini">mini</option>
-                                                    <option value="pequeno">pequeño</option>
-                                                    <option value="mediana">mediano</option>
-                                                    <option value="grande">grande</option>
-                                                    <option value="gigante">gigante</option>
-                                                </select>
+                                                <input list="tamaño" type="text" name="tamano" class="inputSearch" id="tamaño">
+                                                <datalist id="tamaño" class="datalist__Raza">
+                                                    <option >mini</option>
+                                                    <option >pequeño</option>
+                                                    <option >mediano</option>
+                                                    <option >grande</option>
+                                                    <option >gigante</option>
+                                                </datalist>
                                             <?php }?>
                                         </div>
                                     </div>
@@ -154,10 +159,11 @@
                                         <form method="post" class="table__rows-container" id="row_<?php echo$row;?>">
                                             <div class="table__rows-content">
                                                 <div class="table__rows-item">
-                                                    <div class="table__rows-item-column">
+                                                    <div class="table__rows-item-column" id="countRaza">
                                                         <p class="table__rows-text"><?php echo $petsRazaData_Row['countRaza'] ?></p>
                                                     </div>
-                                                    <div class="table__rows-item-column">
+                                                    <div class="table__rows-item-column" id="tipomascota">
+                                                        <p style="height:0; position:absolute; z-index:-2; opacity:0;" class="table__rows-text"><?php echo $petsRazaData_Row['tm.nombre'] ?></p>
                                                         <img class="table__rows-img" 
                                                             src=" <?php 
                                                                     if($petsRazaData_Row['tm.nombre']=='gato'){
@@ -185,10 +191,10 @@
                                                                         }
                                                                     } ?>" alt="">
                                                     </div>
-                                                    <div class="table__rows-item-column">
+                                                    <div class="table__rows-item-column" id="nombreRaza">
                                                         <p class="table__rows-text"><?php echo $petsRazaData_Row['r.nombre'] ?></p>
                                                     </div>
-                                                    <div class="table__rows-item-column">
+                                                    <div class="table__rows-item-column" id="tamaño">
                                                         <p class="table__rows-text"><?php echo strtoupper($petsRazaData_Row['t.tamano']) ?></p>
                                                     </div>
                                                 </div>
@@ -214,6 +220,39 @@
                         </div>
                     </div>
                 </section>
+            </div>
+            <div class="modal__container">
+                    <div class="modal__created">
+                        <header class="modal__header">
+                            <h2 class="modal__title"> Agregar Vacuna</h2>
+                            <div class="modal__close">✕</div>
+                        </header>
+                        <section class="modal__content">
+                            <form method="post" class="modal__form">
+                                <div class="form__item">
+                                    <label for="tipoMascota">Nombre Vacuna</label>
+                                    <input class="modalInput Scroll__container" type="text" id="tipoMascota" name="nombre" >           
+                                </div>
+                                <div class="form__item">
+                                    <label for="tipoMascota">Tipo Mascota</label>
+                                    <select class="modalInput Scroll__container" id="tipoMascota" name="tipoMascota" >
+                                        <option value=""></option>
+                                        <option value="1">Gato</option>
+                                        <option value="2">Perro</option>
+                                    </select>                                        
+                                </div>
+                                <div class="form__item">
+                                    <label for="nombre">Tiempo Aplicacion (Dias)</label>
+                                    <input class="modalInput" id="nombre" type="number" name="aplicacion" >
+                                </div>
+                                <div class="form__item__btn">
+                                    <input class="modalSubmit" type="submit" name="btn_created_vacuna" value="ENVIAR" disabled>                                    
+                                </div>
+                            </form>
+                        </section>
+                        <footer class="modal__footer">
+                        </footer>
+                    </div>
             </div>
             <?php
                 } else{header("location: error-not-session.php");}

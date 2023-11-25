@@ -13,12 +13,6 @@
             $modelTipoMascota -> EdadAdulto = $mysqli -> real_escape_string($_POST['raza']);
             (new controllerTipoMascota) -> create($modelTipoMascota);
         }
-        public $id;
-        public $nombre;
-        public $EdadEquivalenteInfante;
-        public $EdadEquivalenteJoven;
-        public $EdadEquivalenteAdolecente;
-        public $EdadAdulto;
 
         public function update($id){
             $mysqli = $this -> conexion();
@@ -28,7 +22,7 @@
             $element = 0;
             $stringQuery="";
             for ($i= 0; $i<=$longPost; $i++) {
-                if(array_keys($_POST)[$i] != 'updateData' and !(empty($_POST[array_keys($_POST)[$i]]))){
+                if(array_keys($_POST)[$i] != 'btn_update_mascota' and !(empty($_POST[array_keys($_POST)[$i]]))){
                     $nameColumn =array_keys($_POST)[$i];
                     if($i < $longPost and $con > 0){
                         $stringQuery = $stringQuery.",";

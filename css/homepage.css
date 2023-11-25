@@ -114,6 +114,9 @@ body{
 .box__container:nth-child(1){
     background: linear-gradient(to bottom right, rgb(0, 0, 0), 40%, rgb(45, 50, 50), rgb(60, 60, 60));   
 }
+.box__container{
+    background: linear-gradient(to top left, rgb(30, 30, 30), rgb(45, 50, 50), rgb(60, 60, 60));
+}
 .button__exit:focus-within ~ .menu__exit{
     height: 5.5em;
     transition: height .5s ease-in-out;

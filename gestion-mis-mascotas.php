@@ -20,7 +20,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/header-style.css">
     <link rel="stylesheet" href="css/table-style.css">
+    <link rel="stylesheet" href="css/modal-style.css">
+    <link rel="stylesheet" href="css/btn-created.css">
     <link rel="stylesheet" href="css/gestion-mis-mascotas.css">
+
+    
     <title>Gestion Razas</title>
 </head>
 <body onload="box__icon__color()" class="body__gestion__mis__mascota">
@@ -42,7 +46,7 @@
                 ?>
                 <?php foreach ($PetsUser as $Pet) {$longPetsUser = sizeof($Pet)-1; break; }?> 
                 <?php foreach ($PetsRaza as $Raza) {$longPetsRaza = sizeof($Raza)-1; break; }?> 
-            <div class="screen__gestion__mascota">
+            <div class="screen__gestion__mis__mascota screen__gestion">
                 <header class="header__gestion-vacuna">
                     <div class="header__logo user_select_none">
                         <div class="header__logo-img">

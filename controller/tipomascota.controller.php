@@ -39,5 +39,13 @@
             $sql = "UPDATE tipomascota SET $stringQuery;";
             $mysqli->query($sql);
         }
+        public function readName($id){
+            $mysqli = $this->conexion();
+            $sql = "SELECT nombre FROM tipomascota as m WHERE id = '$id'";
+            $result = $mysqli->query($sql);
+            foreach ($result as $key) { $resul = $key['nombre']; break; }
+            $mysqli->close();
+            return $resul;
+        }
     }
 ?>

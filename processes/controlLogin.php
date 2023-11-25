@@ -7,6 +7,7 @@
  class controlAccessLogin extends ConexionDataBase{
         public function checkInputLogin(){
             if(isset($_POST['btnLogin'])){
+                    // session_start();
                     if($_POST['userNameAccount'] === ""  or $_POST['userPass'] === ""){
                         echo (new setMessageLogin) -> messageInputEmpty();
                     }else{
@@ -20,18 +21,19 @@
                                 $hasd = $resultQuery["password"];        
                                 if (password_verify($userPass,  $hasd)) {
                                     echo (new setMessageLogin) -> messageStartSession();                                                                     
-                                    session_start();
                                     $_SESSION['usuario'] = $_POST['userNameAccount'];
                                     $_SESSION['rol'] = $resultQuery["Role_id"];
                                     $_SESSION['id'] = $resultQuery["id"];                              
                                     mysqli_free_result( $sql );   
                                     $mysqli -> close();                        
                                 }else{
+                                    session_destroy();
                                     mysqli_free_result( $sql );
                                     $mysqli -> close();
                                     echo (new setMessageLogin) -> messageNotValidatedPassword();
                                 }
                             }else{
+                                session_destroy();
                                 echo (new setMessageLogin) -> messageUserInvalid();
                             }
                     }

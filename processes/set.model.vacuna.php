@@ -8,7 +8,7 @@
             $mysqli = $this -> conexion();
             $modelVacuna -> nombre = $mysqli -> real_escape_string($_POST['nombre']);
             $modelVacuna -> aplicacion = $mysqli -> real_escape_string($_POST['aplicacion']);
-            $modelVacuna -> tipoMascotaId = $mysqli -> real_escape_string($_POST['tipomascota_id']);
+            $modelVacuna -> tipoMascotaId = $mysqli -> real_escape_string($_POST['tipoMascota']);
             (new controllerVacuna) -> create($modelVacuna);
         }
         public function update($id){

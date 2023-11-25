@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-/* .screen__gestion__mascota::before{
+/* .screen__gestion__razas::before{
     content: "";
     background-image: url(../img/Diseños_pagina/diseño-gestion_vacuna.png);
     background-repeat: no-repeat;
@@ -25,21 +25,13 @@
 .table__header-container, .table__rows-item{
     grid-template-columns: clamp(76px,20vw,25vw) clamp(60px, 15vw, 20vw) 20vw 20vw;
 }
-
 /*____________________________ ROW_WIDTH_TABLE-CONTENT ____________________________*/
+/*____________________________btn-created_______________________________________*/
+.box__icon-btn-add::before{
+    content: 'Agregar Raza';
+}
+/*____________________________btn-created_______________________________________*/
 
-/* .table__header-text{
-    height: 1.3em;
-} */
-/* .table__header-head{
-    height: 7em;
-} */
-/* .table__header-container{
-    width: 100%;
-} */
-/* .table__header-content{
-    gap: 1vh;
-} */
 .table__header-input{
     position: relative;
     display: grid;

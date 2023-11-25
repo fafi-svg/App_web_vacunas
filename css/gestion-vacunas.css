@@ -16,7 +16,15 @@ body{
 /*______________________________ HEADER ______________________________*/
 
 /*______________________________ HEADER ______________________________*/
-
+/*____________________________btn-created_______________________________________*/
+.box__icon-btn-add::before{
+    content: 'Agregar Vacunas';
+}
+/*____________________________btn-created_______________________________________*/
+.box__icon-btn-add-container {
+    position: absolute;
+    right: 5%;
+}
 .btnSubmit{
     display: none;
     margin: auto;
@@ -75,8 +83,6 @@ body{
 .inputUpdateView{
     display: grid;
 }
-
-
 
 .btnExit_img, .btnDelete_img{
     margin: auto;
@@ -166,18 +172,19 @@ body{
     margin: 0 1.3em;
 }
 #btnFilter_row{
-    position: absolute;
-    z-index: 3;
+    /* position: absolute; */
+    /* z-index: 3; */
     right: 4em;
     top: -1em;
 }
+
 .filter__container{
-    display: flex;
-    width: 90%;
+    /* display: flex; */
+    /* width: 90%; */
 }
 .btn__footer{
     justify-content: space-around;
-    width: 100%;
+    /* width: 100%; */
 }
 .filter__content{
     display: flex;
@@ -233,7 +240,7 @@ body{
 }
 /* ____________________________ ROWS_WIDTHS_TABLE ____________________________*/
 .table__header-container,.table__rows-item{
-    grid-template-columns: clamp(60px,5vw,10vw) clamp(100px,15vw,30vw) clamp(130px,15vw,20vw) clamp(103px, 15vw, 20vw) clamp(103px, 15vw, 20vw);
+    grid-template-columns: clamp(60px,5vw,10vw) clamp(100px,20vw,30vw) clamp(130px,15vw,20vw) clamp(103px, 15vw, 20vw) clamp(103px, 15vw, 20vw);
 }
 
 .table__rows-column{

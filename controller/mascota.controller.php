@@ -36,7 +36,7 @@
         }
         public function update($stringQuery){
             $mysqli = $this->conexion();
-            $sql = "UPDATE mascota SET $stringQuery;";
+            $sql = "UPDATE mascota SET $stringQuery;";  
             $mysqli->query($sql);
         }
     }

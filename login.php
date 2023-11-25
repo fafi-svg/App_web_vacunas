@@ -1,4 +1,8 @@
-
+<?php
+    // if(isset($_SESSION['usuario'])){
+    //     session_start();
+    // }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +15,7 @@
 </head>
 <body>
     <main class="main_login-register">
-        <?php if(isset($_SESSION['usuario']) or empty($_SESSION['usuario'])){?>
+        <?php session_start(); if(!isset($_SESSION['usuario'])){?>
             <section class="section__Login">
                 <div class="login__container">
                     <div class="login__logo img__filter-100">
@@ -90,7 +94,7 @@
             </section>
             <?php
                 if(isset($_POST['btnLogin'])){
-                    if(isset($_SESSION['usuario']) and $_SESSION['usuario'] != ""){
+                    if(isset($_SESSION['usuario'])){
             ?>              
                         <style>body, main{overflow-y: hidden;}</style>
                         <div class="screen__welcome elemtAnimation">

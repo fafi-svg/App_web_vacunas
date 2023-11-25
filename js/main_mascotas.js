@@ -114,19 +114,17 @@ function box__icon__color() {
 // var btnAddPet = document.querySelector('.box__icon-btn-add');
 document.querySelector('.box__icon-btn-add').addEventListener('click', ()=>{
     document.querySelector('.modal__container').style.display="flex";
-    document.querySelector('.screen__gestion__mascota').style.filter = "blur(1vh)";
+    document.querySelector('.screen__gestion').style.filter = "blur(1vh)";
 })
 // CLOSE MODAL
 // var btnModalClose = document.querySelector('.modal__close');
 document.querySelector('.modal__close').addEventListener('click', ()=>{
     document.querySelector('.modal__container').removeAttribute('style');
-    document.querySelector('.screen__gestion__mascota').removeAttribute('style');
+    document.querySelector('.screen__gestion').removeAttribute('style');
 })
 // ACTIVAR MODAL INPUT
 const modalInput = document.querySelectorAll('.modalInput');
-console.log(modalInput);
 var lenModalInput = modalInput.length;
-console.log(lenModalInput);
 var contInput = 0;
 modalInput.forEach(element => {
     element.addEventListener('change', ()=>{
