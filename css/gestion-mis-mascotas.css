@@ -68,7 +68,17 @@ img{
     gap: .8em;
     background-color: #262626;
     position: relative;
+    
 }
+.box__pet::before{
+    z-index: 3;
+    height: 30em;
+    width: 100%;
+    content: "";
+    width: 100%;
+    height: 20em;
+}
+
 .box__pet-container{
     display: grid;
     gap: .8em;
@@ -78,7 +88,11 @@ img{
     grid-template-rows: max-content auto max-content;
     /* width: 25%; */
     padding: .8em;
-    position: relative;
+    position: absolute;
+    z-index: 4;
+    transition-property: height;
+    transition-delay: 1s;
+    transition-duration: 500ms;
 
 }
 .box__pet-container, .box__info, .box__vacunas, .box__content,.box__pet{
@@ -135,14 +149,14 @@ img{
     transition-property: height;
     transition-duration: 200ms;
     grid-template-rows: max-content;
-    height: 7.74em;
-    
+    height: 100%;
     overflow: hidden;
     border: 0.3em solid #555555;
+    transition-property: height;
+    transition-delay: 1s;
+    transition-duration: 500ms;
 }
-/* .box__text{
-    height: inherit;
-} */
+
 .box__text-title{
     font-size: 1.2em;
     margin: 0.5vh 0;
@@ -194,32 +208,33 @@ p.box__text-date{
     transition-property: height;
     border: .1em solid white;
 } */
-.box__pet-focus:focus-within{
+.box__pet-container:focus-within{
     position: absolute;
     z-index: 5;
     height: 30em;
     width: 100%;
-    /* transition:  300ms ease-in-out;    
-    transition-property: height; */
+    transition:  300ms ease-in-out;    
+    transition-property: height;
     border: .1em solid white;
-    animation-name: box__pet__focus;
-    animation-duration: 200ms;
-    animation-delay: 0ms;
+    & .box__vacunas {
+        height: 100%;
+        overflow-y: scroll;
+    }
 }
 .box__pet-container{
     animation-name: box__pet__blur;
     animation-delay: 500ms;
     animation-duration: 100ms;
 }
-.box__pet:has(.box__pet-focus:focus-within)::before{
+/* .box__pet:has(.box__pet-focus:focus-within)::before{
     content: "";
     width: 100%;
     height: 17em;
-}
-.box__pet-focus:focus-within > .box__vacunas {
+} */
+/* .box__pet-focus:focus-within > .box__vacunas {
     height: 100%;
     overflow-y: scroll;
-}
+} */
 .btn__expan{
     margin: auto;
     transform: rotate(0deg);
