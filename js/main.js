@@ -270,30 +270,35 @@ btnFilter.addEventListener('click', ()=>{
 //     parenbtn.focus();
 // })
 ////////////////////// MODAL CONTRROL VACUNA
-// var btnAddPet = document.querySelector('.box__icon-btn-add');
-// document.querySelector('.box__icon-btn-add').addEventListener('click', ()=>{
-//     document.querySelector('.modal__container').style.display="flex";
-//     document.querySelector('.screen__gestion').style.filter = "blur(1vh)";
-// })
+var btnAddPet = document.querySelector('.box__icon-btn-add');
+if(btnAddPet != null){
+    document.querySelector('.box__icon-btn-add').addEventListener('click', ()=>{
+        document.querySelector('.modal__container').style.display="flex";
+        document.querySelector('.screen__gestion').style.filter = "blur(1vh)";
+    })
+}
+
 ////////////////////// CLOSE MODAL
-// var btnModalClose = document.querySelector('.modal__close');
-// document.querySelector('.modal__close').addEventListener('click', ()=>{
-//     document.querySelector('.modal__container').removeAttribute('style');
-//     document.querySelector('.screen__gestion').removeAttribute('style');
-// })
+var btnModalClose = document.querySelector('.modal__close');
+if(btnModalClose != null){
+    document.querySelector('.modal__close').addEventListener('click', ()=>{
+        document.querySelector('.modal__container').removeAttribute('style');
+        document.querySelector('.screen__gestion').removeAttribute('style');
+    })
+}
 //////////////////////ACTIVAR MODAL_BTN_SUBMIT
 const modalInput = document.querySelectorAll('.modalInput');
 var lenModalInput = modalInput.length;
 var contInput = 0;
 modalInput.forEach(element => {
+    console.log(element);
     element.addEventListener('change', ()=>{
-        if(lenModalInput == contValueInput()){
-            console.log(contInput);
+        if(modalInput.length == contValueInput()){
+            console.log('------------Active BTN//////////')
             document.querySelector('.modalSubmit').removeAttribute('disabled');
             document.querySelector('.modalSubmit').style.color = "white";
             document.querySelector('.modalSubmit').style.opacity = "1";
             document.querySelector('.modalSubmit').style.transformScale = "1.1";
-            contInput = 0;
         }
         else{
             document.querySelector('.modalSubmit').setAttribute('disabled', true);
@@ -301,6 +306,7 @@ modalInput.forEach(element => {
             document.querySelector('.modalSubmit').style.opacity = ".8";
             document.querySelector('.modalSubmit').style.transformScale = "1";
         }
+        contInput = 0;
     })  
 });
 function contValueInput(){
@@ -309,10 +315,10 @@ function contValueInput(){
             contInput++;
         }
     });
+    return contInput;
 }
 ////////////////////// JS ASIGNAR VACUNAS //////////////////////
 // GESTION-MIS-MASCOTAS RANDOM COLOR
-console.log('Aqui esta remdon color');
 var box__incon = document.querySelectorAll("div#ramdonColor");
 function box__icon__color() {
     const getRandomNumber = (maxNum) => {
@@ -373,19 +379,24 @@ function countInputCheck(arrayElement, elementV) {
     }
 }
 ///////////////////// REMOVE ATRIBUTE NAME fechaDefault
+// function loadAsignarVacuna() {
+    
+// }
 var fechaInput = document.querySelectorAll('.fechaInput');
 var btn_add_vacuna = document.querySelector('#btn_add_vacuna')
-btn_add_vacuna.addEventListener('click', ()=>{
-    fechaInput.forEach(element => {
-        if(element.value != ""){
-            document.querySelector('.fechaDefault_'+element.id).removeAttribute('name');
-        } else{
-            document.querySelector('.fechaInput_'+element.id).removeAttribute('name');
-        }
+if(btn_add_vacuna != null && fechaInput != null){
+    btn_add_vacuna.addEventListener('click', ()=>{
+        fechaInput.forEach(element => {
+            if(element.value != ""){
+                document.querySelector('.fechaDefault_'+element.id).removeAttribute('name');
+            } else{
+                document.querySelector('.fechaInput_'+element.id).removeAttribute('name');
+            }
 
-        // 
-    });
-})
+            // 
+        });
+    })
+}
 // ACTIVAR INPUT DATA
 // var table__calendar__img = document.querySelector('.table__calendar__img');
 

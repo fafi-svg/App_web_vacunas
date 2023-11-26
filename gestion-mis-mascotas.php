@@ -180,7 +180,7 @@
                         <form method="post" class="modal__form">
                             <div class="form__item">
                                 <label for="tipoMascota">Tipo Mascota</label>
-                                <select class="modalInput Scroll__container" id="tipoMascota" name="tipoMascota" >
+                                <select class="modalInput" id="tipoMascota" name="tipoMascota" >
                                     <option value=""></option>
                                     <option value="1">Gato</option>
                                     <option value="2">Perro</option>
@@ -188,7 +188,7 @@
                             </div>
                             <div class="form__item">
                                 <label for="raza">Razas Mascotas</label>
-                                <select class="modalInput Scroll__container" id="raza" name="raza"  disabled>
+                                <select class="modalInput" id="raza" name="raza"  disabled>
                                     <option  value=""></option>
                                     <?php foreach ($PetsRaza as $Raza) {?> 
                                         <option id="optionRaza" label="<?php echo$Raza['nombre']?>" value="<?php echo$Raza['id']?>"><?php echo$Raza['TipoMascota_id']?></option>

@@ -123,12 +123,15 @@ document.querySelector('.modal__close').addEventListener('click', ()=>{
     document.querySelector('.screen__gestion').removeAttribute('style');
 })
 // ACTIVAR MODAL INPUT
-const modalInput = document.querySelectorAll('.modalInput');
+var modalInput = document.querySelectorAll('.modalInput');
 var lenModalInput = modalInput.length;
 var contInput = 0;
 modalInput.forEach(element => {
     element.addEventListener('change', ()=>{
-        if(lenModalInput === contValueInput()){
+        console.log('chanhe////////////////////////////');
+        console.log(element);
+        // console.log(contValueInput());
+        if(modalInput.length === contValueInput()){
             document.querySelector('.modalSubmit').removeAttribute('disabled');
             document.querySelector('.modalSubmit').style.color = "white";
             document.querySelector('.modalSubmit').style.opacity = "1";

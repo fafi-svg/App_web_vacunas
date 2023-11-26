@@ -88,7 +88,7 @@
                 <section class="section__content">
                     <div class="table">
                         <div class="table__title">
-                            <p class="table__title-text">Gestion De Mascotas</p>
+                            <p class="table__title-text">Gestion De Razas</p>
                             <div class="box__icon-btn-add-container box__icon">
                                 <div class="box__icon-btn-add">
                                     <img style="width: 3em;" class="box__icon-created user_select_none" src="img/icon-agregar-white.png" alt="">
@@ -225,26 +225,33 @@
             <div class="modal__container">
                     <div class="modal__created">
                         <header class="modal__header">
-                            <h2 class="modal__title"> Agregar Vacuna</h2>
+                            <h2 class="modal__title"> Agregar Razas</h2>
                             <div class="modal__close">✕</div>
                         </header>
                         <section class="modal__content">
                             <form method="post" class="modal__form">
                                 <div class="form__item">
-                                    <label for="tipoMascota">Nombre Vacuna</label>
-                                    <input class="modalInput Scroll__container" type="text" id="tipoMascota" name="nombre" >           
+                                    <label for="raza">Nombre Raza</label>
+                                    <input class="modalInput" type="text" id="raza" name="raza" >           
                                 </div>
                                 <div class="form__item">
                                     <label for="tipoMascota">Tipo Mascota</label>
-                                    <select class="modalInput Scroll__container" id="tipoMascota" name="tipoMascota" >
+                                    <select class="modalInput" id="tipoMascota" name="tipoMascota" >
                                         <option value=""></option>
                                         <option value="1">Gato</option>
                                         <option value="2">Perro</option>
                                     </select>                                        
                                 </div>
                                 <div class="form__item">
-                                    <label for="nombre">Tiempo Aplicacion (Dias)</label>
-                                    <input class="modalInput" id="nombre" type="number" name="aplicacion" >
+                                    <label for="nombre">Tamaño</label>
+                                    <select class="modalInput" id="tamano" name="tamano" >
+                                        <option value=""></option>
+                                        <option value="1">mini</option>
+                                        <option value="2">pequeño</option>
+                                        <option value="3">mediano</option>
+                                        <option value="4">grande</option>
+                                        <option value="5">gigante</option>
+                                    </select>   
                                 </div>
                                 <div class="form__item__btn">
                                     <input class="modalSubmit" type="submit" name="btn_created_vacuna" value="ENVIAR" disabled>                                    

@@ -222,11 +222,11 @@
                             <form method="post" class="modal__form">
                                 <div class="form__item">
                                     <label for="tipoMascota">Nombre Vacuna</label>
-                                    <input class="modalInput Scroll__container" type="text" id="tipoMascota" name="nombre" >           
+                                    <input class="modalInput" type="text" id="tipoMascota" name="nombre" >           
                                 </div>
                                 <div class="form__item">
                                     <label for="tipoMascota">Tipo Mascota</label>
-                                    <select class="modalInput Scroll__container" id="tipoMascota" name="tipoMascota" >
+                                    <select class="modalInput" id="tipoMascota" name="tipoMascota" >
                                         <option value=""></option>
                                         <option value="1">Gato</option>
                                         <option value="2">Perro</option>

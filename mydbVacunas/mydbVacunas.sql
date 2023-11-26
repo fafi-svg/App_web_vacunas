@@ -207,15 +207,19 @@ insert into mascota (id, nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_
 -- -----------------------------------------------------------------------------##
 -- Control Vacunas
 -- -----------------------------------------------------------------------------##
--- insert into controlvacunas (Mascota_id, Vacuna_id, fecha) values ('1','8','2015-11-15'),('1','9','2016-03-15'),('2','10','2015-05-15'),('2','12','2016-04-15'), ('7','8','2015-05-15'),('7','9','2013-03-15'),('10','10','2015-05-15'),('10','12','2013-03-15');
+-- insert into controlvacunas (Mascota_id, Vacuna_id, fecha) values ('1','8','2015-11-15'),('1','9','2016-03-15'),('1','10','2015-05-15'),('1','12','2016-04-15'), ('2','8','2015-05-15'),('2','9','2013-03-15'),('3','10','2015-05-15'),('3','12','2013-03-15');
 -- -----------------------------------------------------------------------------##
 -- CONSULTAS
 -- -----------------------------------------------------------------------------##
---  select count(m.Raza_id) as 'countRaza', tm.nombre as 'tm.nombre', r.nombre as 'r.nombre', t.tamano as "t.tamano", m.nombre as 'nombre mascota'  from mascota as m left join raza as r on m.Raza_id = r.id  left join TamanosMascota as t on t.id = r.TamanoMascota_id left join TipoMascota as tm on m.TipoMascota_id = tm.id group by  m.TipoMascota_id, r.nombre, t.tamano;
+-- select v.id as id, v.nombre as nombre, v.aplicacion as aplicacion from vacunas as v where v.TipoMascota_id =2;
+
+-- left join controlvacunas as c on  c.Vacuna_id != v.id
+-- left join controlvacunas as c on v.id != c.Vacuna_id  inner join mascota as m  on  c.Mascota_id = 2 left join;  where v.TipoMascota_id =1
+--  select count(m.Raza_id) as 'countRaza', tm.nombre as 'tm.nombre', r.nombre as 'r.nombre', t.tamano as "t.tamano", m.nombre as 'nombre mascota'  from mascota as m left join raza as r on m.Raza_id = r.id  left join TamanosMascota as t on t.id = r.TamanoMascota_id left join TipoMascota as tm on m.TipoMascota_id = tm.id group by  tm.nombre as 'tm.nombre', r.nombre as 'r.nombre', t.tamano as "t.tamano";
 -- SELECT  m.nombre, u.nombre, count(c.Mascota_id), m.TipoMascota_id,m.FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id left join controlvacunas as c on c.Mascota_id = m.id  group by   m.nombre, u.nombre, m.TipoMascota_id, m.FechaNacimiento;
 -- SELECT  u.username as username, m.nombre as nombre, m.TipoMascota_id as TipoMascota_id ,m.FechaNacimiento as FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id where u.username = 'UseR-1';
-select * from Vacunas ;
-select * from raza;
+-- select * from Vacunas ;
+-- select * from raza;
 -- select * from mascota;
 -- delete from mascota where id = 18 or id = 19 or id = 20 or id = 21;
 -- select * from user;
