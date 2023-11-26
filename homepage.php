@@ -68,7 +68,7 @@
                                 <p class="box__text-name">Registro De Vacunas</p>
                             </div>
                         </a>
-                        <a href="gestion-vacunas.php" class="box__container"> 
+                        <a href="gestion-asignar-vacunas.php" class="box__container"> 
                             <div class="box__img">
                                 <img src="img/icon-geringa-white_rellena.png" alt="">
                             </div>
@@ -119,7 +119,7 @@
                                 <p class="box__text-name">Mis Mascotas</p>
                             </div>
                         </a>
-                        <a href="gestion-vacunas.php" class="box__container"> 
+                        <a href="gestion-asignar-vacunas.php" class="box__container"> 
                             <div class="box__img">
                                 <img src="img/icon-geringa-white_rellena.png" alt="">
                             </div>

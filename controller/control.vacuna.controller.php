@@ -23,7 +23,7 @@
             $sql = "DELETE FROM controlvacunas WHERE id = $id";
             $mysqli->query($sql);
             if ($mysqli) {
-                echo "<div class='table__title-message'>Registro eliminado con éxito.</div>";
+                echo "<div class='table__title__message'>Registro eliminado con éxito.</div>";
             } else {
                 echo "Error al eliminar el registro: " . $mysqli->error;
             }
@@ -48,7 +48,7 @@
             $sql = "UPDATE controlvacunas SET $stringQuery WHERE id = $id";
             $resultado = $mysqli->query($sql);
             // if($resultado){
-            //     echo "<div class='table__title-message'>DATOS ACTUALIZADOS</div>";
+            //     echo "<div class='table__title__message'>DATOS ACTUALIZADOS</div>";
             // }
             $mysqli -> close();
         }

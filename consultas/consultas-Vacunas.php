@@ -28,5 +28,17 @@ class GestionVacunasConsultas extends ConexionDataBase{
         $sqlQuery = $mysqli->query($sql);
         return $sqlQuery ;
     }
+    public function petVacunaNotUse($typePet){
+        $mysqli = $this->conexion();
+        $sql = "SELECT id, nombre, aplicacion from vacunas as v where v.TipoMascota_id = '$typePet'";
+        $sqlQuery = $mysqli->query($sql);
+        return $sqlQuery ;
+    }
+    public function vacunaTypePet($typePet){
+        $mysqli = $this->conexion();
+        $sql = "SELECT count(id) as cound FROM Vacunas where TipoMascota_id = $typePet" ;
+        $sqlQuery = $mysqli->query($sql);
+        return $sqlQuery ;
+    }
 }
 ?>

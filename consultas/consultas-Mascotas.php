@@ -22,4 +22,10 @@ class GestionMascotaConsultas extends ConexionDataBase{
         $sqlQuery = $mysqli->query($sql);
         return $sqlQuery ;
     }
+    public function pet($petId){
+        $mysqli = $this->conexion();
+        $sql ="SELECT * from mascota as m where id = '$petId'";
+        $sqlQuery = $mysqli->query($sql);
+        return $sqlQuery ;
+    }
 }

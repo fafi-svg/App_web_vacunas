@@ -79,6 +79,7 @@ img{
     /* width: 25%; */
     padding: .8em;
     position: relative;
+
 }
 .box__pet-container, .box__info, .box__vacunas, .box__content,.box__pet{
     border-radius: 1em;
@@ -131,8 +132,11 @@ img{
 .box__vacunas{
     display: grid;
     gap: 1em;
+    transition-property: height;
+    transition-duration: 200ms;
     grid-template-rows: max-content;
     height: 7.74em;
+    
     overflow: hidden;
     border: 0.3em solid #555555;
 }
@@ -195,11 +199,18 @@ p.box__text-date{
     z-index: 5;
     height: 30em;
     width: 100%;
-    transition:  300ms ease-in-out;    
-    transition-property: height;
+    /* transition:  300ms ease-in-out;    
+    transition-property: height; */
     border: .1em solid white;
+    animation-name: box__pet__focus;
+    animation-duration: 200ms;
+    animation-delay: 0ms;
 }
-
+.box__pet-container{
+    animation-name: box__pet__blur;
+    animation-delay: 500ms;
+    animation-duration: 100ms;
+}
 .box__pet:has(.box__pet-focus:focus-within)::before{
     content: "";
     width: 100%;

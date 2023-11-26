@@ -1,0 +1,524 @@
+@import url(https://db.onlinewebfonts.com/c/fd6fa80f1e3345834599de891cca3f4c?family=OCR+A+Extended);
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;400;600&display=swap');
+body{
+    font-size: 2vh;
+    font-family: "OCR A Extended";
+    margin: 0;
+    color: white;
+}
+*{
+    box-sizing: border-box;
+}
+.screen__gestion-vacuna{
+    display: grid;
+    grid-template-rows: max-content auto;
+}
+/*______________________________ HEADER ______________________________*/
+
+/*______________________________ HEADER ______________________________*/
+/*____________________________btn-created_______________________________________*/
+.box__icon-btn-add::before{
+    content: 'Asignar Vacunas';
+}
+/*____________________________btn-created_______________________________________*/
+.box__icon-btn-add-container {
+    position: absolute;
+    right: 5%;
+}
+.btnSubmit{
+    display: none;
+    margin: auto;
+    z-index: 4;
+    height: 4.5vh;
+    width: 4.5vh;
+    border-radius: 1vh;
+    border: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.btnSubmitAgregar{
+    display: none;
+    margin: auto;
+    z-index: 5;
+    height: 5vh;
+    width: 5vh;
+    border: 0;
+    border-radius: .5em;
+    opacity: 0;
+    cursor: pointer;
+}
+.labelSubmit{
+    display: none;
+    margin: auto;
+    z-index: 3;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 1em;
+    border: 0;
+    position: relative;
+    place-content: center;
+    user-select: none;
+}
+.btnFlecha{
+    display: none;
+}
+.btnFlecha-img{
+    width: 1em;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+.btnSubmit-img{
+    width: inherit;
+    position: absolute;
+    top: .13em;
+    margin: auto;
+}
+.btnSubmit_img{
+    width: inherit;
+}
+.inputUpdateView{
+    display: grid;
+}
+
+.btnExit_img, .btnDelete_img{
+    margin: auto;
+    height: 81%;
+    max-height: 5vh;
+    cursor: pointer;
+}
+.btnDelete_img{
+    cursor: pointer;
+}
+.btnDelete_input{
+    margin: auto;
+    z-index: 4;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 3em;
+    border: 0;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    width: 5vh;
+}
+.expan_delete {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    background-color: rgba(255, 0, 0, 0.9);
+    border-bottom: .1vh solid black;
+    height: 100%;
+    /* width: 100%; */
+    left: 0em;
+    transition: .2s ease-in-out;
+}
+#btnUpdate{
+    position: relative;
+}
+#btnDelete{
+    position: relative;
+}
+/*_______________________ TABLE_ASIGNAR_VACUNA_DISEÑO*_______________________ */
+/* .table__container {
+    
+} */
+.tables__container{
+    display: grid;
+    gap: 3%;
+    grid-template-columns: 60% auto;
+}
+.table__mascota{
+    height: 70vh;
+    width: inherit;
+    position: relative;
+    display: grid;
+    grid-template-rows: max-content auto max-content;
+}
+.table__header{
+    width: 100%;
+}
+
+.table__footer, .table__footer-content{
+    width: 100%;
+}
+.table__rows-icon{
+    display: flex;
+    gap: 3em;
+    align-items: center;
+    position: absolute;
+    right: 0em;
+    height: 100%;
+}
+.table__rows-item-btn{
+    height: 100%;
+}
+.table__rows-item-btn img{
+    width: inherit;
+}
+.table__rows-img{
+    height: 100%;
+}
+.table__rows-img img{
+    width: inherit;
+}
+.table__rows-btn{
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+    flex-direction: row-reverse;
+    position: relative;
+    height: 100%;
+}
+.table__rows-btn-img{
+    display: flex;
+    align-items: center;
+}
+.table__rows-btn-img img{
+    position: relative;
+    z-index: 2;
+}
+.table__rows-btn-img{
+    user-select: none;
+    cursor: pointer;
+}
+.table__rows-btn-img img{
+    width: 1.9em;
+}
+.table__rows-text{
+    margin: auto;
+}
+
+/*_______________________ TABLE_ASIGNAR_VACUNA_DISEÑO*_______________________ */
+/*_______________________ TABLE_ASIGNAR_SECTION_MASCOTA*_______________________ */
+
+.box__icon-pet{
+    border-radius: 50%;
+    padding: 1em
+}
+
+.box__icon img{
+    height: 3em;
+}
+.box__info{
+    background-color: #555555;
+    padding: .5em 1em;
+}
+.box__info__pet, .box__icon__count, .box__info{
+    display: flex;
+    gap: .4em;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+.box__icon__count{
+    position: relative;
+    overflow: visible;
+    & p{
+        position: relative;
+        z-index: 5;
+        font-weight: 500;
+        background-color: #555555;
+        padding: .2em;
+        border-radius: 50%;
+    }
+    .box__icon-btn-img{
+        position: absolute;
+        left: -1em;
+        height: 4em;
+    }
+}
+
+.box__info{
+    justify-content: space-between;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    border-radius: 1em;
+    
+}
+.countVacunas{
+    font-size: 1.4em;
+}
+.login__button-primario{
+    background: linear-gradient(to top left, rgb(51, 33, 51), #5c415d);
+    transition:  'background' .4s ease-in-out;
+    border-radius: .5em;
+    border: 0;
+    padding: 2vh;
+    width: 50%;
+    color: white;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.2em;
+}
+.asignarVacuna{
+    transform: scale(1);
+    transition-property: transform;
+    transition-duration: 200ms;
+    width: 2vh;
+    height: 2vh;
+}
+.asignarVacuna:checked{
+    transform: scale(2);
+    transition-property: transform;
+    transition-duration: 200ms;
+}
+.asignarVacuna:checked::before{
+    content: "now";
+    position: absolute;
+    color: white;
+    top: -1.2em;
+    font-size: .5em;
+    filter: drop-shadow(0 0 1px black);
+}
+
+div.table__rows-container:has(.asignarVacuna:checked){
+    background: linear-gradient(to top left, rgb(51, 33, 51), #5c415d);
+}
+.table__calendar{
+    display: none;
+    height: max-content;
+    position: absolute;
+    top: 0;
+    left: 1%;
+    bottom: 0;
+    margin: auto;
+    z-index: 5;
+}
+.table__calendar__container{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin: auto;
+}
+
+.table__calendar__img{
+    background-color: #555555;
+    border-radius: 2em;
+    padding: .5em;
+    cursor: pointer;
+}
+.table__calendar__img img{
+    width: 2em;
+}
+.table__calendar__input{
+    display: none;
+    width: 0;
+    transition-property: width;
+    transition-duration: 200ms;
+    position: relative;
+    z-index: -1;
+}
+.table__calendar__img::before{
+    content: 'EDITAR_FECHA';
+    display: none;
+    position: absolute;
+    width: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    bottom: 0;
+    left: 3.5em;
+    margin: auto;
+    height: 1em;
+    width: max-content;
+    padding: .5em;
+    border-radius: .5em;
+    backdrop-filter: blur(1vh);
+    transition-property: width;
+    transition-duration: 200ms;
+    overflow: hidden;   
+}
+.table__content__mascota{
+    & .table__rows-container > .table__calendar {
+        display: flex;
+    }
+    & .table__rows-container{
+        padding-left: 3em;
+    }
+    & .table__calendar__img:hover::before{
+        position: absolute;
+        display: flex;
+        opacity: 1;
+        width: 8em;
+        transition-property: width;
+        transition-duration: 200ms;
+    }
+    
+}
+.table__calendar__container:focus-within{
+    & .table__calendar__input{
+        width: 5em;
+        display: flex;
+        width: 8em;
+        transition-property: width;
+        transition-duration: 200ms;
+        z-index: 5;
+    }
+    & .table__calendar__img:hover::before{
+        opacity: 0;
+        display: none;
+
+    }
+}
+/*_______________________ TABLE_ASIGNAR_SECTION_MASCOTA*_______________________ */
+#btnFilter_row{
+    right: 4em;
+    top: -1em;
+}
+
+.filter__container{
+    /* display: flex; */
+    /* width: 90%; */
+}
+.btn__footer{
+    justify-content: space-around;
+    /* width: 100%; */
+}
+.filter__content{
+    display: flex;
+    align-items: center;
+    width: 0;
+    opacity: 0;
+    gap: .5em;
+    margin-right: 10%;
+    z-index: -1;
+}
+.showfilter{
+    animation-name: showfilter;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+.hidenfilter{
+    animation-name: hidenfilter;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+@keyframes showfilter {
+    0%{
+        width: 0;
+        opacity: 0;
+        z-index: 1;
+    }
+    50%{
+        opacity: 1;
+        width: 50%;
+    }
+    100%{
+        width: 100%;
+        z-index: 1;
+        opacity: 1;
+    }
+}
+@keyframes hidenfilter {
+    100%{
+        width: 0;
+        opacity: 0;
+        z-index: -1;
+    }
+    50%{
+        opacity: 1;
+    }
+    0%{
+        width: 100%;
+        z-index: 1;
+        opacity: 1;
+    }
+}
+/* ____________________________ ROWS_WIDTHS_TABLE ____________________________*/
+.table__header-container,.table__rows-item{
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.table__rows-column{
+    width: 87%;
+}
+.table__header-container{
+    width: 100%;
+}
+
+/* ____________________________ ROWS_WIDTHS_TABLE ____________________________*/
+@media (max-width:768px){
+    .table__rows-column{
+        width: 90%;
+    }
+    .table__header-container{
+        width: 96.3%;
+    }
+    /*___________________________ CONTENT_TABLE_HIDE ___________________________*/
+    /* .table__rows-item-column:last-child{
+        display: none;
+    }
+    .table__rows-item-column:first-child{
+        display: none;
+    } */
+    /*___________________________ CONTENT_TABLE_HIDE ___________________________*/
+    /*____________________________ HEADER_TABLE_HIDE ____________________________*/
+    /* .table__header-content:last-child{
+        display: none;
+    }
+    .table__header-content:first-child{
+        display: none;
+    } */
+    /*____________________________ HEADER_TABLE_HIDE ____________________________*/
+    /*____________________________ ROWS_WIDTHS_TABLE ____________________________*/
+    .table__header-container, .table__rows-item{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    /*____________________________ ROWS_WIDTHS_TABLE ____________________________*/
+    .table__rows-btn-flecha{
+        display: grid;
+    }
+    /* .table__header-text{
+        font-size: 1em;
+    } */
+    .table__rows-item-btn{
+        position: absolute;
+        right: -8em;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 2.7em;
+        transition: .2s ease-in-out;
+        transition-property: right;
+        transition-delay: .5s;
+    }
+    .table__rows-btn{
+        padding: 0 1em 0 1em;
+        border-radius: 4em;
+    }
+    .table__rows-item-btn:hover{
+        right: 1.5em;
+        transition: .2s ease-in-out;
+        transition-property: right;
+    }
+    .table__rows-btn_color{
+        background-color: #d137e9 !important;
+    }
+    .btnFlecha{
+        display: grid;
+        position: relative;
+        height: 1em;
+        width: 1em;
+    }
+
+    /* .table__rows-container:nth-child(even) > .table__rows-content > .table__rows-item-btn > .table__rows-btn{
+        background-color: #555555;
+    }
+    .table__rows-container:nth-child(odd) > .table__rows-content > .table__rows-item-btn .table__rows-btn{
+        background-color: #808585;
+    } */
+
+}
+

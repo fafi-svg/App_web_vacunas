@@ -20,7 +20,7 @@
             $sql = "DELETE FROM vacunas WHERE id = $modelVacuna->id";
             $mysqli->query($sql);
             if ($mysqli) {
-                echo "<div class='table__title-message'>Registro eliminado con éxito.</div>";
+                echo "<div class='table__title__message'>Registro eliminado con éxito.</div>";
             } else {
                 echo "Error al eliminar el registro: " . $mysqli->error;
             }

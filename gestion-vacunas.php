@@ -237,17 +237,6 @@
                                         </div>
                                         <div class="btn__footer">
                                             <div class="filter__container">
-                                                <div class="filter__content" id="filterContent">
-                                                    <div class="inputUpdate__container">                                                        
-                                                       
-                                                    </div>  
-                                                    <div class="inputUpdate__container">
-                                                       
-                                                    </div>   
-                                                    <div class="inputUpdate__container">
-
-                                                    </div>
-                                                </div>
                                                 <div id="btnFilter_row" class="table__footer-filter table__footer-icon">
                                                     <img src="img/icon-filtro.png" alt="">
                                                 </div>

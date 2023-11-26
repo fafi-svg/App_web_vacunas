@@ -51,7 +51,7 @@ select::-ms-expand {
     font-size: 2.5em;
     margin: .5em 0; 
 }
-.table__title-message{
+.table__title__message, .table__title__message__error{
     background-color: green;
     display:grid;
     place-content:center;
@@ -61,6 +61,10 @@ select::-ms-expand {
     margin: auto;
     font-family: 'Gothic A1', sans-serif;
     text-align: center;
+    font-weight: 900;
+}
+.table__title__message__error{
+    background-color: red !important;
 }
 .table__title{
     display: flex;
@@ -417,7 +421,7 @@ select::-ms-expand {
     .table__rows-text-img{
         height: 1.5em;
     }
-    .table__title-message{
+    .table__title__message, .table__title__message__error{
         width: 100%;
     }
     .table__title-text {

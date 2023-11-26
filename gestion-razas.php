@@ -8,6 +8,7 @@
     require_once(__DIR__."/consultas/consultas-gestion-Razas.php");
     require_once(__DIR__."/consultas/consultas-gestion-Razas.php");
     require_once(__DIR__."/controller/tipomascota.controller.php");
+    echo date('Y'),date('-m-'), date('d')-1;
 ?>
 <!DOCTYPE html>
 <html lang="en">

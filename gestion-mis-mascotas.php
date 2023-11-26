@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="css/gestion-mis-mascotas.css">
 
     
-    <title>Gestion Razas</title>
+    <title>Gestion Mis Mascotas</title>
 </head>
 <body onload="box__icon__color()" class="body__gestion__mis__mascota">
     <main class="main__gestion__mis__mascota">
@@ -39,6 +39,11 @@
                         $modelMascotas = (new modelMascotas);
                         (new SetModelMascota) -> create($modelMascotas);
                         header('location:gestion-mis-mascotas.php');
+                    }
+                    if(isset($_POST['btn_add_vacunas'])){
+                        $_SESSION['petId'] = $_POST['btn_add_vacunas'];
+                        $_SESSION['typePet'] = $_POST['TipoMascota_id'];
+                        header('location:gestion-asignar-vacunas');
                     }
                     
                     $PetsRaza = (new GestionRazasConsultas) -> petsRazaName();
@@ -151,11 +156,12 @@
                                                     </div>
                                             <?php } }?>
                                         </div>
-                                        <div class="box__icon-default box__icon">
+                                        <form method="post" class="box__icon-default box__icon">
                                             <img class="box__icon-created user_select_none" src="img/icon-agregar-white.png" alt="">
-                                            <input class="btnAgregarVacuna" id="btnAgregarSubmit" type="submit" name="btn_update_mascota" value="<?php echo $Pet['id']?>">
+                                            <input class="btnAgregarVacuna" id="btnAgregarSubmit" type="submit" name="btn_add_vacunas" value="<?php echo $Pet['id']?>">
+                                            <input type="hidden" name='TipoMascota_id' value="<?php echo $Pet['TipoMascota_id']?>">
                                             <p class="box__text-title"> Agregar Vacina</p>
-                                        </div>
+                                        </form>
                                     </div>
                                     <div class="btn__expan" id="<?php echo $numBox; ?>"><img src="img/icon-flecha.png" alt=""></div>  
                                 </div>

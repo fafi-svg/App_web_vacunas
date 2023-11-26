@@ -171,7 +171,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 insert into Role values('2','admin'), ('1','user');
--- insert into User values('1', 'Ricardo', 'UseR-1', 'example4@correo.com', '$2y$10$INUrk34z0.OzzwAu25XvceLGwXw0q3ORKH4WBss9kXfF.W2O8rDpm', '1', 'null'),('2', 'Ricardo', 'admin-2', 'example5@correo.com', '$2y$10$INUrk34z0.OzzwAu25XvceLGwXw0q3ORKH4WBss9kXfF.W2O8rDpm', '2', 'null');
+insert into User values('1', 'admin', 'admin', 'admin@admin.com', '$2y$10$D1LTo0oR.sDpZIdLOXUPe.MDpb5uSHBrRcliUmZIbI/wM7VJDUrCa', '2', null),('2', 'user', 'user', 'user@user.com', '$2y$10$EFwiT4Hqe5BWJuI1LUzAnu81HrrnI40F8ek0fwNnlWfGhMoxblRNe', '1', null);
 insert into TipoMascota (id,nombre, EdadEquivalenteInfante, EdadEquivalenteJoven, EdadEquivalenteAdolecente, EdadAdulto) value('1','gato','2','5','8','10'), ('2','perro','3','6','12','18');
 insert into TamanosMascota value('1','mini'),('2','pequeno'),('3','mediano'),('4','grande'),('5','gigante');
 -- -----------------------------------------------------------------------------##
@@ -199,15 +199,15 @@ insert into raza (nombre, TipoMascota_id, TamanoMascota_id) values ('Ragdoll','1
 -- -----------------------------------------------------------------------------##
 -- Mascotas Gatos
 -- -----------------------------------------------------------------------------##
--- insert into mascota (id, nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('1',tula','2015-05-15','1','1','50'),('2','peka','2015-05-15','1','1','67'),('3','luis','2015-05-15','1','1','93'),('4','nacho','2015-05-15','1','1','55'),('5','pepa','2015-05-15','1','1','85'),('6','michulais','2015-05-15','1','1','73'); 
+insert into mascota (id, nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('1','tula','2015-05-15','1','1','50'),('2','peka','2015-05-15','1','1','67'),('3','luis','2015-05-15','1','1','93'),('4','nacho','2015-05-15','1','2','42'),('5','pepa','2015-05-15','1','2','43'),('6','michulais','2015-05-15','1','2','1'); 
 -- -----------------------------------------------------------------------------##
 -- Mascotas perros
 -- -----------------------------------------------------------------------------##
--- insert into mascota (nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('7','luca','2015-05-15','3','2','5'),('8','donkan','2015-05-15','3','2','45'),('9','silvestre','2015-05-15','3','2','3'),('10','paco','2015-05-15','3','2','15'),('11','miguel','2015-05-15','3','2','89'),('12','firulais','2015-05-15','3','2','5'); 
+insert into mascota (id, nombre, FechaNacimiento, User_id, TipoMascota_id, Raza_id) values('7','luca','2015-05-15','2','2','5'),('8','donkan','2015-05-15','2','2','45'),('9','silvestre','2015-05-15','2','2','3'),('10','paco','2015-05-15','2','1','55'),('11','miguel','2015-05-15','2','1','89'),('12','firulais','2015-05-15','2','1','50'); 
 -- -----------------------------------------------------------------------------##
 -- Control Vacunas
 -- -----------------------------------------------------------------------------##
--- insert into controlvacunas (Mascota_id, Vacuna_id, fecha) values ('1','8','2015-11-15'),('1','9','2016-03-15'),('1','10','2015-05-15'),('1','12','2016-04-15'), ('3','8','2015-05-15'),('3','9','2013-03-15'),('3','10','2015-05-15'),('4','12','2013-03-15');
+-- insert into controlvacunas (Mascota_id, Vacuna_id, fecha) values ('1','8','2015-11-15'),('1','9','2016-03-15'),('2','10','2015-05-15'),('2','12','2016-04-15'), ('7','8','2015-05-15'),('7','9','2013-03-15'),('10','10','2015-05-15'),('10','12','2013-03-15');
 -- -----------------------------------------------------------------------------##
 -- CONSULTAS
 -- -----------------------------------------------------------------------------##
@@ -215,7 +215,8 @@ insert into raza (nombre, TipoMascota_id, TamanoMascota_id) values ('Ragdoll','1
 -- SELECT  m.nombre, u.nombre, count(c.Mascota_id), m.TipoMascota_id,m.FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id left join controlvacunas as c on c.Mascota_id = m.id  group by   m.nombre, u.nombre, m.TipoMascota_id, m.FechaNacimiento;
 -- SELECT  u.username as username, m.nombre as nombre, m.TipoMascota_id as TipoMascota_id ,m.FechaNacimiento as FechaNacimiento FROM mascota as m  left join user as u  on u.id = m.User_id where u.username = 'UseR-1';
 select * from Vacunas ;
-select * from mascota;
+select * from raza;
+-- select * from mascota;
 -- delete from mascota where id = 18 or id = 19 or id = 20 or id = 21;
 -- select * from user;
 -- select * from controlvacunas;

@@ -27,7 +27,7 @@
             $sql = "DELETE FROM tipomascota WHERE id = $id";
             $mysqli->query($sql);
             if ($mysqli) {
-                echo "<div class='table__title-message'>Registro tipomascota eliminado con éxito.</div>";
+                echo "<div class='table__title__message'>Registro tipomascota eliminado con éxito.</div>";
             } else {
                 echo "Error al eliminar el registro: " . $mysqli->error;
             }

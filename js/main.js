@@ -175,7 +175,7 @@ console.log(itemsTipoMascota);
 console.log(itemsNombreRaza);
 console.log(itemsTamaño);
 console.log(inputSearch);
-var parenElement = document.querySelectorAll('form.table__rows-container');
+var parenElement = document.querySelectorAll('.table__rows-container');
 var counInputV = 0;
 inputSearch.forEach(element => {
     element.addEventListener('keyup', ()=>{
@@ -239,11 +239,11 @@ function invertFilterContent(){
 var filterContent = document.querySelector('#filterContent');
 var btnFilter = document.querySelector('#btnFilter_row');
 btnFilter.addEventListener('click', ()=>{
-    if(document.querySelector('form.table__header-head').getAttribute("style")){
-        document.querySelector('form.table__header-head').removeAttribute("style");
+    if(document.querySelector('.table__header-head').getAttribute("style")){
+        document.querySelector('.table__header-head').removeAttribute("style");
         btnFilter.classList.remove('filterActive');
     }else{
-        document.querySelector('form.table__header-head').style.height = "8em";
+        document.querySelector('.table__header-head').style.height = "8em";
         btnFilter.classList.add('filterActive');
     }
     
@@ -269,19 +269,19 @@ btnFilter.addEventListener('click', ()=>{
 //     parenbtn.tabIndex=0;
 //     parenbtn.focus();
 // })
-// MODAL CONTRROL VACUNA
+////////////////////// MODAL CONTRROL VACUNA
 // var btnAddPet = document.querySelector('.box__icon-btn-add');
-document.querySelector('.box__icon-btn-add').addEventListener('click', ()=>{
-    document.querySelector('.modal__container').style.display="flex";
-    document.querySelector('.screen__gestion').style.filter = "blur(1vh)";
-})
-// CLOSE MODAL
+// document.querySelector('.box__icon-btn-add').addEventListener('click', ()=>{
+//     document.querySelector('.modal__container').style.display="flex";
+//     document.querySelector('.screen__gestion').style.filter = "blur(1vh)";
+// })
+////////////////////// CLOSE MODAL
 // var btnModalClose = document.querySelector('.modal__close');
-document.querySelector('.modal__close').addEventListener('click', ()=>{
-    document.querySelector('.modal__container').removeAttribute('style');
-    document.querySelector('.screen__gestion').removeAttribute('style');
-})
-// ACTIVAR MODAL_BTN_SUBMIT
+// document.querySelector('.modal__close').addEventListener('click', ()=>{
+//     document.querySelector('.modal__container').removeAttribute('style');
+//     document.querySelector('.screen__gestion').removeAttribute('style');
+// })
+//////////////////////ACTIVAR MODAL_BTN_SUBMIT
 const modalInput = document.querySelectorAll('.modalInput');
 var lenModalInput = modalInput.length;
 var contInput = 0;
@@ -310,3 +310,92 @@ function contValueInput(){
         }
     });
 }
+////////////////////// JS ASIGNAR VACUNAS //////////////////////
+// GESTION-MIS-MASCOTAS RANDOM COLOR
+console.log('Aqui esta remdon color');
+var box__incon = document.querySelectorAll("div#ramdonColor");
+function box__icon__color() {
+    const getRandomNumber = (maxNum) => {
+        return Math.floor((Math.random() *  (maxNum - 20)) + 20);
+    };
+    const getRandomColor = () => {
+        const h = getRandomNumber(360);
+        const s = getRandomNumber(100);
+        const l = getRandomNumber(100);
+        return `hsl(${h}deg, ${s}%, 20%)`;
+    };
+    var setBackgroundColor = (element) => {
+        const randomColor = getRandomColor();
+        var elementId = element.id;
+        document.getElementById(elementId).style.backgroundColor = randomColor;
+        //background.style.color = randomColor;
+    };
+    box__incon.forEach(element => {
+        console.log(element);
+        setBackgroundColor(element);
+    });
+}
+//  ClONAR ELEMENT
+var asignarVacuna = document.querySelectorAll('input.asignarVacuna');
+var table__content__mascota = document.querySelector('.table__content__mascota');
+var table__rows = document.querySelector('.table__rows');
+var icon_calendar = document.querySelectorAll('#btn__calendar');
+var countVacunas = document.querySelector('span.countVacunas');
+var countInput = 0;
+
+console.log(asignarVacuna)
+asignarVacuna.forEach(element => {
+    element.addEventListener('change', ()=>{
+        if(element.checked && countInputCheck(asignarVacuna, element)){
+            console.log(document.querySelector('#form_'+element.id));
+            var parent =document.querySelector('#form_'+element.id);
+            table__content__mascota.appendChild(parent);
+        }
+        else if (!element.checked && contInput < 1) {
+            window.alert("Esta Seguro de retirar la vacuna?")
+            var parent =document.querySelector('#form_'+element.id);
+            table__rows.appendChild(parent);
+        }
+        contInput=0;
+    })  
+});
+function countInputCheck(arrayElement, elementV) {
+    arrayElement.forEach(element =>{
+        if(element.checked){
+            contInput++;
+        }
+    })
+    if(contInput > 1){
+        elementV.checked = false;
+        return false;
+    }else{
+        return true;
+    }
+}
+///////////////////// REMOVE ATRIBUTE NAME fechaDefault
+var fechaInput = document.querySelectorAll('.fechaInput');
+var btn_add_vacuna = document.querySelector('#btn_add_vacuna')
+btn_add_vacuna.addEventListener('click', ()=>{
+    fechaInput.forEach(element => {
+        if(element.value != ""){
+            document.querySelector('.fechaDefault_'+element.id).removeAttribute('name');
+        } else{
+            document.querySelector('.fechaInput_'+element.id).removeAttribute('name');
+        }
+
+        // 
+    });
+})
+// ACTIVAR INPUT DATA
+// var table__calendar__img = document.querySelector('.table__calendar__img');
+
+// array.forEach(element => {
+//     element.addEventListener('change', ()=>{
+//         if(!element.value == ""){
+//             table__calendar__img.style
+//         }
+//     })
+// });
+
+
+////////////////////// JS ASIGNAR VACUNAS //////////////////////
